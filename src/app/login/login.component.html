@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="card" style="padding: 20px;">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <input type="text"
+            ngModel
+            name="doctorId"
+            id="doctorId"
+            placeholder="Enter your National Health ID"
+            class="form-control mb-3"
+            >
+
+            <input type="password"
+            ngModel
+            name="doctorPassword"
+            id="doctorPassword"
+            placeholder="Enter your password"
+            class="form-control mb-3"
+            >
+
+            <input type="submit"
+            value="Login"
+            class="btn btn-outline-primary form-control rounded-0">
+        </form>
+    </div>
+</div>
