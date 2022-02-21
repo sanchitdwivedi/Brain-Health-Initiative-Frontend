@@ -19,27 +19,23 @@ export class LoginComponent implements OnInit {
     // this.checkLoggedIn();
   }
 
-  checkLoggedIn(){
-    if(this.doctorAuthService.isLoggedIn()){
-      const role: string = this.doctorAuthService.getRole();
-      if(role==="specialist") this.router.navigate(['/specialist']);
-      else if(role==="medical officer") this.router.navigate(['/medical-officer']);
-    }
-  }
+  // checkLoggedIn(){
+  //   if(this.doctorAuthService.isLoggedIn()){
+  //     const role: string = this.doctorAuthService.getRole();
+  //     if(role==="specialist") this.router.navigate(['/specialist']);
+  //     else if(role==="medical officer") this.router.navigate(['/medical-officer']);
+  //   }
+  // }
 
   login(loginForm: NgForm) {
     this.doctorService.login(loginForm.value).subscribe({
       next: (response: any) => {
-        const role = response.doctor.role.roleName;
-        this.doctorAuthService.setRole(role);
-        this.doctorAuthService.setToken(response.jwtToken);
-        if(role==='specialist'){
-          this.router.navigate(['/specialist']);
-        }
-        else if(role==='medical officer'){
-          this.router.navigate(['/medical-officer']);
-        }
-        else{
+        const role = response.doctor.role.roleName; 
+        if(role==='specialist' || role==='medical officer'){
+          this.doctorAuthService.setRole(role);
+          this.doctorAuthService.setToken(response.jwtToken);
+          this.router.navigate(['/doctor/search-patient']);
+        }else{
           this.router.navigate(['/login']);
         }
       },

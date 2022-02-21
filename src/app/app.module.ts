@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SpecialistComponent } from './specialist/specialist.component';
-import { MedicalOfficerComponent } from './medical-officer/medical-officer.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
@@ -14,15 +12,17 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { DoctorService } from './_services/doctor.service';
+import { SearchComponent } from './doctor/search/search.component';
+import { CreateComponent } from './doctor/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SpecialistComponent,
-    MedicalOfficerComponent,
     ForbiddenComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

@@ -17,10 +17,17 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
       if(this.doctorAuthService.getToken()!==null && this.doctorAuthService.getToken()){
-        const role = route.data["role"] as string
+        const role = route.data["role"];
 
-        if(role!==null && role){
-          const match = this.doctorService.roleMatch(role);
+        if(role!==null && role.length>0){
+          let match = false;
+          for(let i=0; i<role.length; i++){
+            if(this.doctorAuthService.getRole()===role[i]){
+              match=true;
+              break;
+            }
+          }
+          // const match = this.doctorService.roleMatch(role);
 
           if(match) return true;
           else {

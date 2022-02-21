@@ -26,7 +26,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  public roleMatch(allowedRole: string): boolean{
-    return this.doctorService.roleMatch(allowedRole) && this.isLoggedIn();
+  public roleMatch(allowedRole: any): boolean{
+    if(!this.isLoggedIn()) return false;
+    for(let i=0; i<allowedRole.length; i++){
+      if(this.doctorService.roleMatch(allowedRole[i])) return true;
+    }
+    return false;
   }
 }

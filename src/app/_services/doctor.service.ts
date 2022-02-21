@@ -7,7 +7,6 @@ import { DoctorAuthService } from './doctor-auth.service';
   providedIn: 'root'
 })
 export class DoctorService {
-  PATH_OF_API = "http://localhost:9090";
   requestHeaders = new HttpHeaders(
     { "No-Auth":"True" }
   );
@@ -25,17 +24,5 @@ export class DoctorService {
       return true;
     }
     return false;
-  }
-
-  public specialist(){
-    return this.httpClient.get(`${baseUrl}/doctor/specialist`, {
-      responseType: 'text'
-    });
-  }
-
-  public medicalOfficer(){
-    return this.httpClient.get(`${baseUrl}/doctor/medical-officer`, {
-      responseType: 'text'
-    });
   }
 }
