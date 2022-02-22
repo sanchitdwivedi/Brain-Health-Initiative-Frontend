@@ -15,6 +15,7 @@ import { DoctorService } from './_services/doctor.service';
 import { SearchComponent } from './doctor/search/search.component';
 import { CreateComponent } from './doctor/create/create.component';
 import { ConsultationFormComponent } from './consultation-form/consultation-form.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ConsultationFormComponent } from './consultation-form/consultation-form
     HeaderComponent,
     SearchComponent,
     CreateComponent,
-    ConsultationFormComponent
+    ConsultationFormComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
