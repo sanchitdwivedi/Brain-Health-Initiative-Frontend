@@ -1,32 +1,33 @@
+<div class="container">
 <div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px;">
-    <form>
+    <form #createPatientForm="ngForm" (ngSubmit)="create(createPatientForm)">
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputAbhaId">ABHA ID</label>
-        <input type="text" class="form-control" id="inputAbhaId" placeholder="ABHA ID" required>
+        <label for="abhaId">ABHA ID</label>
+        <input type="text" ngModel class="form-control" id="abhaId" name="abhaId" placeholder="ABHA ID" required>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Name" required>
+        <label for="patient_name">Name</label>
+        <input type="text" ngModel class="form-control" id="patient_name" name="patient_name" placeholder="Name" required>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="inputDOB">DOB</label>
-        <input type="date" class="form-control" id="inputDOB" placeholder="DOB" required>
+        <label for="dob">DOB</label>
+        <input type="date" ngModel class="form-control" id="dob" name="dob" placeholder="DOB" required>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputGender">Gender</label>
-        <select class="custom-select" id="inputGender">
+        <label for="gender">Gender</label>
+        <select class="custom-select" ngModel id="gender" name="gender">
           <option selected>Choose...</option>
-          <option value="1">Male</option>
-          <option value="2">Female</option>
-          <option value="3">Other</option>
+          <option value="1">MALE</option>
+          <option value="2">FEMALE</option>
+          <option value="3">OTHER</option>
         </select>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputSocioeconomicStatus">Socio-economic Status</label>
-        <select class="custom-select" id="inputSocioeconomicStatus">
+        <label for="socioeconomic_status">Socio-economic Status</label>
+        <select class="custom-select" ngModel id="socioeconomic_status" name="socioeconomic_status">
           <option selected>Choose...</option>
           <option value="1">Below Poverty Line</option>
           <option value="2">Above Poverty Line</option>
@@ -34,27 +35,44 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="inputEducation">Education</label>
-      <input type="text" class="form-control" id="inputEducation" placeholder="Education">
+      <label for="education">Education</label>
+      <input type="text" ngModel class="form-control" id="education" name="education" placeholder="Education">
     </div>
-    <div class="form-group">
-      <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, floor">
-    </div>
+    <!-- <div class="form-group">
+      <label for="inputAddress">Address Line 1</label>
+      <input type="text" ngModel class="form-control" id="inputAddress" placeholder="Apartment, floor">
+    </div> -->
+    <!-- <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputPincode">Pincode</label>
+        <input type="number" ngModel class="form-control" id="inputPincode" placeholder="Pincode" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputDistrict">District</label>
+        <input type="text" ngModel class="form-control" name="inputDistrict" id="inputDistrict" placeholder="Enter pincode" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <input type="text" ngModel class="form-control" name="inputState" id="inputState" placeholder="Enter pincode" required>
+      </div>
+    </div> -->
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="inputMobile">Mobile</label>
-        <input type="number" class="form-control" id="inputMobile" required>
+        <label for="mobile_no">Mobile</label>
+        <input type="number" ngModel class="form-control" id="mobile_no" name="mobile_no" placeholder="Mobile No." required>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputCaregiver">Information Caregiver Name</label>
-        <input type="text" class="form-control" id="inputCaregiver">
+        <label for="information_caregiver_name">Information Caregiver Name</label>
+        <input type="text" ngModel class="form-control" id="information_caregiver_name" name="information_caregiver_name">
       </div>
       <div class="form-group col-md-4">
-        <label for="inputRelationship">Relationship with patient</label>
-        <input type="text" class="form-control" id="inputRelationship">
+        <label for="relationship_with_patient">Relationship with patient</label>
+        <input type="text" ngModel class="form-control" id="relationship_with_patient" name="relationship_with_patient">
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
   </form>
   </div>
+  <h5 *ngIf="created==='0'" style="color: red;">Cannot create patient! Try again</h5>
+  <h5 *ngIf="created==='1'" style="color: green;">Patient created successfullt!</h5>
+</div>

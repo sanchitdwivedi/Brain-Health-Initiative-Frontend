@@ -25,4 +25,13 @@ export class DoctorService {
     }
     return false;
   }
+
+  public updatePassword(id: any, password: any){
+    console.log(password);
+    return this.httpClient.put(`${baseUrl}/doctor/${id}`, password);
+  }
+
+  public createPatient(patientData: any){
+    return this.httpClient.post(`${baseUrl}/patient`, patientData);
+  }
 }
