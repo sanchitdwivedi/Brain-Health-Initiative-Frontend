@@ -15,6 +15,7 @@ import { DoctorService } from './_services/doctor.service';
 import { SearchComponent } from './doctor/search/search.component';
 import { CreateComponent } from './doctor/create/create.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
