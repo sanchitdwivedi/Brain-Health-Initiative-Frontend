@@ -1,1 +1,38 @@
-<p>questionnaire works!</p>
+<div class="container p-3 shadow bg-white rounded" style="margin-top: 10vh">
+    <div class="card d-flex flex-column px-2">
+        <div class="card-body">
+            <h5 class="card-title">Question {{QuestionNumber}}</h5>
+            <p class="card-text">{{Question}}</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item ">
+                <input class="form-check-input px-2" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[0].text}}
+                </label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[1].text}}
+                </label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[2].text}}
+                </label>
+            </li>
+        </ul>
+        <!-- <ul class="list-group list-group-flush" *ngFor="let option of Options">
+            <li class="list-group-item">{{Options[0]}}</li>
+        </ul> -->
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary">Previous</button>
+                <button type="button" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
