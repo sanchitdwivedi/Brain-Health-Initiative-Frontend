@@ -14,6 +14,7 @@ import { AuthInterceptor } from './_auth/auth.interceptor';
 import { DoctorService } from './_services/doctor.service';
 import { SearchComponent } from './doctor/search/search.component';
 import { CreateComponent } from './doctor/create/create.component';
+import { ConsultationFormComponent } from './consultation-form/consultation-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CreateComponent } from './doctor/create/create.component';
     ForbiddenComponent,
     HeaderComponent,
     SearchComponent,
-    CreateComponent
+    CreateComponent,
+    ConsultationFormComponent
   ],
   imports: [
     BrowserModule,
