@@ -27,14 +27,16 @@ export class UpdatePasswordComponent implements OnInit {
       this.msg = 'Passwords do not match!';
       return;
     }
-    this.doctorService.updatePassword(this.id, passwordForm.value).subscribe({
-      next: (response: any) => {
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
+    const resp = this.doctorService.updatePassword(this.id, passwordForm.value)
+    if(resp===null) this.router.navigate(['/login']);
+    else resp.subscribe({
+          next: (response: any) => {
+            this.router.navigate(['/login']);
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
   }
 
 }

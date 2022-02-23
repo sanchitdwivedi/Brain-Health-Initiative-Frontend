@@ -7,6 +7,7 @@ import { DoctorAuthService } from './doctor-auth.service';
   providedIn: 'root'
 })
 export class DoctorService {
+  tempToken: string = "";
   requestHeaders = new HttpHeaders(
     { "No-Auth":"True" }
   );
@@ -27,8 +28,13 @@ export class DoctorService {
   }
 
   public updatePassword(id: any, password: any){
-    console.log(password);
-    return this.httpClient.put(`${baseUrl}/doctor/${id}`, password);
+    if(this.tempToken==='') return null;
+    const response = this.httpClient.put(`${baseUrl}/doctor/${id}`, password, {headers: new HttpHeaders(
+      { "Authorization":`Bearer ${this.tempToken}`,
+        "No-Auth":"True" }
+    )});
+    this.tempToken = "";
+    return response;
   }
 
   public createPatient(patientData: any){

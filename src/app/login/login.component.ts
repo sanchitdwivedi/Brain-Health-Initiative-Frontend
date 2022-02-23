@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
         
         const role = response.doctor.role.roleName;
         if(role==='specialist' || role==='medical officer'){
-          this.doctorAuthService.setRole(role);
-          this.doctorAuthService.setToken(response.jwtToken);
           if(response.doctor.status===0){
+            this.doctorService.tempToken = response.jwtToken;
             this.router.navigate([`/update-password/${response.doctor.healthId}`]);
           }
-          else this.router.navigate(['/doctor/search-patient']);
+          else{
+            this.doctorAuthService.setRole(role);
+            this.doctorAuthService.setToken(response.jwtToken);
+            this.router.navigate(['/doctor/search-patient']);
+          }
         }else{
           this.router.navigate(['/login']);
         }
