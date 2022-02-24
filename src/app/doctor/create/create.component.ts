@@ -24,6 +24,7 @@ export class CreateComponent implements OnInit {
   education = '';
   dob = '';
   patient_detail: any;
+  is_filled: boolean = false;
 
 
 
@@ -40,7 +41,7 @@ export class CreateComponent implements OnInit {
     var response = this.patient_detail;
     console.log(response)
     console.log("Create Patient Values: ", createPatientForm.value);
-    
+
     createPatientForm.value.first_name = response.first_name;
     createPatientForm.value.last_name = response.last_name;
     createPatientForm.value.address_line_1 = response.address_line_1;
@@ -66,11 +67,32 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  countDigits(){
+    if(this.abhaId.length===4){
+      this.search();
+    }
+    this.is_filled = false;
+  }
+
   search() {
     console.log(this.abhaId);
     this.patientDetailService.getDetail(this.abhaId).subscribe({
       next: (response: any) => {
         if (response === null) {
+          this.abhaId = "";
+          this.patient_detail = "";
+          this.first_name = "";
+          this.last_name = "";
+          this.address_line_1 = "";
+          this.address_line_2 = "";
+          this.district = "";
+          this.mobile_no = "";
+          this.pin_code = "";
+          this.socioeconomic_status = "";
+          this.state = "";
+          this.gender = "";
+          this.education = "";
+          this.dob = "";
           alert(`ABHA ID: ${this.abhaId} is Invalid!`);
         } else {
           // console.log("API Response: ",response);
@@ -87,6 +109,7 @@ export class CreateComponent implements OnInit {
           this.gender = response.gender;
           this.education = response.education;
           this.dob = response.dob;
+          this.is_filled = true;
         }
       },
       error: (error) => {

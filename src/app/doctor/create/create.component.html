@@ -4,81 +4,72 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="abhaId">ABHA ID</label>
-        <input type="text" [(ngModel)]="abhaId" (focusout)="search()" class="form-control" id="abhaId" name="abhaId" placeholder="ABHA ID" required>
+        <input type="text" [(ngModel)]="abhaId" (keyup)="countDigits()" class="form-control" id="abhaId" name="abhaId" placeholder="ABHA ID" required>
       </div>
       <div class="form-group col-md-4">
         <label for="first_name">First Name</label>
-        <input type="text" ngModel [value]="first_name" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
+        <input type="text" ngModel [value]="first_name" class="form-control" id="first_name" name="first_name" placeholder="First Name" required readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="last_name">Last Name</label>
-        <input type="text" ngModel [value]="last_name" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
+        <input type="text" ngModel [value]="last_name" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required readonly>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="dob">DOB</label>
-        <input type="text" ngModel [value]="dob" class="form-control" id="dob" name="dob" placeholder="DOB" required>
+        <input type="text" ngModel [value]="dob" class="form-control" id="dob" name="dob" placeholder="DOB" required readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="gender">Gender</label>
-        <select class="custom-select" ngModel [value]="gender" id="gender" name="gender">
-          <option selected>Choose...</option>
-          <option value="MALE">Male</option>
-          <option value="FEMALE">Female</option>
-          <option value="OTHER">Other</option>
-        </select>
+        <input placeholder="Gender" class="form-control" ngModel [value]="gender" id="gender" name="gender" readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="socioeconomic_status">Socio-economic Status</label>
-        <select class="custom-select" ngModel [value]="socioeconomic_status" id="socioeconomic_status" name="socioeconomic_status">
-          <option selected>Choose...</option>
-          <option value="BELOW_POVERTY_LINE">Below Poverty Line</option>
-          <option value="ABOVE_POVERTY_LINE">Above Poverty Line</option>
-        </select>
+        <input placeholder="Socioeconomic Status" class="form-control" ngModel [value]="socioeconomic_status" id="socioeconomic_status" name="socioeconomic_status" readonly>
       </div>
     </div>
     <div class="form-group">
       <label for="education">Education</label>
-      <input type="text" ngModel [value]="education" class="form-control" id="education" name="education" placeholder="Education">
+      <input type="text" ngModel [value]="education" class="form-control" id="education" name="education" placeholder="Education" readonly>
     </div>
     <div class="form-group">
       <label for="address_line_1">Address Line 1</label>
-      <input type="text" ngModel [value]="address_line_1" class="form-control" id="address_line_1" name="address_line_1" placeholder="Apartment, floor">
+      <input type="text" ngModel [value]="address_line_1" class="form-control" id="address_line_1" name="address_line_1" placeholder="Apartment, floor" readonly>
     </div>
     <div class="form-group">
       <label for="address_line_2">Address Line 2</label>
-      <input type="text" ngModel [value]="address_line_2" class="form-control" id="address_line_2" name="address_line_2" placeholder="Apartment, floor">
+      <input type="text" ngModel [value]="address_line_2" class="form-control" id="address_line_2" name="address_line_2" placeholder="Apartment, floor" readonly>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="pin_code">Pincode</label>
-        <input type="number" ngModel [value]="pin_code" class="form-control" id="pin_code" name="pin_code" placeholder="Pincode" required>
+        <input type="number" ngModel [value]="pin_code" class="form-control" id="pin_code" name="pin_code" placeholder="Pincode" required readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="district">District</label>
-        <input type="text" ngModel [value]="district" class="form-control" name="district" id="district" placeholder="District" required>
+        <input type="text" ngModel [value]="district" class="form-control" name="district" id="district" placeholder="District" required readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="state">State</label>
-        <input type="text" ngModel [value]="state" class="form-control" name="state" id="state" placeholder="State" required>
+        <input type="text" ngModel [value]="state" class="form-control" name="state" id="state" placeholder="State" required readonly>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="mobile_no">Mobile</label>
-        <input type="number" ngModel [value]="mobile_no" class="form-control" id="mobile_no" name="mobile_no" placeholder="Mobile No." required>
+        <input type="number" ngModel [value]="mobile_no" class="form-control" id="mobile_no" name="mobile_no" placeholder="Mobile No." required readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="information_caregiver_name">Information Caregiver Name</label>
-        <input type="text" ngModel class="form-control" id="information_caregiver_name" name="information_caregiver_name">
+        <input type="text" ngModel class="form-control" id="information_caregiver_name" name="information_caregiver_name" readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="relationship_with_patient">Relationship with patient</label>
-        <input type="text" ngModel class="form-control" id="relationship_with_patient" name="relationship_with_patient">
+        <input type="text" ngModel class="form-control" id="relationship_with_patient" name="relationship_with_patient" readonly>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!is_filled">Register</button>
   </form>
   </div>
   <h5 *ngIf="created==='0'" style="color: red;">Cannot register patient! Try again</h5>
