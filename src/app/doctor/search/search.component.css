@@ -1,0 +1,23 @@
+.user-input-wrp {
+  position: relative;
+  width: 50%;
+}
+.user-input-wrp .inputText {
+  border: none;
+}
+.user-input-wrp .floating-label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  color: gray;
+}
+.user-input-wrp input:focus ~ .floating-label,
+.user-input-wrp input:not(:focus):valid ~ .floating-label{
+  top: -20px;
+  left: 10px;
+  font-size: 13px;
+  opacity: 1;
+  color: black;
+}

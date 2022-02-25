@@ -1,24 +1,39 @@
-<!-- <div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px;">
-  <div class="row align-items-center">
-    <form>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputAbhaId">ABHA ID</label>
-          <input type="text" class="form-control" id="inputAbhaId" placeholder="ABHA ID" required>
-        </div>
-        <div class="vr"></div>
-        <div class="form-group">
-          <div class="form-group col-md-4">
-            <label for="inputName">Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Name" required>
+<div class="container" style="sc">
+  <div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px;">
+    <div class="row align-items-center">
+      <form>
+        <div class="form-row">
+          <div class="col g-2 d-flex justify-content-around user-input-wrp">
+              <input type="text" class="form-control inputText" id="inputAbhaId" required>
+              <span for="inputAbhaId" class="floating-label inputText">ABHA ID</span>
+          </div>
+          <div class="vr" style="margin: 10px; border:10px; font-weight:bold"></div>
+          <div class="row g-3 col user-input-wrp">
+            <div class="col">
+              <input type="text" class="form-control inputText" id="inputName" required>
+              <span for="inputName" class="floating-label inputText">Name</span>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control inputText" id="inputMobile" required>
+              <span for="inputMobile" class="floating-label inputText">Mobile No</span>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
-</div> -->
-<div class="container mt-5">
-    <div class="card text-center" style="color: rgb(0, 255, 55); padding: 20px;">
-        <h1>Search page!</h1>
+        <div class="form-check float-sm-right" style="margin:5px -5px -15px">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">Consent from patient</label>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="container" style="background-color: #57cac3; padding: 10px">
+    <div class="g-3 d-flex justify-content-around">
+<!--      <a href="#table">hi</a>-->
+      <button  type="button" class="btn btn-primary p-2" style="width:200px">Search</button>
+      <button  type="button" class="btn btn-primary p-2" style="width:200px">Create New Patient</button>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top: 10px">
+  <app-consultation-table></app-consultation-table>
 </div>
