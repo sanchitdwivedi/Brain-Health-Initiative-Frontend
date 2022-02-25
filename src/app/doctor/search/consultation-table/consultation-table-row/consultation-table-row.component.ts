@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Row} from '../../../../interfaces/Row';
+import {ConsultationCard} from '../../../../interfaces/ConsultationCard';
 
 @Component({
   selector: 'app-consultation-table-row',
@@ -8,7 +8,7 @@ import {Row} from '../../../../interfaces/Row';
 })
 export class ConsultationTableRowComponent implements OnInit {
 
-  @Input() row: Row;
+  @Input() reportDetail: ConsultationCard;
   constructor() {
   }
 

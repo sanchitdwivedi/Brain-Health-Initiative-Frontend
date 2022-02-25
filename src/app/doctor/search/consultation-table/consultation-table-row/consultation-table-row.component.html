@@ -1,10 +1,36 @@
 <div>
   <div class="card">
-    <h5 class="card-header">{{row.name}}</h5>
-    <div class="card-body">
-      <h5 class="card-title">{{row.mob}}</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">View Details</a>
+    <h5 class="card-header bg-warning d-flex justify-content-between">
+      <div>{{reportDetail.formId}}</div>
+      <div>{{reportDetail.dateAndTime}}</div>
+    </h5>
+    <div class="card-body row" style="font-size: small; color: gray">
+      <div class="col-10">
+        <div class="row">
+          <div class="col row">
+            <div class="col">Name</div>
+            <div class="col"><b>:  {{reportDetail.name}}</b></div>
+          </div>
+          <div class="col row">
+            <div class="col">Hospital Name</div>
+            <div class="col"><b>:  {{reportDetail.hospital_id}}</b></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col row">
+            <div class="col">Doctor Name</div>
+            <div class="col"><b>:  {{reportDetail.doctor_id}}</b></div>
+          </div>
+          <div class="col row">
+            <div class="col">Referred</div>
+            <div class="col"><b>:  {{reportDetail.refer}}</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <button href="#" class="btn btn-primary">View Details</button>
+      </div>
     </div>
   </div>
 </div>
+
