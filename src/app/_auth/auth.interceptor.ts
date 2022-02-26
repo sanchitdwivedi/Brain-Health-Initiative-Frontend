@@ -8,7 +8,7 @@ import { DoctorAuthService } from "../_services/doctor-auth.service";
 export class AuthInterceptor implements HttpInterceptor{
     constructor(private doctorAuthService: DoctorAuthService,
                 private router: Router) {}
-    
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if(req.headers.get('No-Auth')==='True'){
             return next.handle(req.clone());

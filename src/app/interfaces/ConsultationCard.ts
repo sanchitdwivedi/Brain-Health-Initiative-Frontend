@@ -1,0 +1,21 @@
+export interface ConsultationCard {
+  formId:string;
+  name:string;
+  mob:string;
+  dateAndTime:string;
+  compliant:string;
+  diagnosisType:string;
+  duration:string;
+  examination:string;
+  followUps:string;
+  icdDescription:string;
+  icd10Code:string;
+  illnessSummary:string;
+  improvementType:string;
+  refer:string;
+  remarks:string;
+  treatmentInstructions:string;
+  doctor_id:string;
+  patient_id:string;
+  hospital_id:string;
+}

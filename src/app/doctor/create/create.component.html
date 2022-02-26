@@ -1,5 +1,6 @@
+<div style="height:92vh; overflow: auto;">
 <div class="container">
-<div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px; margin-bottom: 30px;">
+<div class="container" style="border-radius:10px;background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px; margin-bottom: 30px;">
     <form #createPatientForm="ngForm" (ngSubmit)="create(createPatientForm)">
     <div class="form-row">
       <div class="form-group col-md-4">
@@ -74,4 +75,5 @@
   </div>
   <h5 *ngIf="created==='0'" style="color: red;">Cannot register patient! Try again</h5>
   <h5 *ngIf="created==='1'" style="color: green;">Patient registered successfully!</h5>
+</div>
 </div>
