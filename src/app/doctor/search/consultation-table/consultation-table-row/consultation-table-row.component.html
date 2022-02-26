@@ -27,8 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
+      <div class="modal reportDetail.formId fade 1"  [id]="reportDetail.formId" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -106,8 +105,8 @@
           </div>
         </div>
       </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">View
+      <div class="col-2" id="buttonContainer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton" [attr.data-target]="uniqueId" (click)='toggle()'>View
           Details</button>
       </div>
     </div>
