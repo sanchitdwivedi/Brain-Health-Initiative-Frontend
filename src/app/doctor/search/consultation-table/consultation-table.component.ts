@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ConsultationTableComponent implements OnInit {
 
   @Input() reports: any;
-  
+
   elements: any = [];
   ngOnInit() {
   }

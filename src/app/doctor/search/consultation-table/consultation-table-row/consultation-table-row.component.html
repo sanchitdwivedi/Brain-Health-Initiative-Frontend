@@ -1,6 +1,6 @@
 <div>
   <div class="card">
-    <h5 class="card-header bg-warning d-flex justify-content-between">
+    <h5 class="card-header d-flex justify-content-between" style="background-color: rgb(145, 145, 255);">
       <div>#{{reportDetail.formId}}</div>
       <div>{{formatedDateAndTime}}</div>
     </h5>
@@ -31,7 +31,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4>Form Id: {{reportDetail.formId}}</h4>
+              <h4>Form ID: {{reportDetail.formId}}</h4>
               <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
@@ -70,9 +70,6 @@
                     <label>Dosage: <b>{{reportDetail.dosage}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
-                  </div>
-                  <div class="form-group col-md-4">
                     <label>ICD 10 Code: <b>{{reportDetail.idc10code}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
@@ -80,9 +77,6 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label>Remarks: <b>{{reportDetail.remarks}}</b></label>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Improvement Type: <b>{{reportDetail.improvementtype}}</b></label>
@@ -106,7 +100,7 @@
         </div>
       </div>
       <div class="col-2" id="buttonContainer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton" [attr.data-target]="uniqueId" (click)='toggle()'>View
+        <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton" [attr.data-target]="uniqueId">View
           Details</button>
       </div>
     </div>

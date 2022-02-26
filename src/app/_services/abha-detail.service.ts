@@ -7,10 +7,15 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class AbhaDetailService {
 
-  constructor(private httpClient: HttpClient) { }
+  response: any
 
-  public getPatientConsultation(abhaId: String){
-    console.log("getPatientConsultation Called");
+  constructor(private httpClient: HttpClient) { }
+  
+  public getPatientConsultationByAbhaId(abhaId: string){
     return this.httpClient.get(`${baseUrl}/consultation/${abhaId}`);
+  }
+  
+  public getPatientConsultationByMobileNo(mobileNumber: string){
+    return this.httpClient.get(`${baseUrl}/patient/mobile/${mobileNumber}`);
   }
 }

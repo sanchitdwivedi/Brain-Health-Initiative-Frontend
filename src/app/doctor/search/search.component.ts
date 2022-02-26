@@ -8,7 +8,9 @@ import { AbhaDetailService } from './../../_services/abha-detail.service';
 })
 export class SearchComponent implements OnInit {
 
-  abhaId: string;
+  abhaId: string = '';
+  mobileNumber: string = '';
+  hasConsent: boolean;
   reports: [];
 
   constructor(private abhaDetailService: AbhaDetailService) { }
@@ -16,21 +18,47 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(){
-    console.log("Abha: ",this.abhaId);
-    this.abhaDetailService.getPatientConsultation(this.abhaId).subscribe({
+  search() {
+    if (this.abhaId === '' && this.mobileNumber === '') {
+      alert("Please enter either ABHA ID or Mobile Number to search patient!!")
+    }else if(this.abhaId !== ''){
+      this.getPatientConsultationByAbhaId(this.abhaId);
+      if(this.reports===[]){
+        this.getPatientConsultationByMobileNo(this.mobileNumber);
+      }else{
+        alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+      }
+    }else if(this.mobileNumber !== ''){
+      this.getPatientConsultationByMobileNo(this.mobileNumber);
+    }else{
+      alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+    }
+  }
+
+
+  getPatientConsultationByAbhaId(abhaId: string) {
+    this.abhaDetailService.getPatientConsultationByAbhaId(abhaId).subscribe({
       next: (response: any) => {
-        if(response.length===0) {
-          alert(`Patient has no consultation forms`);
-        }else{
-          this.reports = response;
-          console.log(response);
-        }
+        this.reports = response;
+        console.log(response);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.log(error);
       }
     })
-
   }
+
+  getPatientConsultationByMobileNo(mobileNumber: string) {
+    this.abhaDetailService.getPatientConsultationByMobileNo(mobileNumber).subscribe({
+      next: (response: any) => {
+        this.reports = response;
+        this.getPatientConsultationByAbhaId(response.abhaId);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+  }
+
+
 }
