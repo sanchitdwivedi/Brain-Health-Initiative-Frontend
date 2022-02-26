@@ -68,7 +68,7 @@ export class CreateComponent implements OnInit {
   }
 
   countDigits(){
-    if(this.abhaId.length===4){
+    if(this.abhaId.length===12){
       this.search();
     }
     this.is_filled = false;

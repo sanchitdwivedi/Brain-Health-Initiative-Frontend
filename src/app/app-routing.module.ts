@@ -9,9 +9,9 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['specialist', 'medical officer']} },
-  { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['specialist', 'medical officer']} },
-  { path: 'doctor/questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard], data: {role: ['specialist', 'medical officer']} },
+  { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
+  { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
+  { path: 'doctor/questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },

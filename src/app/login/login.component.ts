@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   checkLoggedIn(){
     if(this.doctorAuthService.isLoggedIn()){
       const role: string = this.doctorAuthService.getRole();
-      if(role==="specialist" || role==="medical officer") this.router.navigate(['/doctor/search-patient']);
+      if(role==="secondary specialist" || role==="medical officer") this.router.navigate(['/doctor/search-patient']);
     }
   }
 
@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
     this.doctorService.login(loginForm.value).subscribe({
       next: (response: any) => {
         
-        const role = response.doctor.role.roleName;
-        if(role==='specialist' || role==='medical officer'){
-          if(response.doctor.status===0){
+        const role = response.user.role.roleName;
+        if(role==='secondary specialist' || role==='medical officer'){
+          if(response.user.status===0){
             this.doctorService.tempToken = response.jwtToken;
-            this.router.navigate([`/update-password/${response.doctor.healthId}`]);
+            this.router.navigate([`/update-password/${response.user.userId}`]);
           }
           else{
             this.doctorAuthService.setRole(role);
