@@ -2,9 +2,9 @@
   <div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px;">
     <div class="row align-items-center">
       <form>
-        <div class="form-row">
+        <div class="form-row" >
           <div class="col g-2 d-flex justify-content-around user-input-wrp">
-              <input type="text" class="form-control inputText" id="inputAbhaId" required>
+              <input type="text" class="form-control inputText" id="inputAbhaId" [(ngModel)]="abhaId" name="abhaId" required>
               <span for="inputAbhaId" class="floating-label inputText">ABHA ID</span>
           </div>
           <div class="vr" style="margin: 10px; border:10px; font-weight:bold"></div>
@@ -28,11 +28,11 @@
   </div>
   <div class="container" style="background-color: #57cac3; padding: 10px">
     <div class="g-3 d-flex justify-content-around">
-      <button  type="button" class="btn btn-primary p-2" style="width:200px">Search</button>
+      <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()">Search</button>
       <button  type="button" class="btn btn-primary p-2" style="width:200px">Create New Patient</button>
     </div>
   </div>
 </div>
 <div class="container scrollbar-light-blue" style="height:60vh;overflow: auto">
-  <app-consultation-table></app-consultation-table>
+  <app-consultation-table [reports]="reports"></app-consultation-table>
 </div>

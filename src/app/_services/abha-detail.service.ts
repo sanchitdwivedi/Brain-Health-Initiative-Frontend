@@ -5,12 +5,12 @@ import { baseUrl } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PatientDetailService {
-  
+export class AbhaDetailService {
+
   constructor(private httpClient: HttpClient) { }
 
-  public getDetail(abhaId: String){
-    // console.log("getDetail Called");
-    return this.httpClient.get(`${baseUrl}/NHR/${abhaId}`)
+  public getPatientConsultation(abhaId: String){
+    console.log("getPatientConsultation Called");
+    return this.httpClient.get(`${baseUrl}/consultation/${abhaId}`);
   }
 }

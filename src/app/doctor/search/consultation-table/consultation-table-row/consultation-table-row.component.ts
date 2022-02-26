@@ -8,11 +8,29 @@ import {ConsultationCard} from '../../../../interfaces/ConsultationCard';
 })
 export class ConsultationTableRowComponent implements OnInit {
 
+  dateAndTime: Date;
+  formatedDateAndTime: string;
+
   @Input() reportDetail: ConsultationCard;
   constructor() {
   }
 
   ngOnInit(): void {
+    this.formatDate(this.reportDetail.dateAndTime);
   }
+
+  formatDate(date: Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    this.formatedDateAndTime = [year, month, day].join('-');
+}
 
 }

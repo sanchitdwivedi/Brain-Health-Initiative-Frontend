@@ -1,21 +1,26 @@
+import { Patient } from "./Patient";
+import { Doctor } from "./Doctor";
+import { Hospital } from "./Hospital";
+
 export interface ConsultationCard {
-  formId:string;
-  name:string;
-  mob:string;
-  dateAndTime:string;
   compliant:string;
-  diagnosisType:string;
+  dateAndTime:Date;
+  diagnosistype:string;
+  doctorId:Doctor;
+  dosage:string;
+  dosingtime:string;
   duration:string;
   examination:string;
-  followUps:string;
+  followUp:string;
+  formId:string;
+  hospitalId:Hospital;
   icdDescription:string;
-  icd10Code:string;
+  idc10code:string;
   illnessSummary:string;
-  improvementType:string;
+  improvementtype:string;
+  medicineName:string;
+  patientId:Patient;
   refer:string;
   remarks:string;
   treatmentInstructions:string;
-  doctor_id:string;
-  patient_id:string;
-  hospital_id:string;
 }

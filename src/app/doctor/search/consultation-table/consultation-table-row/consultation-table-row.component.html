@@ -1,36 +1,115 @@
 <div>
   <div class="card">
     <h5 class="card-header bg-warning d-flex justify-content-between">
-      <div>{{reportDetail.formId}}</div>
-      <div>{{reportDetail.dateAndTime}}</div>
+      <div>#{{reportDetail.formId}}</div>
+      <div>{{formatedDateAndTime}}</div>
     </h5>
     <div class="card-body row" style="font-size: small; color: gray">
       <div class="col-10">
         <div class="row">
           <div class="col row">
-            <div class="col">Name</div>
-            <div class="col"><b>:  {{reportDetail.name}}</b></div>
+            <div class="col">Patient Name</div>
+            <div class="col"><b>: {{reportDetail.patientId.first_name}}</b></div>
           </div>
           <div class="col row">
             <div class="col">Hospital Name</div>
-            <div class="col"><b>:  {{reportDetail.hospital_id}}</b></div>
+            <div class="col"><b>: {{reportDetail.hospitalId.hospitalName}}</b></div>
           </div>
         </div>
         <div class="row">
           <div class="col row">
             <div class="col">Doctor Name</div>
-            <div class="col"><b>:  {{reportDetail.doctor_id}}</b></div>
+            <div class="col"><b>: Dr. {{reportDetail.doctorId.firstName}} {{reportDetail.doctorId.lastName}}</b></div>
           </div>
           <div class="col row">
             <div class="col">Referred</div>
-            <div class="col"><b>:  {{reportDetail.refer}}</b></div>
+            <div class="col"><b>: {{reportDetail.refer}}</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Form Id: {{reportDetail.formId}}</h4>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label>Patient Name: <b>{{reportDetail.patientId.first_name}}
+                        {{reportDetail.patientId.last_name}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Compliant: <b>{{reportDetail.compliant}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Date:<b>{{formatedDateAndTime}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Diagnosis Type: <b>{{reportDetail.diagnosistype}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Doctor Name: <b>Dr. {{reportDetail.doctorId.firstName}}
+                        {{reportDetail.doctorId.lastName}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Examination: <b>{{reportDetail.examination}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>ICD Description: <b>{{reportDetail.icdDescription}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Follow Up: <b>{{reportDetail.followUp}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Dosage: <b>{{reportDetail.dosage}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>ICD 10 Code: <b>{{reportDetail.idc10code}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Referred to: <b>{{reportDetail.refer}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Remarks: <b>{{reportDetail.remarks}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Improvement Type: <b>{{reportDetail.improvementtype}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Dosage Time: <b>{{reportDetail.dosingtime}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Illness Summary: <b>{{reportDetail.illnessSummary}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Medicine Name: <b>{{reportDetail.medicineName}}</b></label>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Treatment Instructions: <b>{{reportDetail.treatmentInstructions}}</b></label>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-2">
-        <button href="#" class="btn btn-primary">View Details</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">View
+          Details</button>
       </div>
     </div>
   </div>
 </div>
-
