@@ -10,7 +10,7 @@ export class PatientDetailService {
   constructor(private httpClient: HttpClient) { }
 
   public getDetail(abhaId: String){
-    console.log("getDetail Called");
+    // console.log("getDetail Called");
     return this.httpClient.get(`${baseUrl}/NHR/${abhaId}`)
   }
 }

@@ -2,9 +2,9 @@
   <div class="container" style="background-color: rgb(145, 145, 255); padding: 20px; margin-top: 30px;">
     <div class="row align-items-center">
       <form>
-        <div class="form-row">
+        <div class="form-row" >
           <div class="col g-2 d-flex justify-content-around user-input-wrp">
-              <input type="text" class="form-control inputText" id="inputAbhaId" required>
+              <input type="text" class="form-control inputText" id="inputAbhaId" [(ngModel)]="abhaId" name="abhaId" required>
               <span for="inputAbhaId" class="floating-label inputText">ABHA ID</span>
           </div>
           <div class="vr" style="margin: 10px; border:10px; font-weight:bold"></div>
@@ -14,25 +14,25 @@
               <span for="inputName" class="floating-label inputText">Name</span>
             </div>
             <div class="col">
-              <input type="text" class="form-control inputText" id="inputMobile" required>
+              <input type="text" class="form-control inputText" id="inputMobile" [(ngModel)]="mobileNumber" name="mobileNumber" required>
               <span for="inputMobile" class="floating-label inputText">Mobile No</span>
             </div>
           </div>
         </div>
         <div class="form-check float-sm-right" style="margin:5px -5px -15px">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <input class="form-check-input" type="checkbox" name="checkbox" [(ngModel)]="hasConsent" id="defaultCheck1">
           <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">Consent from patient</label>
         </div>
       </form>
     </div>
   </div>
-  <div class="container" style="background-color: #57cac3; padding: 10px">
+  <div class="container" style="padding: 10px">
     <div class="g-3 d-flex justify-content-around">
-      <button  type="button" class="btn btn-primary p-2" style="width:200px">Search</button>
-      <button  type="button" class="btn btn-primary p-2" style="width:200px">Create New Patient</button>
+      <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
+      <button  type="button" class="btn btn-primary p-2" style="width:200px">Register New Patient</button>
     </div>
   </div>
 </div>
 <div class="container scrollbar-light-blue" style="height:60vh;overflow: auto">
-  <app-consultation-table></app-consultation-table>
+  <app-consultation-table [reports]="reports"></app-consultation-table>
 </div>
