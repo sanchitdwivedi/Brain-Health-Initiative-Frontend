@@ -26,12 +26,12 @@ export class SearchComponent implements OnInit {
       if(this.reports===[]){
         this.getPatientConsultationByMobileNo(this.mobileNumber);
       }else{
-        alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+       // alert("Either ABHA ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
       }
     }else if(this.mobileNumber !== ''){
       this.getPatientConsultationByMobileNo(this.mobileNumber);
     }else{
-      alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+    //  alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
     }
   }
 

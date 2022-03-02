@@ -29,7 +29,9 @@
   <div class="container" style="padding: 10px">
     <div class="g-3 d-flex justify-content-around">
       <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
-      <button  type="button" class="btn btn-primary p-2" style="width:200px">Register New Patient</button>
+      <!-- <a class="nav-link" routerLink="/doctor/questionnaire">Questionnaire<span class="sr-only">(current)</span></a> -->
+
+      <button  type="button" class="btn btn-primary p-2" style="width:200px" routerLink="/doctor/create-patient">Register New Patient</button>
     </div>
   </div>
 </div>
