@@ -8,12 +8,12 @@ import { ConsultationCard } from '../../../../interfaces/ConsultationCard';
   styleUrls: ['./consultation-table-row.component.css']
 })
 export class ConsultationTableRowComponent implements OnInit {
-  @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
+  // @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
   dateAndTime: Date;
   formatedDateAndTime: string;
   uniqueId: string;
 
-  @Input() reportDetail: ConsultationCard;
+  @Input() reportDetail: any;
   constructor() {
   }
 

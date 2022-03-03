@@ -10,31 +10,42 @@ export class SearchComponent implements OnInit {
   abhaId: string = '';
   mobileNumber: string = '';
   hasConsent: boolean;
-  reports: [];
+  reports: any = [];
   routePath: string = '/doctor/create-patient';
   buttonText: string = 'Register New Patient'
-  constructor(private abhaDetailService: AbhaDetailService) { }
+  errorMessage1: string = 'Please enter either ABHA ID or Mobile Number to search patient!!';
+  errorMessage2: string = 'Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist';
 
+  constructor(private abhaDetailService: AbhaDetailService) { }
+  
   ngOnInit(): void {
   }
 
   search() {
     if (this.abhaId === '' && this.mobileNumber === '') {
-      alert("Please enter either ABHA ID or Mobile Number to search patient!!")
+      alert(this.errorMessage1);
     }else if(this.abhaId !== ''){
       this.getPatientConsultationByAbhaId(this.abhaId);
       if(this.reports===[]){
         this.getPatientConsultationByMobileNo(this.mobileNumber);
+        if(this.reports===[]){
+          alert(this.errorMessage2);
+        }else{
+          // this.changeButton();
+        }
       }else{
-        alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+        // this.changeButton();
       }
     }else if(this.mobileNumber !== ''){
       this.getPatientConsultationByMobileNo(this.mobileNumber);
-    }else{
-      alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
+      if(this.reports===[]){
+        alert(this.errorMessage2);
+      }else{
+        // this.changeButton();
+      }
     }
-    if(this.reports!==[]){
-      console.log("Convert Register into Consultation");
+
+    if(this.reports!=[]){
       this.changeButton()
     }
   }
