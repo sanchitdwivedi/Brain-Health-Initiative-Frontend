@@ -10,95 +10,77 @@ export class SearchComponent implements OnInit {
   abhaId: string = '';
   mobileNumber: string = '';
   hasConsent: boolean;
-  reports: any = [];
+  reports = [];
+  isRegisterButton: boolean = true;
   routePath: string = '/doctor/create-patient';
   buttonText: string = 'Register New Patient'
   errorMessage1: string = 'Please enter either ABHA ID or Mobile Number to search patient!!';
-  errorMessage2: string = 'Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist';
-
-  // abhaId: string = '';
-  // mobileNumber: string = '';
-  // hasConsent: boolean;
-  // reports: [];
+  errorMessage2: string = 'Either patient not registered or No consultation form exist corresponding to given ABHA ID!';
+  errorMessage3: string = 'Either patient not registered or No consultation form exist corresponding to given Mobile Number!';
 
   constructor(private abhaDetailService: AbhaDetailService) { }
 
   ngOnInit(): void {
   }
 
-  search() {
-    if (this.abhaId === '' && this.mobileNumber === '') {
-      alert(this.errorMessage1);
-    }else if(this.abhaId !== ''){
-      this.getPatientConsultationByAbhaId(this.abhaId);
-      if(this.reports===[]){
-        this.getPatientConsultationByMobileNo(this.mobileNumber);
-        if(this.reports===[]){
-          alert(this.errorMessage2);
-        }else{
-          // this.changeButton();
+  async search() {
+    if(this.abhaId !== ''){
+      await this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
+        next: (response: any) => {
+          this.reports = response;
+          if(this.reports===null || this.reports.length===0){ 
+            this.isRegisterButton = false;
+            this.changeButton();  
+            alert(this.errorMessage2);
+          }else{
+            this.isRegisterButton = true;
+            this.changeButton();
+          }
+        },
+        error: (error: any) => {
+          console.log(error);
         }
-      }else{
-        // this.changeButton();
-      }
+      })
+      
     }else if(this.mobileNumber !== ''){
-      this.getPatientConsultationByMobileNo(this.mobileNumber);
-      if(this.reports===[]){
-        alert(this.errorMessage2);
-      }else{
-        // this.changeButton();
-      }
-    }
-
-    if(this.reports!=[]){
-      this.changeButton()
+      await this.abhaDetailService.getPatientConsultationByMobileNo(this.mobileNumber).subscribe({
+        next: async (response: any) => {
+          this.reports = response;
+          if(response !==null && response.length!==0){
+            await this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
+              next: (response: any) => {
+                this.reports = response;
+                if(this.reports===null || this.reports.length===0){ 
+                  this.isRegisterButton = false;
+                  this.changeButton();  
+                  alert(this.errorMessage3);
+                }else{
+                  this.isRegisterButton = true;
+                  this.changeButton();
+                }
+              },
+              error: (error: any) => {
+                console.log(error);
+              }
+            })
+          }
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
+    }else{
+        alert(this.errorMessage1);
     }
   }
   
   changeButton(){
-    this.buttonText = 'Consultation Form'
-    this.routePath = '/doctor/consultation-form'
+    if(this.isRegisterButton){
+      this.buttonText = 'Consultation Form'
+      this.routePath = '/doctor/consultation-form'
+    }else{
+      this.buttonText = 'Register New Patient'
+      this.routePath = '/doctor/create-patient'
+    }
   }
-
-  getPatientConsultationByAbhaId(abhaId: string) {
-    this.abhaDetailService.getPatientConsultationByAbhaId(abhaId).subscribe({
-      next: (response: any) => {
-        this.reports = response;
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    })
-  }
-
-  getPatientConsultationByMobileNo(mobileNumber: string) {
-    this.abhaDetailService.getPatientConsultationByMobileNo(mobileNumber).subscribe({
-      next: (response: any) => {
-        this.reports = response;
-        this.getPatientConsultationByAbhaId(response.abhaId);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    })
-  }
-
-  // public isLoggedIn(){
-  //   return this.doctorAuthService.isLoggedIn();
-  // }
-
-  // public logout(){
-  //   this.doctorAuthService.clear();
-  //   this.router.navigate(['/login']);
-  // }
-
-  // public roleMatch(allowedRole: any): boolean{
-  //   if(!this.isLoggedIn()) return false;
-  //   for(let i=0; i<allowedRole.length; i++){
-  //     if(this.doctorService.roleMatch(allowedRole[i])) return true;
-  //   }
-  //   return false;
-  // }
-
 }
