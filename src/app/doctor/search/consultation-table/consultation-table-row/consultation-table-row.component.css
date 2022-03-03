@@ -29,7 +29,7 @@ padding: 50px 0px 0px 0px;
 z-index: 0; }
 
 .navbar-dark {
-background-color: #17a2b8; }
+background-color: #BBDEFB; }
 
 .tab-content {
 border-left: 1px solid #ddd;
@@ -43,7 +43,7 @@ vertical-align: middle;
 }
 
 .modal-header {
-background: rgb(145, 145, 255);
+background: #1565C0;
 color: black;
  }
 
