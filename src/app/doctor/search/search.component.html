@@ -21,7 +21,7 @@
         </div>
         <div class="form-check float-sm-right" style="margin:5px -5px -15px">
           <input class="form-check-input" type="checkbox" name="checkbox" [(ngModel)]="hasConsent" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">Consent from patient</label>
+          <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">I hereby declare that I have taken consent from patient to access his/her data.</label>
         </div>
       </form>
     </div>
@@ -29,7 +29,9 @@
   <div class="container" style="padding: 10px">
     <div class="g-3 d-flex justify-content-around">
       <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
-      <button  type="button" class="btn btn-primary p-2" style="width:200px">Register New Patient</button>
+      <!-- <a class="nav-link" routerLink="/doctor/questionnaire" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a> -->
+      <button  type="button" class="btn btn-primary p-2" style="width:200px" [routerLink]="[routePath]">{{buttonText}}</button>
+      
     </div>
   </div>
 </div>

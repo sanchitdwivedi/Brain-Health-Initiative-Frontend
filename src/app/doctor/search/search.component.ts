@@ -7,12 +7,12 @@ import { AbhaDetailService } from './../../_services/abha-detail.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
   abhaId: string = '';
   mobileNumber: string = '';
   hasConsent: boolean;
   reports: [];
-
+  routePath: string = '/doctor/create-patient';
+  buttonText: string = 'Register New Patient'
   constructor(private abhaDetailService: AbhaDetailService) { }
 
   ngOnInit(): void {
@@ -33,8 +33,16 @@ export class SearchComponent implements OnInit {
     }else{
       alert("Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist)")
     }
+    if(this.reports!==[]){
+      console.log("Convert Register into Consultation");
+      this.changeButton()
+    }
   }
-
+  
+  changeButton(){
+    this.buttonText = 'Consultation Form'
+    this.routePath = '/doctor/consultation-form'
+  }
 
   getPatientConsultationByAbhaId(abhaId: string) {
     this.abhaDetailService.getPatientConsultationByAbhaId(abhaId).subscribe({
@@ -60,5 +68,21 @@ export class SearchComponent implements OnInit {
     })
   }
 
+  // public isLoggedIn(){
+  //   return this.doctorAuthService.isLoggedIn();
+  // }
+
+  // public logout(){
+  //   this.doctorAuthService.clear();
+  //   this.router.navigate(['/login']);
+  // }
+
+  // public roleMatch(allowedRole: any): boolean{
+  //   if(!this.isLoggedIn()) return false;
+  //   for(let i=0; i<allowedRole.length; i++){
+  //     if(this.doctorService.roleMatch(allowedRole[i])) return true;
+  //   }
+  //   return false;
+  // }
 
 }

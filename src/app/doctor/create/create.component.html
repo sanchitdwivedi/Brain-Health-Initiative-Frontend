@@ -70,7 +70,8 @@
         <input type="text" ngModel class="form-control" id="relationship_with_patient" name="relationship_with_patient">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!is_filled">Register</button>
+    <button type="submit" class="btn btn-primary"  routerLink="/doctor/search-patient">Back</button>
+    <button type="submit" class="btn btn-primary float-right" [disabled]="!is_filled">Register</button>
   </form>
   </div>
   <h5 *ngIf="created==='0'" style="color: red;">Cannot register patient! Try again</h5>

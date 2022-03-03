@@ -18,6 +18,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { CommonModule } from '@angular/common';
 import { ConsultationTableComponent } from './doctor/search/consultation-table/consultation-table.component';
 import { ConsultationTableRowComponent } from './doctor/search/consultation-table/consultation-table-row/consultation-table-row.component';
+import { ConsultationFormComponent } from './doctor/consultation-form/consultation-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ConsultationTableRowComponent } from './doctor/search/consultation-tabl
     CreateComponent,
     UpdatePasswordComponent,
     ConsultationTableComponent,
-    ConsultationTableRowComponent
+    ConsultationTableRowComponent,
+    ConsultationFormComponent
   ],
   imports: [
     BrowserModule,
