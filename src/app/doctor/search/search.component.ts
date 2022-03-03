@@ -16,8 +16,13 @@ export class SearchComponent implements OnInit {
   errorMessage1: string = 'Please enter either ABHA ID or Mobile Number to search patient!!';
   errorMessage2: string = 'Either ABAH ID & Mobile Number Or Patient is not registered (this is no consultataion form exist';
 
+  // abhaId: string = '';
+  // mobileNumber: string = '';
+  // hasConsent: boolean;
+  // reports: [];
+
   constructor(private abhaDetailService: AbhaDetailService) { }
-  
+
   ngOnInit(): void {
   }
 
@@ -79,6 +84,7 @@ export class SearchComponent implements OnInit {
     })
   }
 
+<<<<<<< HEAD
   // public isLoggedIn(){
   //   return this.doctorAuthService.isLoggedIn();
   // }
@@ -95,5 +101,7 @@ export class SearchComponent implements OnInit {
   //   }
   //   return false;
   // }
+=======
+>>>>>>> patientCard
 
 }
