@@ -84,7 +84,6 @@ export class SearchComponent implements OnInit {
     })
   }
 
-<<<<<<< HEAD
   // public isLoggedIn(){
   //   return this.doctorAuthService.isLoggedIn();
   // }
@@ -101,7 +100,5 @@ export class SearchComponent implements OnInit {
   //   }
   //   return false;
   // }
-=======
->>>>>>> patientCard
 
 }
