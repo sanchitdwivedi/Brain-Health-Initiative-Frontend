@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DateShareService } from 'src/app/_services/date-share.service';
 import { AbhaDetailService } from './../../_services/abha-detail.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class SearchComponent implements OnInit {
   errorMessage2: string = 'Either patient not registered or No consultation form exist corresponding to given ABHA ID!';
   errorMessage3: string = 'Either patient not registered or No consultation form exist corresponding to given Mobile Number!';
 
-  constructor(private abhaDetailService: AbhaDetailService) { }
+  constructor(private abhaDetailService: AbhaDetailService, private dataShareService: DateShareService) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +36,7 @@ export class SearchComponent implements OnInit {
           }else{
             this.isRegisterButton = true;
             this.changeButton();
+            this.dataShareService.sendReports(this.reports);
           }
         },
         error: (error: any) => {
