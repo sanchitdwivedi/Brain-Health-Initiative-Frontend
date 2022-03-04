@@ -9,10 +9,10 @@
           </div>
           <div class="vr" style="margin: 10px; border:10px; font-weight:bold"></div>
           <div class="row g-3 col user-input-wrp">
-            <!-- <div class="col">
+            <div class="col">
               <input type="text" class="form-control inputText" id="inputName" required>
               <span for="inputName" class="floating-label inputText">Name</span>
-            </div> -->
+            </div>
             <div class="col">
               <input type="text" class="form-control inputText" id="inputMobile" [(ngModel)]="mobileNumber" name="mobileNumber" required>
               <span for="inputMobile" class="floating-label inputText">Mobile No</span>
@@ -31,7 +31,7 @@
       <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
       <!-- <a class="nav-link" routerLink="/doctor/questionnaire" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a> -->
       <button  type="button" class="btn btn-primary p-2" style="width:200px" [routerLink]="[routePath]">{{buttonText}}</button>
-      
+
     </div>
   </div>
 </div>
