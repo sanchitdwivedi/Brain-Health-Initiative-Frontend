@@ -1,6 +1,6 @@
 <div>
   <div class="card">
-    <h5 class="card-header d-flex justify-content-between" style="background-color: rgb(145, 145, 255);">
+    <h5 class="card-header d-flex justify-content-between" style="background-color: #42A5F5;">
       <div>#{{reportDetail.formId}}</div>
       <div>{{formatedDateAndTime}}</div>
     </h5>
@@ -9,17 +9,17 @@
         <div class="row">
           <div class="col row">
             <div class="col">Patient Name</div>
-            <div class="col"><b>: {{reportDetail.patientId.first_name}}</b></div>
+            <div class="col"><b>: {{reportDetail.patient.first_name}}</b></div>
           </div>
           <div class="col row">
             <div class="col">Hospital Name</div>
-            <div class="col"><b>: {{reportDetail.hospitalId.hospitalName}}</b></div>
+            <div class="col"><b>: {{reportDetail.hospital.hospitalName}}</b></div>
           </div>
         </div>
         <div class="row">
           <div class="col row">
             <div class="col">Doctor Name</div>
-            <div class="col"><b>: Dr. {{reportDetail.doctorId.firstName}} {{reportDetail.doctorId.lastName}}</b></div>
+            <div class="col"><b>: Dr. {{reportDetail.doctor.firstName}} {{reportDetail.doctor.lastName}}</b></div>
           </div>
           <div class="col row">
             <div class="col">Referred</div>
@@ -38,8 +38,8 @@
               <form>
                 <div class="form-row">
                   <div class="form-group col-md-4">
-                    <label>Patient Name: <b>{{reportDetail.patientId.first_name}}
-                        {{reportDetail.patientId.last_name}}</b></label>
+                    <label>Patient Name: <b>{{reportDetail.patient.first_name}}
+                        {{reportDetail.patient.last_name}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Compliant: <b>{{reportDetail.compliant}}</b></label>
@@ -51,14 +51,14 @@
                     <label>Diagnosis Type: <b>{{reportDetail.diagnosistype}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Doctor Name: <b>Dr. {{reportDetail.doctorId.firstName}}
-                        {{reportDetail.doctorId.lastName}}</b></label>
+                    <label>Doctor Name: <b>Dr. {{reportDetail.doctor.firstName}}
+                        {{reportDetail.doctor.lastName}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Examination: <b>{{reportDetail.examination}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Hospital Name: <b>{{reportDetail.hospitalId.hospitalName}}</b></label>
+                    <label>Hospital Name: <b>{{reportDetail.hospital.hospitalName}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>ICD Description: <b>{{reportDetail.icdDescription}}</b></label>

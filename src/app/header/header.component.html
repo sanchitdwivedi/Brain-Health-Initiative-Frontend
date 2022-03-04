@@ -1,21 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#57cac3;height: 8vh">
-  <div class="container">
-    <a class="navbar-brand" href="#" id="logo">Brain Health Initiative</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary" style="height: 8vh">
+  <div class="container" >
+    <a style="color:white" class="navbar-brand" href="#" id="logo">Brain Health Initiative</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="/doctor/search-patient" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Search patient<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
+      </li> -->
+      <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="/doctor/create-patient" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Register patient<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
+      </li> -->
+      <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="/doctor/questionnaire" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a>
-      </li>
+      </li> -->
     </ul>
     <!-- <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button> -->
     <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>

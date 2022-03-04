@@ -95,7 +95,6 @@ export class CreateComponent implements OnInit {
           this.dob = "";
           alert(`ABHA ID: ${this.abhaId} is Invalid!`);
         } else {
-          // console.log("API Response: ",response);
           this.patient_detail = response;
           this.first_name = response.first_name;
           this.last_name = response.last_name;
@@ -110,6 +109,7 @@ export class CreateComponent implements OnInit {
           this.education = response.education;
           this.dob = response.dob;
           this.is_filled = true;
+          alert(`Fields populated from National Health Record!`);
         }
       },
       error: (error) => {
@@ -118,7 +118,4 @@ export class CreateComponent implements OnInit {
       }
     })
   }
-
-
-
 }

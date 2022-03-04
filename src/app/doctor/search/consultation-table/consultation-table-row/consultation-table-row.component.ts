@@ -8,20 +8,17 @@ import { ConsultationCard } from '../../../../interfaces/ConsultationCard';
   styleUrls: ['./consultation-table-row.component.css']
 })
 export class ConsultationTableRowComponent implements OnInit {
-  @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
   dateAndTime: Date;
   formatedDateAndTime: string;
   uniqueId: string;
 
-  @Input() reportDetail: ConsultationCard;
+  @Input() reportDetail: any;
   constructor() {
   }
 
   ngOnInit(): void {
     this.formatDate(this.reportDetail.dateAndTime);
-    console.log("Report: ", this.reportDetail);
     this.uniqueId = "#" + this.reportDetail.formId;
-    console.log("uniqueId:", this.uniqueId);
   }
 
   formatDate(date: Date): void {
