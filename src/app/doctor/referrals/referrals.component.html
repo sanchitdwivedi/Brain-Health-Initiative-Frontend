@@ -1,0 +1,14 @@
+<div class="" id="#table">
+  <table class="table table-sm" style="padding:15px 15px 2500px;font-size:30px">
+    <ul>
+      <app-consultation-table-row *ngFor="let reportDetail of referrals" [reportDetail]="reportDetail"></app-consultation-table-row>
+      <div *ngIf="referrals.length===0">
+        <div class="container mt-5">
+            <div class="card text-center" style="color: rgb(255, 83, 83); padding: 20px;">
+                <h1>No referrals!</h1>
+            </div>
+        </div>
+      </div>
+    </ul>
+  </table>
+</div>

@@ -23,7 +23,7 @@
           </div>
           <div class="col row">
             <div class="col">Referred</div>
-            <div class="col"><b>: {{reportDetail.refer}}</b></div>
+            <div class="col"><b>: Dr. {{reportDetail.refer.firstName}} {{reportDetail.refer.lastName}}</b></div>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
                     <label>ICD 10 Code: <b>{{reportDetail.idc10code}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Referred to: <b>{{reportDetail.refer}}</b></label>
+                    <label>Referred to: <b>Dr. {{reportDetail.refer.firstName}} {{reportDetail.refer.lastName}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Remarks: <b>{{reportDetail.remarks}}</b></label>

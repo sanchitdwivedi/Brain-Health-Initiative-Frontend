@@ -16,6 +16,12 @@
       <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="/doctor/questionnaire" *ngIf="roleMatch(['secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a>
       </li> -->
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/doctor/referrals" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Referrals<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/doctor/patients" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Patients<span class="sr-only">(current)</span></a>
+      </li>
     </ul>
     <!-- <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button> -->
     <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>

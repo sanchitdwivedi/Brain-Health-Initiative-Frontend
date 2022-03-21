@@ -7,6 +7,14 @@ export class DoctorAuthService {
 
   constructor() { }
 
+  public setId(id: any){
+    localStorage.setItem("id", id);
+  }
+
+  public getId(): any{
+    return localStorage.getItem("id");
+  }
+
   public setRole(role: string){
     localStorage.setItem("role", role);
   }

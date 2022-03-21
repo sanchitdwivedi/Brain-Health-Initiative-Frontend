@@ -40,4 +40,12 @@ export class DoctorService {
   public createPatient(patientData: any){
     return this.httpClient.post(`${baseUrl}/patient`, patientData);
   }
+
+  public getReferrals(id: any){
+    return this.httpClient.get(`${baseUrl}/doctor/${id}/referrals`);
+  }
+
+  public getPatients(id: any){
+    return this.httpClient.get(`${baseUrl}/doctor/${id}/patients`);
+  }
 }

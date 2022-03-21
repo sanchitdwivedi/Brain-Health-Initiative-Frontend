@@ -19,6 +19,8 @@ import { CommonModule } from '@angular/common';
 import { ConsultationTableComponent } from './doctor/search/consultation-table/consultation-table.component';
 import { ConsultationTableRowComponent } from './doctor/search/consultation-table/consultation-table-row/consultation-table-row.component';
 import { ConsultationFormComponent } from './doctor/consultation-form/consultation-form.component';
+import { ReferralsComponent } from './doctor/referrals/referrals.component';
+import { PatientsComponent } from './doctor/patients/patients.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ConsultationFormComponent } from './doctor/consultation-form/consultati
     UpdatePasswordComponent,
     ConsultationTableComponent,
     ConsultationTableRowComponent,
-    ConsultationFormComponent
+    ConsultationFormComponent,
+    ReferralsComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,

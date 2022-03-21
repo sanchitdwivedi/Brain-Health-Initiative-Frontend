@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   login(loginForm: NgForm) {
     this.doctorService.login(loginForm.value).subscribe({
       next: (response: any) => {
-        
         const role = response.user.role.roleName;
         if(role==='secondary specialist' || role==='medical officer'){
           if(response.user.status===0){
@@ -39,6 +38,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate([`/update-password/${response.user.userId}`]);
           }
           else{
+            this.doctorAuthService.setId(response.user.userId);
             this.doctorAuthService.setRole(role);
             this.doctorAuthService.setToken(response.jwtToken);
             this.router.navigate(['/doctor/search-patient']);
