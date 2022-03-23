@@ -28,16 +28,24 @@
             </div>
         </form>
     </div>
-        <div *ngIf="addEntry" class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
-            Add
-            <app-add></app-add>
+    <div>
+        <div *ngIf="addEntry" class="container" style="margin-top: 3vh;">
+            <h4>ADD {{tableName}}</h4>
+            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
+                <app-add tableName="{{tableName}}"></app-add>
+            </div>
         </div>
-
-        <div *ngIf="updateEntry" class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
-            Update
+        <div *ngIf="updateEntry" class="container" style="margin-top: 3vh;">
+            <h4>UPDATE {{tableName}}</h4>
+            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
+                <!-- <app-update tableName="{{tableName}}"></app-update> -->
+            </div>
         </div>
-
-        <div *ngIf="deleteEntry" class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
-            Delete
+        <div *ngIf="addEntry" class="container" style="margin-top: 3vh;">
+            <h4>DELETE {{tableName}}</h4>
+            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
+                <!-- <app-delete tableName="{{tableName}}"></app-delete> -->
+            </div>
         </div>
+    </div>
 </div>

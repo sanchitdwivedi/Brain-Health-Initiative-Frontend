@@ -1,1 +1,246 @@
-<p>add works!</p>
+<div class="container">
+    <div *ngIf="tableName=='DOCTOR'">
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <label for="firstName" class="col-form-label">Gender</label>
+                    <select type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="mobileNumber" class="col-form-label">Mobile Number</label>
+                    <input type="tel" class="form-control" id="mobileNumber" placeholder="Mobile Number">
+                </div>
+                <div class="col-sm-3">
+                    <label for="pincode" class="col-form-label">Pincode</label>
+                    <input type="tel" class="form-control" id="pincode" placeholder="Pincode">
+                </div>
+                <div class="col-sm-3">
+                    <label for="state" class="col-form-label">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="State">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Doctor
+            </button>
+        </form>
+    </div>
+    <div *ngIf="tableName=='ROLE'">
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="roleName" class="col-form-label">Role Name</label>
+                    <input type="text" class="form-control" id="roleName" placeholder="Role Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="roleDescription" class="col-form-label">Role Description</label>
+                    <input type="text" class="form-control" id="roleDescription" placeholder="Role Description">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Role
+            </button>
+        </form>
+    </div>
+    <div *ngIf="tableName=='LEVEL'">
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="levelName" class="col-form-label">Level Name</label>
+                    <input type="text" class="form-control" id="levelName" placeholder="Level Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="levelDescription" class="col-form-label">Level Description</label>
+                    <input type="text" class="form-control" id="levelDescription" placeholder="Level Description">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Level
+            </button>
+        </form>
+    </div>
+    <div *ngIf="tableName=='HOSPITAL'">
+        <form>
+            <div class="form-group">
+                <label for="hospitalName" class="col-form-label">Hospital Name</label>
+                <input type="text" class="form-control" id="hospitalName" placeholder="Hospital Name">
+            </div>
+            <div class="form-group">
+                <label for="address_line_1">Address</label>
+                <input type="text" class="form-control" id="address_line_1">
+              </div>
+              <div class="form-group">
+                <label for="address_line_2">Address 2</label>
+                <input type="text" class="form-control" id="address_line_2">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="district">Distict</label>
+                    <input type="text" class="form-control" id="district">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="pin_code">Pincode</label>
+                    <input type="text" class="form-control" id="pin_code">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Hospital
+            </button>
+        </form>
+    </div>
+    <div *ngIf="tableName=='ADMIN'">
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <label for="firstName" class="col-form-label">Gender</label>
+                    <select type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="mobileNumber" class="col-form-label">Mobile Number</label>
+                    <input type="tel" class="form-control" id="mobileNumber" placeholder="Mobile Number">
+                </div>
+                <div class="col-sm-3">
+                    <label for="pincode" class="col-form-label">Pincode</label>
+                    <input type="tel" class="form-control" id="pincode" placeholder="Pincode">
+                </div>
+                <div class="col-sm-3">
+                    <label for="state" class="col-form-label">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="State">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Admin
+            </button>
+        </form>
+    </div>
+    <div *ngIf="tableName=='PROGRAM_MANAGER'">
+        <form>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <label for="firstName" class="col-form-label">Gender</label>
+                    <select type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="mobileNumber" class="col-form-label">Mobile Number</label>
+                    <input type="tel" class="form-control" id="mobileNumber" placeholder="Mobile Number">
+                </div>
+                <div class="col-sm-3">
+                    <label for="pincode" class="col-form-label">Pincode</label>
+                    <input type="tel" class="form-control" id="pincode" placeholder="Pincode">
+                </div>
+                <div class="col-sm-3">
+                    <label for="state" class="col-form-label">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="State">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+            <button class="btn btn-primary">
+                Add Program Manager
+            </button>
+        </form>
+    </div>
+</div>

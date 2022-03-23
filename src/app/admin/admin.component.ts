@@ -30,6 +30,7 @@ export class AdminComponent implements OnInit {
 
   onTableChange(event: any){
     this.tableName = event.target.value;
+    console.log(this.tableName,"||");
   }
 
   Add(){
