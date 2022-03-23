@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { DoctorService } from 'src/app/_services/doctor.service';
+import { ConsultationCard } from 'src/app/interfaces/ConsultationCard';
+import { DateShareService } from 'src/app/_services/date-share.service';
 
 @Component({
   selector: 'app-consultation-form',
@@ -12,9 +14,12 @@ export class ConsultationFormComponent implements OnInit {
   doctorRoles: any = [];
   doctors: any = [];
   consultationForm: FormGroup;
+  reports: ConsultationCard[] = [];
+  name: string = '';
 
   constructor(private doctorService: DoctorService,
-              private fb:FormBuilder) { 
+              private fb:FormBuilder,
+              private dataShareService: DateShareService) { 
 
       this.consultationForm = this.fb.group({
         name: [''],
@@ -37,6 +42,10 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reports = this.dataShareService.getReports();
+    this.name = this.reports[0].patient.first_name +" "+ this.reports[0].patient.last_name;
+    // console.log(this.reports[0].patient);
+
     this.doctorService.getDoctorRoles().subscribe({
       next: (response: any) => {
         this.doctorRoles = response;
