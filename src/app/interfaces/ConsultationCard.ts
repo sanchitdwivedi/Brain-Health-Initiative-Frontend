@@ -19,7 +19,7 @@ export interface ConsultationCard {
   illnessSummary:string;
   improvementtype:string;
   medicineName:string;
-  patientId:Patient;
+  patient:Patient;
   refer:string;
   remarks:string;
   treatmentInstructions:string;

@@ -1,6 +1,6 @@
 export interface Patient {
    patient_id:string;
-   abha_id:string;
+   abhaId:string;
    address_line_1:string;
    address_line_2:string;
    district:string;
@@ -13,7 +13,7 @@ export interface Patient {
    information_caregiver_name:string;
    relationship_with_patient:string;
    socioeconomic_status:string;
-   pincode:string;
+   pin_code:string;
    state:string;
   }
   
