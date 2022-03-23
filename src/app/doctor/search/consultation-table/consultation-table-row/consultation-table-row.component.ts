@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
-import { ConsultationCard } from '../../../../interfaces/ConsultationCard';
 
 @Component({
   selector: 'app-consultation-table-row',
