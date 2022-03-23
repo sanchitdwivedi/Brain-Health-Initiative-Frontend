@@ -22,6 +22,9 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/doctor/patients" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Patients<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/doctor/admin" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">Admin<span class="sr-only">(current)</span></a>
+      </li>
     </ul>
     <!-- <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button> -->
     <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>

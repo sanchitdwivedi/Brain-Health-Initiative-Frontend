@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 import { ConsultationFormComponent } from './doctor/consultation-form/consultation-form.component';
 import { CreateComponent } from './doctor/create/create.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
@@ -12,6 +13,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
+  { path: 'doctor/admin', component: AdminComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },

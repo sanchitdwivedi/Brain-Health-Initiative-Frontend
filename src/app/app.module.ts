@@ -22,6 +22,9 @@ import { ConsultationFormComponent } from './doctor/consultation-form/consultati
 import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
 
+import { AddComponent } from './admin/add/add.component';
+import { AdminComponent } from './admin/admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,9 @@ import { PatientsComponent } from './doctor/patients/patients.component';
     ConsultationTableRowComponent,
     ConsultationFormComponent,
     ReferralsComponent,
-    PatientsComponent
+    PatientsComponent,
+    AddComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
