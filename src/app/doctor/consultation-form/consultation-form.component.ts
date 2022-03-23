@@ -16,6 +16,7 @@ export class ConsultationFormComponent implements OnInit {
   consultationForm: FormGroup;
   reports: ConsultationCard[] = [];
   name: string = '';
+  consultation: ConsultationCard;
 
   constructor(private doctorService: DoctorService,
               private fb:FormBuilder,
@@ -58,6 +59,8 @@ export class ConsultationFormComponent implements OnInit {
 
   create(){
     console.log(this.consultationForm.value);
+    this.consultation.patient.abhaId = this.consultationForm.value.abhaId;
+    
   }
 
   onChange(event: any){

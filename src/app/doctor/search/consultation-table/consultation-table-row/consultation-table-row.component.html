@@ -67,9 +67,6 @@
                     <label>Follow Up: <b>{{reportDetail.followUp}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Dosage: <b>{{reportDetail.dosage}}</b></label>
-                  </div>
-                  <div class="form-group col-md-4">
                     <label>ICD 10 Code: <b>{{reportDetail.idc10code}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
@@ -82,17 +79,36 @@
                     <label>Improvement Type: <b>{{reportDetail.improvementtype}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Dosage Time: <b>{{reportDetail.dosingtime}}</b></label>
-                  </div>
-                  <div class="form-group col-md-4">
                     <label>Illness Summary: <b>{{reportDetail.illnessSummary}}</b></label>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label>Medicine Name: <b>{{reportDetail.medicineName}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Treatment Instructions: <b>{{reportDetail.treatmentInstructions}}</b></label>
                   </div>
+                  <table class="table table-bordered">
+                    <th>Medicines</th>
+                    <tr>  
+                        <td>  
+                            Name
+                        </td>  
+                        <td>  
+                            Dosage
+                        </td>  
+                        <td>  
+                            Dosing time
+                        </td> 
+                    </tr>  
+                    <tr *ngFor="let medicine of reportDetail.medicineInfo;">  
+                        <td>  
+                          <label>{{medicine.medicineName}}</label> 
+                        </td>  
+                        <td>  
+                          <label>{{medicine.dosage}}</label>   
+                        </td>  
+                        <td>  
+                          <label>{{medicine.dosingTime}}</label>  
+                        </td> 
+                    </tr>  
+                </table>
                 </div>
               </form>
             </div>
