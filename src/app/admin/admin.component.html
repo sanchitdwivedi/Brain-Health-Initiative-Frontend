@@ -2,8 +2,10 @@
     <div class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
         <form>
             <div class="row">
-                <label>Select Table to perform this operation on: </label>
-                <div class="col-9">
+                <div class="col-4">
+                    <label>Select Table to perform this operation on: </label>
+                </div>
+                <div class="col-5">
                     <select class="form-control" (change)="onTableChange($event)">
                         <option value="" selected>Select Option</option>
                         <option value="ROLE">Role</option>
@@ -41,7 +43,7 @@
                 <!-- <app-update tableName="{{tableName}}"></app-update> -->
             </div>
         </div>
-        <div *ngIf="addEntry" class="container" style="margin-top: 3vh;">
+        <div *ngIf="deleteEntry" class="container" style="margin-top: 3vh;">
             <h4>DELETE {{tableName}}</h4>
             <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
                 <!-- <app-delete tableName="{{tableName}}"></app-delete> -->

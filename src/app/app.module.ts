@@ -24,6 +24,8 @@ import { PatientsComponent } from './doctor/patients/patients.component';
 
 import { AddComponent } from './admin/add/add.component';
 import { AdminComponent } from './admin/admin.component';
+import { UpdateComponent } from './admin/update/update.component';
+import { DeleteComponent } from './admin/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AdminComponent } from './admin/admin.component';
     ReferralsComponent,
     PatientsComponent,
     AddComponent,
-    AdminComponent
+    AdminComponent,
+    UpdateComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
