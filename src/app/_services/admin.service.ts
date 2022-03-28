@@ -9,6 +9,14 @@ export class AdminService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public getDoctor(id: any){
+    return this.httpClient.get(`${baseUrl}/doctor/${id}`);
+  }
+
+  public getDoctors(){
+    return this.httpClient.get(`${baseUrl}/doctor`);
+  }
+
   public addDoctor(doctorDetail: any){
     return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail.value);
   }
@@ -21,7 +29,11 @@ export class AdminService {
     return this.httpClient.delete(`${baseUrl}/doctor`, doctorDetail.value);
   }
 
-  public getRole(){
+  public getRole(id: any){
+    return this.httpClient.get(`${baseUrl}/role/${id}`);
+  }
+
+  public getRoles(){
     return this.httpClient.get(`${baseUrl}/role`);
   }
 
@@ -37,7 +49,11 @@ export class AdminService {
     return this.httpClient.delete(`${baseUrl}/role`, roleDetail.value);
   }
 
-  public getLevel(){
+  public getLevel(id: any){
+    return this.httpClient.get(`${baseUrl}/level/${id}`);
+  }
+
+  public getLevels(){
     return this.httpClient.get(`${baseUrl}/level`);
   }
 
@@ -53,7 +69,11 @@ export class AdminService {
     return this.httpClient.delete(`${baseUrl}/level`, levelDetail.value);
   }
 
-  public getHospital(){
+  public getHospital(id: any){
+    return this.httpClient.get(`${baseUrl}/hospital/${id}`);
+  }
+
+  public getHospitals(){
     return this.httpClient.get(`${baseUrl}/hospital`);
   }
 

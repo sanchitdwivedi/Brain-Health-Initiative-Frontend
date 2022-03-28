@@ -1,6 +1,7 @@
 <div class="container">
     <div *ngIf="tableName=='DOCTOR'">
-        <form [formGroup]="addDoctorForm">
+        <app-doctor readonly="{{readonly}}"></app-doctor>
+        <!-- <form [formGroup]="addDoctorForm">
             <div class="form-group row" [formGroup]="doctor">
                 <div class="col-sm-4">
                     <label for="userId" class="col-form-label">First Name</label>
@@ -87,7 +88,7 @@
             <button class="btn btn-primary" (click)="addDoctor()">
                 Add Doctor
             </button>
-        </form>
+        </form> -->
     </div>
     <div *ngIf="tableName=='ROLE'">
         <form [formGroup]="addRoleForm">

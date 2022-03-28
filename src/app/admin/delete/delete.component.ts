@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
   selector: 'app-delete',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteComponent implements OnInit {
 
-  constructor() { }
+  @Input() tableName: string;
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
   }
+
+  searchDoctor(doctorForm: NgForm){
+    console.log("doctorForm.value: ", doctorForm.value);
+    this.adminService.getDoctor(doctorForm.value.doctorId).subscribe({
+      next: (response: any) => {
+        console.log("response: ", response);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+  }
+  searchRole(){}
+  searchLevel(){}
+  searchAdmin(){}
+  searchPM(){}
+  searchHospital(){}
 
 }

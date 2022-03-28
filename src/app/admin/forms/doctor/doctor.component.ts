@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-doctor',
+  templateUrl: './doctor.component.html',
+  styleUrls: ['./doctor.component.css']
 })
-export class AddComponent implements OnInit {
-  @Input() tableName: string;
+export class DoctorComponent implements OnInit {
+  @Input() readonly: any;
   addDoctorForm: FormGroup;
   addRoleForm: FormGroup;
   addLevelForm: FormGroup;
@@ -16,7 +16,6 @@ export class AddComponent implements OnInit {
   levels: any = [];
   roles: any = [];
   hospitals: any = [];
-  readonly: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -92,9 +91,6 @@ export class AddComponent implements OnInit {
     return this.addHospitalForm.get('level') as FormGroup;
   }
 
-
-
-  //Needed: Error Here
   getLevels() {
     this.levels = this.adminService.getLevels().subscribe({
       next: (response: any) => {
@@ -182,5 +178,4 @@ export class AddComponent implements OnInit {
     });
     this.getHospitals();
   }
-
 }

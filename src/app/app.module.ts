@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,11 +20,11 @@ import { ConsultationTableRowComponent } from './doctor/search/consultation-tabl
 import { ConsultationFormComponent } from './doctor/consultation-form/consultation-form.component';
 import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
-
 import { AddComponent } from './admin/add/add.component';
 import { AdminComponent } from './admin/admin.component';
 import { UpdateComponent } from './admin/update/update.component';
 import { DeleteComponent } from './admin/delete/delete.component';
+import { DoctorComponent } from './admin/forms/doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,8 @@ import { DeleteComponent } from './admin/delete/delete.component';
     AddComponent,
     AdminComponent,
     UpdateComponent,
-    DeleteComponent
+    DeleteComponent,
+    DoctorComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,7 @@ import { DeleteComponent } from './admin/delete/delete.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     AuthGuard,

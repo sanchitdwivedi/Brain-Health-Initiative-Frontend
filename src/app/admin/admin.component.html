@@ -17,13 +17,16 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-success" (click)="addEntry = true; updateEntry = false; deleteEntry = false">
+                    <button type="button" class="btn btn-success"
+                        (click)="addEntry = true; updateEntry = false; deleteEntry = false">
                         Add
                     </button>
-                    <button type="button" class="btn btn-warning" (click)="addEntry = false; updateEntry = true; deleteEntry = false">
+                    <button type="button" class="btn btn-warning"
+                        (click)="addEntry = false; updateEntry = true; deleteEntry = false">
                         Update
                     </button>
-                    <button type="button" class="btn btn-danger" (click)="addEntry = false; updateEntry = false; deleteEntry = true">
+                    <button type="button" class="btn btn-danger"
+                        (click)="addEntry = false; updateEntry = false; deleteEntry = true">
                         Delete
                     </button>
                 </div>
@@ -33,20 +36,23 @@
     <div>
         <div *ngIf="addEntry" class="container" style="margin-top: 3vh;">
             <h4>ADD {{tableName}}</h4>
-            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
                 <app-add tableName="{{tableName}}"></app-add>
             </div>
         </div>
         <div *ngIf="updateEntry" class="container" style="margin-top: 3vh;">
             <h4>UPDATE {{tableName}}</h4>
-            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
-                <!-- <app-update tableName="{{tableName}}"></app-update> -->
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;overflow: auto">
+                <app-update tableName="{{tableName}}"></app-update>
             </div>
         </div>
         <div *ngIf="deleteEntry" class="container" style="margin-top: 3vh;">
             <h4>DELETE {{tableName}}</h4>
-            <div class="scrollbar-light-blue" style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
-                <!-- <app-delete tableName="{{tableName}}"></app-delete> -->
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;overflow: auto">
+                <app-delete tableName="{{tableName}}"></app-delete>
             </div>
         </div>
     </div>
