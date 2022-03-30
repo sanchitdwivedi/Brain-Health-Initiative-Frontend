@@ -1,42 +1,24 @@
-<!-- <img src="../../assets/background.jpg" id="bg" class="img-fluid" alt="Responsive image"><div class="container"> -->
-<!-- <section class="vh-100"> -->
-  <div class="container-fluid" style="margin-top: 40px;">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
-          alt="Sample image"> -->
-        <img src="../../assets/stethoscope-icon-2316460_960_720.webp" class="img-fluid"
-            alt="Sample image" style="padding-top: 50px; max-width: 70%;">
-      </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <div class="logo">
-          <img src="../../assets/avatar.png" class="logo img-fluid" alt="Sample image">
-        </div>
+<section>
+  <div class="imgBx">
+    <img src="https://cdn.sanity.io/images/0vv8moc6/nutrioutlook/f7cf24f2cecf873a10733a8ab148ddb2f328ec03-750x585.jpg/brain_9.jpg?w=1500&fit=max&auto=format" alt="Sample image">
+  </div>
+    <div class="contentBx">
+      <div class="formBx">
+        <h2>Login</h2>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-          <!-- <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-            
-          </div> -->
-          <!-- Email input -->
-          <div class="form-floating mb-4">
-            <input type="number" ngModel id="userId" name="userId" class="form-control form-control-lg"
-              placeholder="User ID" required/>
-              <label class="form-label" for="userId">User ID</label>
+          <div class="inputBx">
+            <span>User ID</span>
+            <input type="number" ngModel id="userId" name="userId" required/>
           </div>
-          <!-- Password input -->
-          <div class="form-floating mb-3">
-            <input type="password" ngModel name="userPassword" id="userPassword" class="form-control form-control-lg"
-              placeholder="Password" required/>
-              <label class="form-label" for="userPassword">Password</label>
+          <div class="inputBx">
+            <span>Password</span>
+            <input type="password" ngModel name="userPassword" id="userPassword" required/>
           </div>
-          <!-- <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="text-body">Forgot password?</a>
-          </div> -->
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <input type="submit" value="Login" class="btn btn-primary form-control rounded-0">
+          <div class="inputBx">
+            <input type="submit" value="Log in">
           </div>
-        </form>
-        <div class="container"><h5 style="color: red; margin: 40px;">{{msg}}</h5></div>
-      </div>
+      </form>
+      <div class="container"><h5 style="color: red; margin: 40px;">{{msg}}</h5></div>
     </div>
   </div>
-<!-- </section> -->
+</section>

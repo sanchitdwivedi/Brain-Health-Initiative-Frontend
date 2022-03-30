@@ -1,3 +1,20 @@
+section .imgBx
+{
+  width: 100%;
+  height: 100%;
+}
+section .imgBx img
+{
+  margin-left: 200px;
+  position: absolute;
+  height: 80%;
+  width: 70%;
+  z-index: -1;
+}
+section .container
+{
+  z-index: 1;
+}
 .user-input-wrp {
   position: relative;
   width: 50%;
