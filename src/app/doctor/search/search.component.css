@@ -1,15 +1,10 @@
 section .imgBx
 {
-  width: 100%;
-  height: 100%;
-}
-section .imgBx img
-{
-  margin-left: 200px;
-  position: absolute;
-  height: 80%;
-  width: 70%;
-  z-index: -1;
+  background-image: url("https://cdn.sanity.io/images/0vv8moc6/nutrioutlook/f7cf24f2cecf873a10733a8ab148ddb2f328ec03-750x585.jpg/brain_9.jpg?w=1500&fit=max&auto=format");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1000px 670px;
 }
 section .container
 {
@@ -42,12 +37,12 @@ section .container
 
 .scrollbar-light-blue::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-color: #17a2b8;
+  background-color: #008cff;
   border-radius: 10px; }
 
 .scrollbar-light-blue::-webkit-scrollbar {
   width: 12px;
-  background-color: #04ffbb; }
+  background-color: #008cff; }
 
 .scrollbar-light-blue::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -65,7 +60,7 @@ section .container
 
 .scrollbar-dusty-grass::-webkit-scrollbar {
   width: 12px;
-  background-color: #17a2b8; }
+  background-color: #008cff; }
 
 .scrollbar-dusty-grass::-webkit-scrollbar-thumb {
   border-radius: 10px;

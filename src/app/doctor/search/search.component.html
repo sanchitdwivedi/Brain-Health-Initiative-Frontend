@@ -1,9 +1,7 @@
 <section>
   <div class="imgBx">
-    <img src="https://cdn.sanity.io/images/0vv8moc6/nutrioutlook/f7cf24f2cecf873a10733a8ab148ddb2f328ec03-750x585.jpg/brain_9.jpg?w=1500&fit=max&auto=format" alt="">
-  </div>
   <div class="container">
-    <div class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
+    <div class="container" style="background-color: #008cff; padding: 20px; margin-top: 30px; border-radius: 10px; ">
       <div class="row align-items-center">
         <form>
           <div class="form-row" >
@@ -25,7 +23,7 @@
           </div>
           <div class="form-check float-sm-right" style="margin:5px -5px -15px">
             <input class="form-check-input" type="checkbox" name="checkbox" [(ngModel)]="hasConsent" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">I hereby declare that I have taken consent from patient to access his/her data.</label>
+            <label class="form-check-label" for="defaultCheck1" style="color:rgb(255, 0, 0); font-size: 15px; font-family: Arial">I hereby declare that I have taken consent from patient to access his/her data.</label>
           </div>
         </form>
       </div>
@@ -40,4 +38,5 @@
   <div class="container scrollbar-light-blue" style="height:60vh;overflow: auto">
     <app-consultation-table [reports]="reports"></app-consultation-table>
   </div>
+</div>
 </section>

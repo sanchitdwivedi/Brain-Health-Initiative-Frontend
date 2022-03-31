@@ -8,7 +8,7 @@
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <div class="inputBx">
             <span>User ID</span>
-            <input type="number" ngModel id="userId" name="userId" required/>
+            <input type="number" ngModel id="userId" name="userId" pattern="[0-9]{12}" title="Twelve Number ABHA ID" required/>
           </div>
           <div class="inputBx">
             <span>Password</span>
