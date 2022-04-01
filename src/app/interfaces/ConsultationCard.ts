@@ -3,31 +3,21 @@ import { Doctor } from "./Doctor";
 import { Hospital } from "./Hospital";
 
 export interface ConsultationCard {
+  formId: number;
   patient: Patient;
-  doctor: {
-      doctor: {
-          userId : number
-      }
-  };
-  hospital: {
-      hospitalId: number
-  };
+  doctor: Doctor;
+  hospital: Hospital;
   compliant:string;
   examination:string;
   illnessSummary:string;
   diagnosistype:string;
   icdDescription:string;
-  idc10code:string;
+  icd10Code:string;
   improvementtype: string;
   medicineInfo: [];
-  duration: string;
   dateAndTime:Date;
   remarks: string;
   treatmentInstructions: string;
-  followUp: string;
-  refer: {
-    doctor: {
-      userId: string;
-    };
-  };
+  followUp: Date;
+  refer: Doctor;
 }

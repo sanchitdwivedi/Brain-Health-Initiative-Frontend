@@ -23,7 +23,7 @@
           </div>
           <div class="col row">
             <div class="col">Referred</div>
-            <div class="col"><b>: Dr. {{reportDetail.refer.firstName}} {{reportDetail.refer.lastName}}</b></div>
+            <div class="col"><b>: {{referTo}}</b></div>
           </div>
         </div>
       </div>
@@ -64,13 +64,13 @@
                     <label>ICD Description: <b>{{reportDetail.icdDescription}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Follow Up: <b>{{reportDetail.followUp}}</b></label>
+                    <label>Follow Up: <b>{{followUp}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>ICD 10 Code: <b>{{reportDetail.idc10code}}</b></label>
+                    <label>ICD 10 Code: <b>{{reportDetail.icd10Code}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
-                    <label>Referred to: <b>Dr. {{reportDetail.refer.firstName}} {{reportDetail.refer.lastName}}</b></label>
+                    <label>Referred to: <b>{{referTo}}</b></label>
                   </div>
                   <div class="form-group col-md-4">
                     <label>Remarks: <b>{{reportDetail.remarks}}</b></label>
@@ -96,6 +96,9 @@
                         <td>  
                             Dosing time
                         </td> 
+                        <td>  
+                            Duration (days)
+                        </td> 
                     </tr>  
                     <tr *ngFor="let medicine of reportDetail.medicineInfo;">  
                         <td>  
@@ -106,7 +109,10 @@
                         </td>  
                         <td>  
                           <label>{{medicine.dosingTime}}</label>  
-                        </td> 
+                        </td>
+                        <td>  
+                          <label>{{medicine.duration}}</label>  
+                        </td>  
                     </tr>  
                 </table>
                 </div>
