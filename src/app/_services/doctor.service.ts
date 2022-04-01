@@ -48,4 +48,16 @@ export class DoctorService {
   public getPatients(id: any){
     return this.httpClient.get(`${baseUrl}/doctor/${id}/patients`);
   }
+
+  public getDoctorRoles(){
+    return this.httpClient.get(`${baseUrl}/role/doctors`);
+  }
+
+  public getDoctorByRoleId(id: string){
+    return this.httpClient.get(`${baseUrl}/doctor/role/${id}`);
+  }
+
+  public getDoctorDetails(id: number){
+    return this.httpClient.get(`${baseUrl}/doctor/${id}`);
+  }
 }

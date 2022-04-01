@@ -87,65 +87,151 @@
     </div>
     <div class="container"
         style="border-radius:10px;background-color: #42A5F5; padding: 20px; margin-top: 30px; margin-bottom: 30px;">
-        <form>
+        <form [formGroup]="consultationForm">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Patient Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Name" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="date">Date:</label>
+                    <input type="date" class="form-control" id="date" name="date" formControlName="date" placeholder="Date" readonly>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label>Patient Name:</label>
+                    <label for="diagnosisType">Diagnosis Type:</label>
+                    <select class="form-control" id="diagnosisType" formControlName="diagnosisType">
+                        <option value="DIFFERENTIAL" selected>Differential</option>
+                        <option value="PROVISIONAL">Provisional</option>
+                        <option value="TENTATIVE">Tentative</option>
+                        <option value="FINAL">Final</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Compliant:</label>
+                    <label for="compliant">Compliant:</label>
+                    <input type="text" class="form-control" id="compliant" name="compliant" formControlName="compliant" placeholder="Compliant" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Date:</label>
+                    <label for="examination">Examination:</label>
+                    <input type="text" class="form-control" id="examination" name="examination" placeholder="Examination" formControlName="examination" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="icd10Code">ICD 10 Code: </label>
+                    <select class="form-control" id="icd10Code" formControlName="icd10Code">
+                        <option selected>G40</option>
+                        <option>I63</option>
+                        <option>R51</option>
+                        <option>F03</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Diagnosis Type:</label>
+                    <label for="icdDescription">ICD Description:</label>
+                    <input type="text" class="form-control" id="icdDescription" name="icdDescription" formControlName="icdDescription" placeholder="Description">
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Doctor Name: </label>
+                    <label for="instructions">Treatment Instructions:</label>
+                    <input type="text" class="form-control" id="instructions" name="instructions" formControlName="instructions" placeholder="Instructions" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="improvementType">Improvement Type: </label>
+                    <select class="form-control" id="improvementType" formControlName="improvementType">
+                        <option value="CONDITION_IMPROVED" selected>Condition Improved</option>
+                        <option value="CONDITION_WORSENED">Condition Worsened</option>
+                        <option value="CONDITION_UNCHANGED">Condition Unchanged</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="illnessSummary">Illness Summary: </label>
+                    <input type="text" class="form-control" id="illnessSummary" name="illnessSummary" formControlName="illnessSummary" placeholder="Summary">
+                </div>
+            </div>
+            <div class="form-row">
+                <!-- <div class="form-group col-md-4">
+                    <label for="medicine">Medicine Name: </label>
+                    <input ngModel type="text" class="form-control" id="medicine" name="medicine" placeholder="Medicine" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Examination: </label>
+                    <label for="dosage">Dosage:</label>
+                    <input ngModel type="text" class="form-control" id="dosage" name="dosage" placeholder="Dosage" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Hospital Name:</label>
+                    <label for="dosingTime">Dosing Time:</label>
+                    <input ngModel type="text" class="form-control" id="dosingTime" name="dosingTime" placeholder="Dosing Time" required>
+                </div> -->
+
+                <table class="table table-bordered" formArrayName="medicines">  
+                    <tr>  
+                        <th colspan="2">Add Medicines:</th>  
+                        <th width="150px"><button type="button" (click)="addMedicine()" class="btn btn-primary">Add More</button></th>  
+                    </tr>  
+                    <tr *ngFor="let medicine of medicines().controls; let i=index" [formGroupName]="i">  
+                        <td>  
+                            Name:  
+                            <input type="text" id="medicineName" formControlName="medicineName" class="form-control">  
+                        </td>  
+                        <td>  
+                            Dosage:  
+                            <input type="text" id="dosage" formControlName="dosage" class="form-control">  
+                        </td>  
+                        <td>  
+                            Dosing time:  
+                            <input type="text" id="dosingTime" formControlName="dosingTime" class="form-control">  
+                        </td>
+                        <td>  
+                            Duration (days):  
+                            <input type="text" id="duration" formControlName="duration" class="form-control">  
+                        </td>  
+                        <td>  
+                            <button (click)="removeMedicine(i)" class="btn btn-danger">Remove</button>  
+                        </td>  
+                    </tr>  
+                </table>  
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="remarks">Remarks:</label>
+                    <textarea type="text" class="form-control" id="remarks" name="remarks" formControlName="remarks" placeholder="Remarks"></textarea>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>ICD Description:</label>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                <label for="furtherInstructions">Further Instructions:</label>
+                <select class="form-control" formControlName="furtherInstructions" id="furtherInstructions" (change)="onChange($event)">
+                    <option>Follow-up</option>
+                    <option>Refer</option>
+                    <option>In-patient</option>
+                    <option>Review SOS</option>
+                </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Follow Up:</label>
+                <div *ngIf="optionValue=='Follow-up'" class="form-group col-md-4">
+                    <label for="followUp">Follow-up Date:</label>
+                    <input type="date" class="form-control" id="followUp" name="followUp" formControlName="followUp" placeholder="Follow-up" required>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Dosage:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>ICD 10 Code: </label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Referred to:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Remarks:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Improvement Type: </label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Dosage Time:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Illness Summary: </label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Medicine Name: </label>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Treatment Instructions: </label>
+                <div *ngIf="optionValue=='Refer'" class="form-group col-md-8">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="doctorRole">Doctor level: </label>
+                            <select class="form-control" formControlName="doctorRole" id="doctorRole" (change)="onRoleChange($event)" required>
+                                <option *ngFor="let role of doctorRoles" [value]="role.roleId">{{role.roleName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="doctorName">Doctor: </label>
+                            <select class="form-control" formControlName="doctorName" id="doctorName" required>
+                                <!-- <option selected>Select doctor level first</option> -->
+                                <option *ngFor="let doctor of doctors" [value]="doctor.doctor.userId">Dr. {{doctor.firstName}} {{doctor.lastName}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" routerLink="/doctor/search-patient">Back</button>
-            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <button type="submit" class="btn btn-primary float-right" (click)="create()">Submit</button>
         </form>
     </div>
 </div>

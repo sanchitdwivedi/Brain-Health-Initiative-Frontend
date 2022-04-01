@@ -1,20 +1,18 @@
 import { Hospital } from "./Hospital";
+import { User } from "./User";
 
 export interface Doctor {
+  uuid: number;
+  doctor: User;
   city:string;
   district:string;
-  doctorId:string;
   email:string;
   firstName:string;
   gender:string;
-  healthId:string;
   hospital:Hospital;
   lastName:string;
-  mobileNo:string;
-  password:string;
-  pincode:string;
-  role:string;
+  mobileNo:number;
+  pincode:number;
   state:string;
-  status:string;
 }
   
