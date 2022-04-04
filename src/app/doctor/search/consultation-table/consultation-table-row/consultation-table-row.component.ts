@@ -18,6 +18,7 @@ export class ConsultationTableRowComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.reportDetail)
     this.formatDate(this.reportDetail.dateAndTime);
     this.getReferedDoctor(this.reportDetail.refer);
     this.uniqueId = "#" + this.reportDetail.formId;
