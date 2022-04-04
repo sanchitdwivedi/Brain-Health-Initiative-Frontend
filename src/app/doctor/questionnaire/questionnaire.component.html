@@ -1,34 +1,38 @@
 <div class="container p-3 shadow bg-white rounded" style="margin-top: 10vh">
     <div class="card d-flex flex-column px-2">
         <div class="card-body">
-            <h3 *ngIf="question.isQuestion===0" style="display: inline; float: left; color: rgb(61, 109, 61);"><p><b>Conclusion:  </b></p></h3>
-            <h3><p class="card-text"><b>{{question.question}}</b></p></h3>
+            <h5 class="card-title">Question {{QuestionNumber}}</h5>
+            <p class="card-text">{{Question}}</p>
         </div>
-        <form #questionnaireForm="ngForm" (ngSubmit)="next(questionnaireForm)">
-            <ul class="list-group list-group-flush" *ngIf="options.length>0 && question.isMSQ===1">
-                <li class="list-group-item" *ngFor="let option of options">
-                    <input class="form-check-input px-2" ngModel name={{option.uuid}} type="checkbox" value="">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        {{option.optionText}}
-                    </label>
-                </li>
-            </ul>
 
-            <ul class="list-group list-group-flush" *ngIf="options.length>0 && question.isMSQ===0">
-                <li class="list-group-item" *ngFor="let option of options">
-                    <input class="form-check-input" ngModel name={{option.uuid}} type="radio" name="flexRadioDefault">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        {{option.optionText}}
-                    </label>
-                </li>
-            </ul>
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-primary" *ngIf="previous.length>0" (click)="previousQuestion()">Previous</button>
-                    <button type="submit" class="btn btn-primary" *ngIf="question.isQuestion===1">Next</button>
-                    <button type="button" class="btn btn-primary" *ngIf="question.isQuestion===0" routerLink="/doctor/consultation-form">Go to Consultation Form</button>
-                </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item ">
+                <input class="form-check-input px-2" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[0].text}}
+                </label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[1].text}}
+                </label>
+            </li>
+            <li class="list-group-item">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{Options[2].text}}
+                </label>
+            </li>
+        </ul>
+        <!-- <ul class="list-group list-group-flush" *ngFor="let option of Options">
+            <li class="list-group-item">{{Options[0]}}</li>
+        </ul> -->
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary">Previous</button>
+                <button type="button" class="btn btn-primary">Next</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
