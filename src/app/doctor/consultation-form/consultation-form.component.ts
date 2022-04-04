@@ -26,32 +26,11 @@ export class ConsultationFormComponent implements OnInit {
               private fb:FormBuilder,
               private dataShareService: DateShareService,
               private doctorAuthService: DoctorAuthService,
-              private consultationService: ConsultationService) { 
-
-      this.consultationForm = this.fb.group({
-        name: [''],
-        date: [''],
-        diagnosisType: [''],
-        compliant: [''],
-        examination: [''],
-        icd10Code: [''],
-        icdDescription: [''],
-        instructions: [''],
-        improvementType: [''],
-        illnessSummary: [''],
-        medicines: this.fb.array([]),
-        remarks: [''],
-        furtherInstructions: [''],
-        followUp: [''],
-        doctorRole: [''],
-        doctorName: [''],
-      });
-  }
+              private consultationService: ConsultationService) { }
 
   async ngOnInit() {
     this.reports = this.dataShareService.getReports();
     this.name = this.reports[0].patient.first_name +" "+ this.reports[0].patient.last_name;
-    // console.log(this.reports[0].patient);
 
     this.consultationForm = this.fb.group({
         name: this.name,
@@ -82,20 +61,6 @@ export class ConsultationFormComponent implements OnInit {
     }) 
   }
 
-  create(){
-    console.log(this.consultationForm.value);
-    this.consultation.patient.abhaId = this.consultationForm.value.abhaId;
-    
-  }
-
-  onChange(event: any){
-    this.optionValue = event.target.value;
-  }
-
-  onRoleChange(event: any){
-    this.doctorService.getDoctorByRoleId(event.target.value).subscribe({
-      next: (response: any) => {
-        this.doctors = response;
   async create(){
     this.consultation.patient = this.reports[0].patient;
     this.doctorService.getDoctorDetails(this.doctorAuthService.getId()).subscribe({
@@ -152,21 +117,6 @@ export class ConsultationFormComponent implements OnInit {
       error: (error: any) => {
         console.log(error);
       }
-    })
-  }
-
-  medicines(): FormArray{
-    return this.consultationForm.get("medicines") as FormArray;
-  }
-
-  newMedicine(): FormGroup{
-    return this.fb.group({
-      medicineName: [''],
-      dosage: [''],
-      dosingTime: [''],
-    });
-  }
-
     });
   }
 
