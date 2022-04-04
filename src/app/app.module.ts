@@ -21,6 +21,7 @@ import { ConsultationTableRowComponent } from './doctor/search/consultation-tabl
 import { ConsultationFormComponent } from './doctor/consultation-form/consultation-form.component';
 import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
+import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PatientsComponent } from './doctor/patients/patients.component';
     ConsultationTableRowComponent,
     ConsultationFormComponent,
     ReferralsComponent,
-    PatientsComponent
+    PatientsComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
