@@ -25,6 +25,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UpdateComponent } from './admin/update/update.component';
 import { DeleteComponent } from './admin/delete/delete.component';
 import { DoctorComponent } from './admin/forms/doctor/doctor.component';
+import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DoctorComponent } from './admin/forms/doctor/doctor.component';
     UpdateComponent,
     DeleteComponent,
     DoctorComponent
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,

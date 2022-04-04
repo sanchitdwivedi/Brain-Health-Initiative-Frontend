@@ -1,19 +1,140 @@
-.logo {
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-    color: white;
-    border-radius: 50%;
-    margin-bottom: 30px;
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900@display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
 }
-.logo img {
+section
+{
     position: relative;
-    top: 50%;
-    text-align: center;
-    transform: translate(-1%,-50%);
-    -ms-transform: translateX(-1%) translateY(-50%);
-    -webkit-transform: translate(-1%,-50%);
+    width: 100%;
+    height: 89vh;
+    display: flex;
+}
+section .imgBx
+{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+}
+section .imgBx::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(180deg, #008cffa1, #089fc593); */
+    /* z-index: 1; */
+    mix-blend-mode: screen;
+}
+section .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+section .contentBx
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+section .contentBx .formBx
+{
+    width: 50%;
+}
+section .contentBx .formBx h2
+{
+    color: #607d8b;
+    font-weight: 600;
     font-size: 1.5em;
-    font-weight: 100;
     text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #008cff;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx
+{
+    margin-bottom: 20px;
+
+}
+section .contentBx .formBx .inputBx span
+{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607d8b;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx input
+{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 10px;
+}
+section .contentBx .formBx .inputBx input[type="submit"]
+{
+    background: #008cff;
+    color: #fff;
+    outline: none;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 1s;
+}
+section .contentBx .formBx .inputBx input[type="submit"]:hover
+{
+    box-shadow: inset 600px 0 0 0 #004279;
+}
+@media (max-width: 1320px)
+{
+    section .imgBx
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    section .contentBx
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    section .contentBx .formBx
+    {
+        width: 80%;
+        padding: 40px;
+        background: rgb(255 255 255 / 0.9);
+        margin: 50px;
+    }
+    section .contentBx .formBx .inputBx input[type="submit"]:hover
+{
+    box-shadow: inset 1000px 0 0 0 #004279;
+}
 }

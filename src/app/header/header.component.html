@@ -30,4 +30,23 @@
     <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>
   </div>
   </div>
+<nav>
+  <input type="checkbox" id="check">
+  <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+  </label>
+  <a style="color:white" href="#" id="logo"><label class="heads" for="">Brain Health Initiative</label></a>
+  <ul>
+    <li>
+      <a routerLink="/doctor/referrals" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Referrals<span class="sr-only">(current)</span></a>
+    </li>
+    <li>
+      <a routerLink="/doctor/patients" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Patients<span class="sr-only">(current)</span></a>
+    </li>
+    <!-- <li>
+      <a routerLink="doctor/questionnaire" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a>
+    </li> -->
+    <li><button type="button" class="button" *ngIf="isLoggedIn()" (click)="logout()">Log out</button></li>
+  </ul>
 </nav>

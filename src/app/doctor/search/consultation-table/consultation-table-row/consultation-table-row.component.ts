@@ -10,6 +10,8 @@ export class ConsultationTableRowComponent implements OnInit {
   dateAndTime: Date;
   formatedDateAndTime: string;
   uniqueId: string;
+  followUp: string;
+  referTo: string;
 
   @Input() reportDetail: any;
   constructor() {
@@ -18,6 +20,7 @@ export class ConsultationTableRowComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.reportDetail)
     this.formatDate(this.reportDetail.dateAndTime);
+    this.getReferedDoctor(this.reportDetail.refer);
     this.uniqueId = "#" + this.reportDetail.formId;
   }
 
@@ -33,6 +36,23 @@ export class ConsultationTableRowComponent implements OnInit {
       day = '0' + day;
 
     this.formatedDateAndTime = [year, month, day].join('-');
+
+    if(this.reportDetail.followUp.length>0){
+      var da = new Date(this.reportDetail.followUp);
+      this.followUp = [da.getFullYear(), '' + (da.getMonth()+1), '' + (da.getDate())].join('-');
+    }
+    else{
+      this.followUp = '-';
+    }
+  }
+
+  getReferedDoctor(refer: any){
+    if(this.reportDetail.refer===null){
+      this.referTo = '-';
+    }
+    else{
+      this.referTo = 'Dr. ' + refer.firstName + ' ' + refer.lastName;
+    }
   }
 
 }
