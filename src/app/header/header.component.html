@@ -12,9 +12,9 @@
     <li>
       <a routerLink="/doctor/patients" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">My Patients<span class="sr-only">(current)</span></a>
     </li>
-    <li>
+    <!-- <li>
       <a routerLink="doctor/questionnaire" *ngIf="roleMatch(['tertiary specialist', 'secondary specialist', 'medical officer'])">Questionnaire<span class="sr-only">(current)</span></a>
-    </li>
+    </li> -->
     <li><button type="button" class="button" *ngIf="isLoggedIn()" (click)="logout()">Log out</button></li>
   </ul>
 </nav>

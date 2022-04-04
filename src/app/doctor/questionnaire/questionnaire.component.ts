@@ -40,7 +40,6 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   next(questionnaireForm: NgForm){
-    console.log(this.previous);
     let selectedOptions = [];
     for(let i=0; i<this.options.length; i++){
       if(questionnaireForm.value[this.options[i].uuid]!=="") selectedOptions.push(this.options[i].uuid);
@@ -52,6 +51,12 @@ export class QuestionnaireComponent implements OnInit {
         this.questionnaireService.getOptionsList(this.question.questionnaireOptions).subscribe({
           next: (response: any) => {
             this.options = response;
+            if(this.question.isQuestion===1){
+
+            }
+            else if(this.question.isQuestion===2){
+              
+            }
           },
           error: (error: any) => {
             console.log(error);

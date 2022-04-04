@@ -1,6 +1,7 @@
 <div class="container p-3 shadow bg-white rounded" style="margin-top: 10vh">
     <div class="card d-flex flex-column px-2">
         <div class="card-body">
+            <h3 *ngIf="question.isQuestion===0" style="display: inline; float: left; color: rgb(61, 109, 61);"><p><b>Conclusion:  </b></p></h3>
             <h3><p class="card-text"><b>{{question.question}}</b></p></h3>
         </div>
         <form #questionnaireForm="ngForm" (ngSubmit)="next(questionnaireForm)">
@@ -24,7 +25,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-primary" *ngIf="previous.length>0" (click)="previousQuestion()">Previous</button>
-                    <button type="submit" class="btn btn-primary">Next</button>
+                    <button type="submit" class="btn btn-primary" *ngIf="question.isQuestion===1">Next</button>
+                    <button type="button" class="btn btn-primary" *ngIf="question.isQuestion===0" routerLink="/doctor/consultation-form">Go to Consultation Form</button>
                 </div>
             </div>
         </form>

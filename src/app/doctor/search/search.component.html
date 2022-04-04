@@ -34,6 +34,7 @@
       <div class="g-3 d-flex justify-content-around">
         <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
         <button  type="button" class="btn btn-primary p-2" style="width:200px" [routerLink]="[routePath]">{{buttonText}}</button>
+        <button *ngIf="buttonText==='Consultation Form'" type="button" class="btn btn-primary p-2" style="width:200px" routerLink="/doctor/questionnaire">Go to Questionnaire</button>
       </div>
     </div>
   </div>
