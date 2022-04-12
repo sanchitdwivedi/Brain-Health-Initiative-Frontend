@@ -1,0 +1,59 @@
+<div>
+    <div class="container" style="background-color: #42A5F5; padding: 20px; margin-top: 30px;">
+        <form>
+            <div class="row">
+                <div class="col-4">
+                    <label>Select Table to perform this operation on: </label>
+                </div>
+                <div class="col-5">
+                    <select class="form-control" (change)="onTableChange($event)">
+                        <option value="" selected>Select Option</option>
+                        <option value="ROLE">Role</option>
+                        <option value="LEVEL">Level</option>
+                        <option value="DOCTOR">Doctor</option>
+                        <option value="HOSPITAL">Hospital</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="PROGRAM_MANAGER">Program Manager</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-success"
+                        (click)="addEntry = true; updateEntry = false; deleteEntry = false">
+                        Add
+                    </button>
+                    <button type="button" class="btn btn-warning"
+                        (click)="addEntry = false; updateEntry = true; deleteEntry = false">
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                        (click)="addEntry = false; updateEntry = false; deleteEntry = true">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <div *ngIf="addEntry" class="container" style="margin-top: 3vh;">
+            <h4>ADD {{tableName}}</h4>
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;height:60vh;overflow: auto">
+                <app-add tableName="{{tableName}}"></app-add>
+            </div>
+        </div>
+        <div *ngIf="updateEntry" class="container" style="margin-top: 3vh;">
+            <h4>UPDATE {{tableName}}</h4>
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;overflow: auto">
+                <app-update tableName="{{tableName}}"></app-update>
+            </div>
+        </div>
+        <div *ngIf="deleteEntry" class="container" style="margin-top: 3vh;">
+            <h4>DELETE {{tableName}}</h4>
+            <div class="scrollbar-light-blue"
+                style="background-color: #42A5F5;padding: 20px;overflow: auto">
+                <app-delete tableName="{{tableName}}"></app-delete>
+            </div>
+        </div>
+    </div>
+</div>

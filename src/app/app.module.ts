@@ -22,6 +22,11 @@ import { ConsultationFormComponent } from './doctor/consultation-form/consultati
 import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
 import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddComponent } from './admin/add/add.component';
+import { UpdateComponent } from './admin/update/update.component';
+import { DeleteComponent } from './admin/delete/delete.component';
+import { DoctorComponent } from './admin/forms/doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.com
     ConsultationFormComponent,
     ReferralsComponent,
     PatientsComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    AddComponent,
+    AdminComponent,
+    UpdateComponent,
+    DeleteComponent,
+    DoctorComponent,
   ],
   imports: [
     BrowserModule,
