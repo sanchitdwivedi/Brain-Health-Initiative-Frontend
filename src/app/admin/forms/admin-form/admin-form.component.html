@@ -1,0 +1,26 @@
+<form [formGroup]="addHospitalForm">
+    <div class="row">
+        <div class="form-group col-sm-9">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name">
+        </div>
+        <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <select type="text" class="form-control" id="gender" formControlName="gender" placeholder="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="mobileNo" class="col-form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNo" formControlName="mobileNo" placeholder="Mobile Number">
+        </div>
+        <div class="col-sm-6">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,14 @@
+<form [formGroup]="addRoleForm">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="roleName" class="col-form-label">Role Name</label>
+            <input type="text" class="form-control" id="roleName" formControlName="roleName"
+                placeholder="Role Name">
+        </div>
+        <div class="col-sm-6">
+            <label for="roleDescription" class="col-form-label">Role Description</label>
+            <input type="text" class="form-control" id="roleDescription" formControlName="roleDescription"
+                placeholder="Role Description">
+        </div>
+    </div>
+</form>

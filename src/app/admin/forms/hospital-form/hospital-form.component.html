@@ -1,0 +1,33 @@
+<form [formGroup]="addHospitalForm">
+    <div class="row">
+        <div class="form-group col-9">
+            <label for="hospitalName" class="col-form-label">Hospital Name</label>
+            <input type="text" class="form-control" id="hospitalName" formControlName="hospitalName"
+                placeholder="Hospital Name">
+        </div>
+        <div class="col-md-3" [formGroup]="levelForm">
+            <label for="level">Select Level:</label>
+            <select class="form-control" id="level" formControlName="levelName">
+                <option *ngFor="let level of levels" [value]="level.levelName">{{level.levelName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city" placeholder="City">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="district">Distict</label>
+            <input type="text" class="form-control" id="district" formControlName="district" placeholder="District">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" formControlName="state" placeholder="State">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="pincode">Pincode</label>
+            <input type="text" class="form-control" id="pincode" formControlName="pincode" placeholder="Pincode">
+        </div>
+    </div>
+</form>

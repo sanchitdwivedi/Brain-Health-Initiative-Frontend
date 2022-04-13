@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css']
+  selector: 'app-doctor-form',
+  templateUrl: './doctor-form.component.html',
+  styleUrls: ['./doctor-form.component.css']
 })
-export class DoctorComponent implements OnInit {
+
+export class DoctorFormComponent implements OnInit {
   @Input() readonly: any;
   addDoctorForm: FormGroup;
   addRoleForm: FormGroup;

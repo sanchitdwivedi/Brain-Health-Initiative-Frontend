@@ -10,6 +10,11 @@ import { Admin } from '../interfaces/Admin';
 // import { PM } from '../interfaces/programManager';
 import { AdminService } from '../_services/admin.service';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
+import { DoctorFormComponent } from './forms/doctor-form/doctor-form.component';
+import { HospitalFormComponent } from './forms/hospital-form/hospital-form.component';
+import { AdminFormComponent } from './forms/admin-form/admin-form.component';
+// import { DoctorForm } from './forms/doctor'
 
 @Component({
   selector: 'app-admin',
@@ -62,7 +67,7 @@ export class AdminComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, public dialog: MatDialog) { }
 
   ngOnInit() {
     // this.getAllOwners();
@@ -115,8 +120,34 @@ export class AdminComponent implements OnInit {
         break;
       }
     }
-
   }
+
+  openDialog(form: string) {
+    switch(form){
+      case 'DOCTOR':{
+        const dialogRef = this.dialog.open(DoctorFormComponent);
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'HOSPITAL':{
+        const dialogRef = this.dialog.open(HospitalFormComponent);
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'ADMIN':{
+        const dialogRef = this.dialog.open(AdminFormComponent);
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+    }
+  }
+
   public redirectToDetails = (id: string) => {
 
   }
