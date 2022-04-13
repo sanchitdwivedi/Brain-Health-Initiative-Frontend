@@ -27,6 +27,9 @@ import { AddComponent } from './admin/add/add.component';
 import { UpdateComponent } from './admin/update/update.component';
 import { DeleteComponent } from './admin/delete/delete.component';
 import { DoctorComponent } from './admin/forms/doctor/doctor.component';
+import {MatIconModule} from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table'  
+
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import { DoctorComponent } from './admin/forms/doctor/doctor.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [
     AuthGuard,
