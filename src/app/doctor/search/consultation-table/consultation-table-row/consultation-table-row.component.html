@@ -5,7 +5,7 @@
       <div>{{formatedDateAndTime}}</div>
     </h5>
     <div class="card-body row" style="font-size: small; color: gray">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="row">
           <div class="col row">
             <div class="col">Patient Name</div>
@@ -27,7 +27,8 @@
           </div>
         </div>
       </div>
-      <div class="modal reportDetail.formId fade 1"  [id]="reportDetail.formId" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal reportDetail.formId fade 1" [id]="reportDetail.formId" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -86,44 +87,90 @@
                   </div>
                   <table class="table table-bordered">
                     <th>Medicines</th>
-                    <tr>  
-                        <td>  
-                            Name
-                        </td>  
-                        <td>  
-                            Dosage
-                        </td>  
-                        <td>  
-                            Dosing time
-                        </td> 
-                        <td>  
-                            Duration (days)
-                        </td> 
-                    </tr>  
-                    <tr *ngFor="let medicine of reportDetail.medicineInfo;">  
-                        <td>  
-                          <label>{{medicine.medicineName}}</label> 
-                        </td>  
-                        <td>  
-                          <label>{{medicine.dosage}}</label>   
-                        </td>  
-                        <td>  
-                          <label>{{medicine.dosingTime}}</label>  
-                        </td>
-                        <td>  
-                          <label>{{medicine.duration}}</label>  
-                        </td>  
-                    </tr>  
-                </table>
+                    <tr>
+                      <td>
+                        Name
+                      </td>
+                      <td>
+                        Dosage
+                      </td>
+                      <td>
+                        Dosing time
+                      </td>
+                      <td>
+                        Duration (days)
+                      </td>
+                    </tr>
+                    <tr *ngFor="let medicine of reportDetail.medicineInfo;">
+                      <td>
+                        <label>{{medicine.medicineName}}</label>
+                      </td>
+                      <td>
+                        <label>{{medicine.dosage}}</label>
+                      </td>
+                      <td>
+                        <label>{{medicine.dosingTime}}</label>
+                      </td>
+                      <td>
+                        <label>{{medicine.duration}}</label>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-3" id="buttonContainer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton" [attr.data-target]="uniqueId">View
-          Consultation Details</button>
+
+
+      <div class="modal fade" [id]="modalId" tabindex="-1" role="dialog"
+        aria-labelledby="questionnaireResponse" aria-hidden="true" *ngIf="reportDetail.questionnaireResponse.length>0">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Questionnaire response</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5 *ngIf="reportDetail.questionnaireResponse.length===currentQuestionIndex">
+                <p><b>Conclusion: {{currentQuestion?.question}}</b></p>
+              </h5>
+              <h5 *ngIf="reportDetail.questionnaireResponse.length>currentQuestionIndex">
+                <p><b>{{currentQuestion?.question}}</b></p>
+              </h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let option of currentOptions; let i = index">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    {{i+1}}. {{option.optionText}}
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="previousQuestionnaireResponse()" *ngIf="currentQuestionIndex>0">Previous</button>
+              <button type="button" class="btn btn-primary" (click)="populateQuestionnaireResponse()" *ngIf="reportDetail.questionnaireResponse.length>currentQuestionIndex">Next</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" *ngIf="reportDetail.questionnaireResponse.length===currentQuestionIndex">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6" id="buttonContainer">
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton"
+              [attr.data-target]="uniqueId">View Consultation Details</button>
+          </div>
+          <div class="col" *ngIf="reportDetail.questionnaireResponse.length>0">
+            <button type="button" class="btn btn-primary" data-toggle="modal" id="toggleButton2"
+              [attr.data-target]="questionnaireResponseId" (click)="initResponse()">View Questionnaire response</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

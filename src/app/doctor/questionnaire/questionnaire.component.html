@@ -26,7 +26,7 @@
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-primary" *ngIf="previous.length>0" (click)="previousQuestion()">Previous</button>
                     <button type="submit" class="btn btn-primary" *ngIf="question.isQuestion===1">Next</button>
-                    <button type="button" class="btn btn-primary" *ngIf="question.isQuestion===0" routerLink="/doctor/consultation-form">Go to Consultation Form</button>
+                    <button type="button" class="btn btn-primary" *ngIf="question.isQuestion===0" routerLink="/doctor/consultation-form" (click)="finish()">Go to Consultation Form</button>
                 </div>
             </div>
         </form>

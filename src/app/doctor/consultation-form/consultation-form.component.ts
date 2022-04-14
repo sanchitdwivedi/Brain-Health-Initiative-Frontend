@@ -81,6 +81,7 @@ export class ConsultationFormComponent implements OnInit {
         this.consultation.remarks = this.consultationForm.value.remarks;
         this.consultation.treatmentInstructions = this.consultationForm.value.instructions;
         this.consultation.followUp = this.consultationForm.value.followUp;
+        this.consultation.questionnaireResponse = this.dataShareService.getQuestionnaireResponse();
 
         
         if(this.consultationForm.value.doctorName.length>0){
