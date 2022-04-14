@@ -22,9 +22,6 @@ import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
 import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.component';
 import { AdminComponent } from './admin/admin.component';
-import { AddComponent } from './admin/add/add.component';
-import { UpdateComponent } from './admin/update/update.component';
-import { DeleteComponent } from './admin/delete/delete.component';
 import {MatIconModule} from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table'  
 import {MatDialogModule} from '@angular/material/dialog';
@@ -34,6 +31,8 @@ import { HospitalFormComponent } from './admin/forms/hospital-form/hospital-form
 import { AdminFormComponent } from './admin/forms/admin-form/admin-form.component';
 import { LevelFormComponent } from './admin/forms/level-form/level-form.component';
 import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
+import {MatSortModule} from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -50,10 +49,7 @@ import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
     ReferralsComponent,
     PatientsComponent,
     QuestionnaireComponent,
-    AddComponent,
     AdminComponent,
-    UpdateComponent,
-    DeleteComponent,
     DoctorFormComponent,
     HospitalFormComponent,
     AdminFormComponent,
@@ -78,7 +74,8 @@ import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
     MatIconModule,
     MatTableModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSortModule
   ],
   providers: [
     AuthGuard,

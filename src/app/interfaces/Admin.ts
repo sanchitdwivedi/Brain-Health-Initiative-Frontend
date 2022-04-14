@@ -8,6 +8,6 @@ export interface Admin {
     pincode:number;
     email:string;
     gender:string;
-    role: User;
+    admin: User;
   }
     
