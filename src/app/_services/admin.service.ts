@@ -89,7 +89,23 @@ export class AdminService {
     return this.httpClient.delete(`${baseUrl}/hospital`, hospitalDetail.value);
   }
 
+  public getAdmin(id: any){
+    return this.httpClient.get(`${baseUrl}/admin/${id}`);
+  }
 
+  public getAdmins(){
+    return this.httpClient.get(`${baseUrl}/admin`);
+  }
 
+  public addAdmin(adminDetail: any){
+    return this.httpClient.post(`${baseUrl}/admin`, adminDetail.value);
+  }
 
+  public updateAdmin(adminDetail: any){
+    return this.httpClient.put(`${baseUrl}/admin`, adminDetail.value);
+  }
+
+  public deleteAdmin(adminDetail: any){
+    return this.httpClient.delete(`${baseUrl}/admin`, adminDetail.value);
+  }
 }

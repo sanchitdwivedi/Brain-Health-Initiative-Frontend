@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css']
+  selector: 'app-hospital-form',
+  templateUrl: './hospital-form.component.html',
+  styleUrls: ['./hospital-form.component.css']
 })
-export class DoctorComponent implements OnInit {
-  @Input() readonly: any;
+export class HospitalFormComponent implements OnInit {
+  @Input() tableName: string;
   addDoctorForm: FormGroup;
   addRoleForm: FormGroup;
   addLevelForm: FormGroup;
@@ -16,6 +16,7 @@ export class DoctorComponent implements OnInit {
   levels: any = [];
   roles: any = [];
   hospitals: any = [];
+  readonly: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -91,6 +92,9 @@ export class DoctorComponent implements OnInit {
     return this.addHospitalForm.get('level') as FormGroup;
   }
 
+
+
+  //Needed: Error Here
   getLevels() {
     this.levels = this.adminService.getLevels().subscribe({
       next: (response: any) => {
@@ -178,4 +182,5 @@ export class DoctorComponent implements OnInit {
     });
     this.getHospitals();
   }
+
 }
