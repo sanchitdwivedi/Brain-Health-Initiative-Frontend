@@ -49,7 +49,7 @@ export class AdminComponent implements OnInit {
   sortedAdminData: Admin[];
 
 
-  constructor(private adminService: AdminService, public dialog: MatDialog) {}
+  constructor(private adminService: AdminService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -132,9 +132,9 @@ export class AdminComponent implements OnInit {
   }
 
   sortData(sort: Sort, tableName: string) {
-    switch(tableName){
-      case 'ROLE':{
-        const roleData: Role[] =  this.dataSourceRole.filteredData;;
+    switch (tableName) {
+      case 'ROLE': {
+        const roleData: Role[] = this.dataSourceRole.filteredData;;
         if (!sort.active || sort.direction === '') {
           this.sortedRoleData = roleData;
           return;
@@ -153,8 +153,8 @@ export class AdminComponent implements OnInit {
         this.dataSourceRole.sort = this.sort;
         break;
       }
-      case 'LEVEL':{
-        const levelData: Level[] =  this.dataSourceLevel.filteredData;;
+      case 'LEVEL': {
+        const levelData: Level[] = this.dataSourceLevel.filteredData;;
         if (!sort.active || sort.direction === '') {
           this.sortedLevelData = levelData;
           return;
@@ -173,8 +173,8 @@ export class AdminComponent implements OnInit {
         this.dataSourceLevel.sort = this.sort;
         break;
       }
-      case 'DOCTOR':{
-        const doctorData: Doctor[] =  this.dataSourceDoctor.filteredData;;
+      case 'DOCTOR': {
+        const doctorData: Doctor[] = this.dataSourceDoctor.filteredData;;
         if (!sort.active || sort.direction === '') {
           this.sortedDoctorData = doctorData;
           return;
@@ -183,7 +183,7 @@ export class AdminComponent implements OnInit {
           const isAsc = sort.direction === 'asc';
           switch (sort.active) {
             case 'doctorName':
-              return compare(a.firstName+" "+a.lastName, b.firstName+" "+b.lastName, isAsc);
+              return compare(a.firstName + " " + a.lastName, b.firstName + " " + b.lastName, isAsc);
             case 'hospitalName':
               return compare(a.hospital.hospitalName, b.hospital.hospitalName, isAsc);
             default:
@@ -193,8 +193,8 @@ export class AdminComponent implements OnInit {
         this.dataSourceDoctor.sort = this.sort;
         break;
       }
-      case 'HOSPITAL':{
-        const hospitalData: Hospital[] =  this.dataSourceHospital.filteredData;;
+      case 'HOSPITAL': {
+        const hospitalData: Hospital[] = this.dataSourceHospital.filteredData;;
         if (!sort.active || sort.direction === '') {
           this.sortedHospitalData = hospitalData;
           return;
@@ -213,8 +213,8 @@ export class AdminComponent implements OnInit {
         this.dataSourceHospital.sort = this.sort;
         break;
       }
-      case 'ADMIN':{
-        const adminData: Admin[] =  this.dataSourceAdmin.filteredData;;
+      case 'ADMIN': {
+        const adminData: Admin[] = this.dataSourceAdmin.filteredData;;
         if (!sort.active || sort.direction === '') {
           this.sortedAdminData = adminData;
           return;
@@ -223,7 +223,7 @@ export class AdminComponent implements OnInit {
           const isAsc = sort.direction === 'asc';
           switch (sort.active) {
             case 'adminName':
-              return compare(a.firstName+" "+a.lastName, b.firstName+" "+b.lastName, isAsc);
+              return compare(a.firstName + " " + a.lastName, b.firstName + " " + b.lastName, isAsc);
             case 'role':
               return compare(a.admin.role.roleName, b.admin.role.roleName, isAsc);
             default:
@@ -231,6 +231,36 @@ export class AdminComponent implements OnInit {
           }
         });
         this.dataSourceAdmin.sort = this.sort;
+        break;
+      }
+    }
+  }
+
+  applyFilter(event: Event, tableName: string) {
+    switch (tableName) {
+      case 'ROLE': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSourceRole.filter = filterValue.trim().toLowerCase();
+        break;
+      }
+      case 'LEVEL': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSourceLevel.filter = filterValue.trim().toLowerCase();
+        break;
+      }
+      case 'DOCTOR': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSourceDoctor.filter = filterValue.trim().toLowerCase();
+        break;
+      }
+      case 'HOSPITAL': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSourceHospital.filter = filterValue.trim().toLowerCase();
+        break;
+      }
+      case 'ADMIN': {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSourceAdmin.filter = filterValue.trim().toLowerCase();
         break;
       }
     }

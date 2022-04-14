@@ -32,6 +32,10 @@ import { AdminFormComponent } from './admin/forms/admin-form/admin-form.componen
 import { LevelFormComponent } from './admin/forms/level-form/level-form.component';
 import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
 import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 
 @NgModule({
@@ -75,8 +79,13 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
+  // exports: [
+  //   MatFormFieldModule
+  // ],
   providers: [
     AuthGuard,
     {

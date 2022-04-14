@@ -19,6 +19,12 @@
         </form>
     </div>
     <div *ngIf="tableName=='LEVEL'" class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
+          </mat-form-field>          
+
         <table mat-table [dataSource]="dataSourceLevel" (matSortChange)="sortData($event, tableName)" matSort>
 
             <ng-container matColumnDef="levelName">
@@ -54,6 +60,12 @@
         </table>
     </div>
     <div *ngIf="tableName=='ROLE'" class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
+          </mat-form-field> 
+
         <table mat-table [dataSource]="dataSourceRole" (matSortChange)="sortData($event, tableName)" matSort>
 
             <ng-container matColumnDef="roleName">
@@ -89,6 +101,12 @@
         </table>
     </div>
     <div *ngIf="tableName=='DOCTOR'" class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
+          </mat-form-field> 
+
         <table mat-table [dataSource]="dataSourceDoctor" (matSortChange)="sortData($event, tableName)" matSort>
 
             <ng-container matColumnDef="doctorName">
@@ -133,6 +151,12 @@
         </table>
     </div>
     <div *ngIf="tableName=='HOSPITAL'" class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
+          </mat-form-field> 
+
         <table mat-table [dataSource]="dataSourceHospital" (matSortChange)="sortData($event, tableName)" matSort>
 
             <ng-container matColumnDef="hospitalName">
@@ -178,6 +202,12 @@
     </div>
 
     <div *ngIf="tableName=='ADMIN'" class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
+          </mat-form-field> 
+
         <table mat-table [dataSource]="dataSourceAdmin" (matSortChange)="sortData($event, tableName)" matSort>
 
             <ng-container matColumnDef="adminName">
