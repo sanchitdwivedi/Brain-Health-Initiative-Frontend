@@ -1,0 +1,14 @@
+<form [formGroup]="addLevelForm">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="levelName" class="col-form-label">Level Name</label>
+            <input type="text" class="form-control" id="levelName" formControlName="levelName"
+                placeholder="Level Name">
+        </div>
+        <div class="col-sm-6">
+            <label for="levelDescription" class="col-form-label">Level Description</label>
+            <input type="text" class="form-control" id="levelDescription" formControlName="levelDescription"
+                placeholder="Level Description">
+        </div>
+    </div>
+</form>
