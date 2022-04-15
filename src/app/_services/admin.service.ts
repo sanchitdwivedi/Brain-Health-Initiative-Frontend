@@ -18,7 +18,8 @@ export class AdminService {
   }
 
   public addDoctor(doctorDetail: any){
-    return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail.value);
+    console.log("addDoctor: ", doctorDetail);
+    return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail);
   }
 
   public updateDoctor(doctorDetail: any){

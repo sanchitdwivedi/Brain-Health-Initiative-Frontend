@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ControlContainer, FormsModule } from '@angular/forms';
-import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Level } from '../interfaces/Level';
 import { Role } from '../interfaces/Role';
@@ -16,6 +14,7 @@ import { AdminFormComponent } from './forms/admin-form/admin-form.component';
 import { Sort } from '@angular/material/sort';
 import { RoleFormComponent } from './forms/role-form/role-form.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { LevelFormComponent } from './forms/level-form/level-form.component';
 
 
 @Component({
@@ -112,26 +111,74 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  openDetailDialog(element: Element, tableName: string) {
+  openAddDialog(tableName:string){
     switch (tableName) {
-      case 'DOCTOR': {
-        console.log("element", element);
-        const dialogRef = this.dialog.open(DoctorFormComponent, { data: element });
+      case 'LEVEL': {
+        const dialogRef = this.dialog.open(LevelFormComponent, {data: {element: {}, operation: 'add'}});
         dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'ROLE': {
+        const dialogRef = this.dialog.open(RoleFormComponent, {data: {element: {}, operation: 'add'}});
+        dialogRef.afterClosed().subscribe(result => {
+        this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'DOCTOR': {
+        const dialogRef = this.dialog.open(DoctorFormComponent, {data: {element: {}, operation: 'add'}});
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
         });
         break;
       }
       case 'HOSPITAL': {
-        const dialogRef = this.dialog.open(HospitalFormComponent);
+        const dialogRef = this.dialog.open(HospitalFormComponent, {data: {element: {}, operation: 'add'}});
         dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
         });
         break;
       }
       case 'ADMIN': {
-        const dialogRef = this.dialog.open(AdminFormComponent);
+        const dialogRef = this.dialog.open(AdminFormComponent, {data: {element: {}, operation: 'add'}});
         dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+    }
+  }
+
+  openDetailDialog(element: Element, tableName: string) {
+    switch (tableName) {
+      case 'DOCTOR': {
+        console.log("element", element);
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: {element: element, operation: ''} });
+        dialogRef.afterClosed().subscribe((result: string) => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'HOSPITAL': {
+        const dialogRef = this.dialog.open(HospitalFormComponent, { data: {element: element, operation: ''} });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'ADMIN': {
+        const dialogRef = this.dialog.open(AdminFormComponent, { data: {element: element, operation: ''} });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
         });
         break;
@@ -140,11 +187,49 @@ export class AdminComponent implements OnInit {
   }
 
   public openUpdateDialog = (element: string, tableName: string) => {
-    console.log("element: ", element);
-    const dialogRef = this.dialog.open(RoleFormComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    switch (tableName) {
+      case 'LEVEL': {
+        const dialogRef = this.dialog.open(LevelFormComponent, { data: {element: element, operation: 'update'}});
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'ROLE': {
+        const dialogRef = this.dialog.open(RoleFormComponent, {data: {element: element, operation: 'update'} });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'DOCTOR': {
+        console.log("element", element);
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: {element: element, operation: 'update'} });
+        dialogRef.afterClosed().subscribe((result: string) => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'HOSPITAL': {
+        const dialogRef = this.dialog.open(HospitalFormComponent, { data: {element: element, operation: 'update'} });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+      case 'ADMIN': {
+        const dialogRef = this.dialog.open(AdminFormComponent, { data: {element: element, operation: 'update'} });
+        dialogRef.afterClosed().subscribe(result => {
+          this.getTableData(tableName);
+          console.log(`Dialog result: ${result}`);
+        });
+        break;
+      }
+    }
   }
 
   public openDeleteDialog = (element: any, tableName: string) => {
@@ -165,7 +250,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'DOCTOR': {
-        this.adminService.deleteDoctor(element.uuid).subscribe(res => {
+        this.adminService.deleteDoctor(element.doctor.uuid).subscribe(res => {
           console.log(res);
           this.getTableData(tableName);
         })

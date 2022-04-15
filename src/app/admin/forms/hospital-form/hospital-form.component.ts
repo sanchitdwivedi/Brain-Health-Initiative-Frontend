@@ -131,21 +131,7 @@ export class HospitalFormComponent implements OnInit {
     })
   }
 
-  addDoctor() {
-    console.log(this.addDoctorForm.value);
-    if (this.doctor.value.password === this.doctor.value.confirmPassword) {
-      this.adminService.addDoctor(this.addDoctorForm).subscribe({
-        next: (response: any) => {
-          console.log(response);
-        },
-        error: (error: any) => {
-          console.log(error);
-        }
-      });
-    } else {
-      alert('Passwords do not match!');
-    }
-  }
+  
 
   addRole() {
     this.adminService.addRole(this.addRoleForm).subscribe({
