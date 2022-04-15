@@ -7,6 +7,8 @@ import { ConsultationCard } from '../interfaces/ConsultationCard';
 export class DateShareService {
 
   report: ConsultationCard[] = [];
+  questionnaireResponse: [] = [];
+
   constructor() { }
 
   sendReports(report: any){
@@ -15,6 +17,14 @@ export class DateShareService {
 
   getReports(){
     return this.report;
+  }
+
+  saveQuestionnaireResponse(questionnaireResponse: []){
+    this.questionnaireResponse = questionnaireResponse;
+  }
+
+  getQuestionnaireResponse(): []{
+    return this.questionnaireResponse;
   }
 
 }

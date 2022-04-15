@@ -20,4 +20,5 @@ export interface ConsultationCard {
   treatmentInstructions: string;
   followUp: Date;
   refer: Doctor;
+  questionnaireResponse: [];
 }

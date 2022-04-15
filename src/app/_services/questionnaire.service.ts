@@ -24,4 +24,12 @@ export class QuestionnaireService {
   public getNextQuestion(questionId: number, options: any){
     return this.httpClient.post(`${baseUrl}/questionnaire`, {"questionId": questionId, "options": options});
   }
+
+  public saveQuestionnaireResponse(patientId: string, responses: []){
+    return this.httpClient.post(`${baseUrl}/questionnaire/save/${patientId}`, responses);
+  }
+
+  public getQuestionById(id: number){
+    return this.httpClient.get(`${baseUrl}/questionnaire/question/${id}`);
+  }
 }

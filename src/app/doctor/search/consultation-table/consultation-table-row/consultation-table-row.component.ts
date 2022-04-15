@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
+import { DateShareService } from 'src/app/_services/date-share.service';
+import { QuestionnaireService } from 'src/app/_services/questionnaire.service';
+import { Question } from 'src/app/interfaces/Question';
 
 @Component({
   selector: 'app-consultation-table-row',
@@ -12,15 +15,27 @@ export class ConsultationTableRowComponent implements OnInit {
   uniqueId: string;
   followUp: string;
   referTo: string;
+  questionnaireResponse: any[];
+  currentQuestionIndex: number = -1;
+  currentQuestion: Question;
+  currentOptions: any[];
+  questionnaireResponseId: string;
+  modalId: string;
 
   @Input() reportDetail: any;
-  constructor() {
+  constructor(private dataShareService: DateShareService,
+              private questionnaireService: QuestionnaireService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.formatDate(this.reportDetail.dateAndTime);
     this.getReferedDoctor(this.reportDetail.refer);
     this.uniqueId = "#" + this.reportDetail.formId;
+    this.modalId = "questionnaire" + this.reportDetail.formId;
+    this.questionnaireResponseId = "#questionnaire" + this.reportDetail.formId; 
+    this.questionnaireResponse = this.reportDetail.questionnaireResponse;
+    this.currentQuestionIndex = -1;
+    if(this.questionnaireResponse.length>0) this.populateQuestionnaireResponse();
   }
 
   formatDate(date: Date): void {
@@ -54,4 +69,41 @@ export class ConsultationTableRowComponent implements OnInit {
     }
   }
 
+  populateQuestionnaireResponse() {
+    this.currentQuestionIndex++;
+    this.questionnaireService.getQuestionById(this.questionnaireResponse[this.currentQuestionIndex].uuid).subscribe({
+      next: (response: any) => {
+        this.currentQuestion = response;
+        if(this.questionnaireResponse[this.currentQuestionIndex].options.length>0){
+          this.questionnaireService.getOptionsList(this.questionnaireResponse[this.currentQuestionIndex].options).subscribe({
+            next: (response: any) => {
+              this.currentOptions = response;
+            },
+            error: (error: any) => {
+              console.log(error);
+            }
+          })
+        } else{
+          this.currentQuestionIndex++;
+          this.currentOptions = [];
+        }
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+
+  initResponse(){
+    this.currentQuestionIndex=-1;
+    this.populateQuestionnaireResponse();
+  }
+
+  previousQuestionnaireResponse(){
+    if(this.currentQuestionIndex===this.reportDetail.questionnaireResponse.length) this.currentQuestionIndex-=3
+    else this.currentQuestionIndex-=2;
+    this.populateQuestionnaireResponse();
+  }
+
 }
+
