@@ -67,7 +67,6 @@ export class ConsultationFormComponent implements OnInit {
       next: (response: any) => {
         // this.consultation.hospital = response.hospital;
         this.consultation.doctor = response;
-
         this.consultation.hospital = this.consultation.doctor.hospital;
         this.consultation.compliant = this.consultationForm.value.compliant;
         this.consultation.examination = this.consultationForm.value.examination;

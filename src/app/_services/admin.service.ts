@@ -45,8 +45,8 @@ export class AdminService {
     return this.httpClient.put(`${baseUrl}/role`, roleDetail.value);
   }
 
-  public deleteRole(roleDetail: any){
-    return this.httpClient.delete(`${baseUrl}/role`, roleDetail.value);
+  public deleteRole(id: any){
+    return this.httpClient.delete(`${baseUrl}/role/${id}`);
   }
 
   public getLevel(id: any){

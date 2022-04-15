@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Doctor } from 'src/app/interfaces/Doctor';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
@@ -9,21 +11,19 @@ import { AdminService } from 'src/app/_services/admin.service';
 })
 
 export class DoctorFormComponent implements OnInit {
-  @Input() readonly: any;
-  addDoctorForm: FormGroup;
-  addRoleForm: FormGroup;
-  addLevelForm: FormGroup;
-  addHospitalForm: FormGroup;
+  doctorForm: FormGroup;
   levels: any = [];
   roles: any = [];
   hospitals: any = [];
+  readonly: boolean;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public doctorDetail: Doctor,
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
-
-    this.addDoctorForm = this.fb.group({
+    this.doctorDetail = doctorDetail;
+    this.doctorForm = this.fb.group({
       doctor: this.fb.group({
         userId: [''],
         password: [''],
@@ -46,38 +46,18 @@ export class DoctorFormComponent implements OnInit {
       })
     });
 
-    this.addRoleForm = this.fb.group({
-      roleName: [''],
-      roleDescription: ['']
-    });
-
-    this.addLevelForm = this.fb.group({
-      levelName: [''],
-      levelDescription: ['']
-    });
-
-    this.addHospitalForm = this.fb.group({
-      hospitalName: [''],
-      pincode: [''],
-      city: [''],
-      state: [''],
-      district: [''],
-      level: this.fb.group({
-        levelName: ['']
-      }),
-    });
-
   }
 
   ngOnInit(): void {
     this.getLevels();
     this.getRoles();
     this.getHospitals();
-    console.log(this.levels);
+    console.log(this.doctorDetail);
+    this.doctorForm.value.userId = 'khushal';
   }
 
   public get doctor(): FormGroup {
-    return this.addDoctorForm.get('doctor') as FormGroup;
+    return this.doctorForm.get('doctor') as FormGroup;
   }
 
   public get role(): FormGroup {
@@ -85,12 +65,9 @@ export class DoctorFormComponent implements OnInit {
   }
 
   public get hospital(): FormGroup {
-    return this.addDoctorForm.get('hospital') as FormGroup;
+    return this.doctorForm.get('hospital') as FormGroup;
   }
 
-  public get levelForm(): FormGroup {
-    return this.addHospitalForm.get('level') as FormGroup;
-  }
 
   getLevels() {
     this.levels = this.adminService.getLevels().subscribe({
@@ -126,57 +103,5 @@ export class DoctorFormComponent implements OnInit {
         console.log(error);
       }
     })
-  }
-
-  addDoctor() {
-    console.log(this.addDoctorForm.value);
-    if (this.doctor.value.password === this.doctor.value.confirmPassword) {
-      this.adminService.addDoctor(this.addDoctorForm).subscribe({
-        next: (response: any) => {
-          console.log(response);
-        },
-        error: (error: any) => {
-          console.log(error);
-        }
-      });
-    } else {
-      alert('Passwords do not match!');
-    }
-  }
-
-  addRole() {
-    this.adminService.addRole(this.addRoleForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getRoles();
-  }
-
-  addLevel() {
-    this.adminService.addLevel(this.addLevelForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getLevels();
-  }
-
-  addHospital() {
-    this.adminService.addHospital(this.addHospitalForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getHospitals();
   }
 }

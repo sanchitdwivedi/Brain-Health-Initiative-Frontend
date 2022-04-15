@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ControlContainer, FormsModule } from '@angular/forms';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Level } from '../interfaces/Level';
@@ -14,6 +14,9 @@ import { DoctorFormComponent } from './forms/doctor-form/doctor-form.component';
 import { HospitalFormComponent } from './forms/hospital-form/hospital-form.component';
 import { AdminFormComponent } from './forms/admin-form/admin-form.component';
 import { Sort } from '@angular/material/sort';
+import { RoleFormComponent } from './forms/role-form/role-form.component';
+import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-admin',
@@ -41,6 +44,11 @@ export class AdminComponent implements OnInit {
   public dataSourceAdmin = new MatTableDataSource<Admin>();
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('levelPaginator') levelPaginator: MatPaginator;
+  @ViewChild('rolePaginator') rolePaginator: MatPaginator;
+  @ViewChild('doctorPaginator') doctorPaginator: MatPaginator;
+  @ViewChild('hospitalPaginator') hospitalPaginator: MatPaginator;
+  @ViewChild('adminPaginator') adminPaginator: MatPaginator;
 
   sortedRoleData: Role[];
   sortedLevelData: Level[];
@@ -50,6 +58,7 @@ export class AdminComponent implements OnInit {
 
 
   constructor(private adminService: AdminService, public dialog: MatDialog) { }
+
 
   ngOnInit() {
   }
@@ -64,8 +73,7 @@ export class AdminComponent implements OnInit {
         this.adminService.getLevels()
           .subscribe(res => {
             this.dataSourceLevel.data = res as Level[];
-            console.log("res ", this.dataSourceLevel);
-
+            this.dataSourceLevel.paginator = this.levelPaginator;
           })
         break;
       }
@@ -73,8 +81,7 @@ export class AdminComponent implements OnInit {
         this.adminService.getRoles()
           .subscribe(res => {
             this.dataSourceRole.data = res as Role[];
-            console.log("res ", res);
-            // this.sortedRoleData = res as Role[];
+            this.dataSourceRole.paginator = this.rolePaginator;
           })
         break;
       }
@@ -82,7 +89,7 @@ export class AdminComponent implements OnInit {
         this.adminService.getDoctors()
           .subscribe(res => {
             this.dataSourceDoctor.data = res as Doctor[];
-            // console.log("res ", res);
+            this.dataSourceDoctor.paginator = this.doctorPaginator;
           })
         break;
       }
@@ -90,7 +97,7 @@ export class AdminComponent implements OnInit {
         this.adminService.getHospitals()
           .subscribe(res => {
             this.dataSourceHospital.data = res as Hospital[];
-            // console.log("res ", res);
+            this.dataSourceHospital.paginator = this.hospitalPaginator;
           })
         break;
       }
@@ -98,17 +105,18 @@ export class AdminComponent implements OnInit {
         this.adminService.getAdmins()
           .subscribe(res => {
             this.dataSourceAdmin.data = res as Admin[];
-            console.log("res ", res);
+            this.dataSourceAdmin.paginator = this.adminPaginator;
           })
         break;
       }
     }
   }
 
-  openDialog(form: string) {
+  openDetailDialog(form: string, element: Element) {
     switch (form) {
       case 'DOCTOR': {
-        const dialogRef = this.dialog.open(DoctorFormComponent);
+        console.log("element", element);
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: element });
         dialogRef.afterClosed().subscribe(result => {
           console.log(`Dialog result: ${result}`);
         });
@@ -131,10 +139,32 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  public openUpdateDialog = (element: string) => {
+    console.log("element: ", element);
+    const dialogRef = this.dialog.open(RoleFormComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  // this.adminService.getLevels()
+  // .subscribe(res => {
+  //   this.dataSourceLevel.data = res as Level[];
+  //   console.log("res ", this.dataSourceLevel);
+
+  // })
+
+  public openDeleteDialog = (role: Role) => {
+    console.log("id", role);
+    this.adminService.deleteRole(role.roleName).subscribe(res => {
+      console.log(res);
+    })
+    this.getTableData('ROLE');
+  }
+
   sortData(sort: Sort, tableName: string) {
     switch (tableName) {
       case 'ROLE': {
-        const roleData: Role[] = this.dataSourceRole.filteredData;;
+        const roleData: Role[] = this.dataSourceRole.filteredData;
         if (!sort.active || sort.direction === '') {
           this.sortedRoleData = roleData;
           return;
@@ -264,16 +294,6 @@ export class AdminComponent implements OnInit {
         break;
       }
     }
-  }
-
-  public redirectToDetails = (id: string) => {
-
-  }
-  public redirectToUpdate = (id: string) => {
-
-  }
-  public redirectToDelete = (id: string) => {
-
   }
 }
 
