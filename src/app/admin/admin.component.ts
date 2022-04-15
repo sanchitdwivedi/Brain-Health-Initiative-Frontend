@@ -112,8 +112,8 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  openDetailDialog(form: string, element: Element) {
-    switch (form) {
+  openDetailDialog(element: Element, tableName: string) {
+    switch (tableName) {
       case 'DOCTOR': {
         console.log("element", element);
         const dialogRef = this.dialog.open(DoctorFormComponent, { data: element });
@@ -139,26 +139,53 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  public openUpdateDialog = (element: string) => {
+  public openUpdateDialog = (element: string, tableName: string) => {
     console.log("element: ", element);
     const dialogRef = this.dialog.open(RoleFormComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
-  // this.adminService.getLevels()
-  // .subscribe(res => {
-  //   this.dataSourceLevel.data = res as Level[];
-  //   console.log("res ", this.dataSourceLevel);
 
-  // })
-
-  public openDeleteDialog = (role: Role) => {
-    console.log("id", role);
-    this.adminService.deleteRole(role.roleName).subscribe(res => {
-      console.log(res);
-    })
-    this.getTableData('ROLE');
+  public openDeleteDialog = (element: any, tableName: string) => {
+    console.log(element, tableName);
+    switch (tableName) {
+      case 'LEVEL': {
+        this.adminService.deleteLevel(element.levelId).subscribe(res => {
+          console.log(res);
+          this.getTableData(tableName);
+        })
+        break;
+      }
+      case 'ROLE': {
+        this.adminService.deleteRole(element.roleId).subscribe(res => {
+          console.log(res);
+          this.getTableData(tableName);
+        })
+        break;
+      }
+      case 'DOCTOR': {
+        this.adminService.deleteDoctor(element.uuid).subscribe(res => {
+          console.log(res);
+          this.getTableData(tableName);
+        })
+        break;
+      }
+      case 'HOSPITAL': {
+        this.adminService.deleteHospital(element.hospitalId).subscribe(res => {
+          console.log(res);
+          this.getTableData(tableName);
+        })
+        break;
+      }
+      case 'ADMIN': {
+        this.adminService.deleteAdmin(element.uuid).subscribe(res => {
+          console.log(res);
+          this.getTableData(tableName);
+        })
+        break;
+      }
+    }
   }
 
   sortData(sort: Sort, tableName: string) {
