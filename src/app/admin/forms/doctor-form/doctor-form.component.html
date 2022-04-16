@@ -1,35 +1,36 @@
-<form [formGroup]="addDoctorForm">
-    <div class="form-group row" [formGroup]="doctor">
+<button class="close" mat-button mat-dialog-close>X</button>
+<h1 mat-dialog-title>Doctor</h1>
+<form #doctorForm="ngForm" *ngIf="add">
+    <div class="form-group row">
         <div class="col-sm-4">
-            <label for="userId" class="col-form-label">First Name</label>
-            <input type="text" class="form-control" id="userId" formControlName="userId"
-                placeholder="User Id" required [readonly]="readonly">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" ngModel name="userId" placeholder="User Id">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" >
             <label for="password" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="password"
+            <input type="password" class="form-control" id="password" ngModel name="password"
                 placeholder="Password" required>
         </div>
         <div class="col-sm-4">
             <label for="confirmPassword" class="col-form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+            <input type="password" class="form-control" id="confirmPassword" ngModel name="confirmPassword"
                 placeholder="Confirm Password" required>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-sm-4">
             <label for="firstName" class="col-form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName" formControlName="firstName"
-                placeholder="First Name" required>
+            <input type="text" class="form-control" id="firstName" ngModel name="firstName" placeholder="First Name"
+                required>
         </div>
         <div class="col-sm-4">
             <label for="lastName" class="col-form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastName" formControlName="lastName"
-                placeholder="Last Name" required>
+            <input type="text" class="form-control" id="lastName" ngModel name="lastName" placeholder="Last Name"
+                required>
         </div>
         <div class="col-sm-4">
             <label for="gender" class="col-form-label">Gender</label>
-            <select type="text" class="form-control" id="gender" formControlName="gender">
+            <select type="text" class="form-control" id="gender" ngModel name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Others">Others</option>
@@ -37,48 +38,198 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-sm-3" [formGroup]="doctor">
-            <div [formGroup]="role" >
+        <div class="col-sm-3">
+            <div>
                 <label for="role" class="col-form-label">Role</label>
-                <select type="text" class="form-control" id="role" formControlName="roleName">
+                <select type="text" class="form-control" id="roleName" ngModel name="roleName">
                     <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
                 </select>
             </div>
         </div>
         <div class="col-sm-3">
             <label for="mobileNo" class="col-form-label">Mobile Number</label>
-            <input type="tel" class="form-control" id="mobileNo" formControlName="mobileNo"
-                placeholder="Mobile Number">
+            <input type="tel" class="form-control" id="mobileNo" ngModel name="mobileNo" placeholder="Mobile Number">
         </div>
         <div class="col-sm-3">
             <label for="email" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            <input type="email" class="form-control" id="email" ngModel name="email" placeholder="Email">
         </div>
-        <div class="col-sm-3" [formGroup]="hospital">
+        <div class="col-sm-3">
             <label for="hospital" class="col-form-label">Hospital</label>
-            <select type="text" class="form-control" id="hospital" formControlName="hospitalId">
-                <option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">{{hospital.hospitalName}}</option>
+            <select type="text" class="form-control" id="hospital" ngModel name="hospitalId">
+                <option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">{{hospital.hospitalName}}
+                </option>
             </select>
         </div>
     </div>
     <div class="form-group row">
         <div class="form-group col-sm-3">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" formControlName="city" placeholder="City">
+            <input type="text" class="form-control" id="city" ngModel name="city" placeholder="City">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-sm-3">
             <label for="district">Distict</label>
-            <input type="text" class="form-control" id="district" formControlName="district"
-                placeholder="District">
+            <input type="text" class="form-control" id="district" ngModel name="district" placeholder="District">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-sm-3">
             <label for="state">State</label>
-            <input type="text" class="form-control" id="state" formControlName="state" placeholder="State">
+            <input type="text" class="form-control" id="state" ngModel name="state" placeholder="State">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-sm-3">
             <label for="pincode">Pincode</label>
-            <input type="text" class="form-control" id="pincode" formControlName="pincode"
-                placeholder="Pincode">
+            <input type="text" class="form-control" id="pincode" ngModel name="pincode" placeholder="Pincode">
+        </div>
+    </div>
+    <div *ngIf="add">
+        <button mat-raised-button (click)="addDoctor(doctorForm)" mat-dialog-close>Add Doctor</button>
+    </div>
+</form>
+
+<form #doctorForm="ngForm" *ngIf="update">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="firstName" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="doctorDetail.firstName"
+                name="firstName">
+        </div>
+        <div class="col-sm-6">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="doctorDetail.lastName" name="lastName">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" [(ngModel)]="doctorDetail.doctor.userId" name="userId">
+        </div>
+        <div class="col-sm-6">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="doctorDetail.email" name="email"
+                placeholder="Email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="role" class="col-form-label">Role</label>
+            <select type="text" class="form-control" id="roleName" ngModel name="roleName">
+                <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <label for="mobileNo" class="col-form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="doctorDetail.mobileNo" name="mobileNo">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-9">
+            <label for="hospital" class="col-form-label">Hospital</label>
+            <select type="text" class="form-control" id="hospital" ngModel name="hospitalId">
+                <option [selected]="true" value="{{doctorDetail.gender}}">vfdvdf</option>
+                <!-- <option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">{{hospital.hospitalName}}
+                </option> -->
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <select type="text" class="form-control" #gender="ngModel" gender="gender" [(ngModel)]="doctorDetail.gender"
+                name="gender">
+                <option [selected]="true" value="{{doctorDetail.gender}}">{{doctorDetail.gender}}</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-sm-3">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" [(ngModel)]="doctorDetail.city" name="city">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="district">Distict</label>
+            <input type="text" class="form-control" id="district" [(ngModel)]="doctorDetail.district" name="district">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" [(ngModel)]="doctorDetail.state" name="state">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="pincode">Pincode</label>
+            <input type="text" class="form-control" id="pincode" [(ngModel)]="doctorDetail.pincode" name="pincode">
+        </div>
+    </div>
+    <div *ngIf="update">
+        <button mat-raised-button (click)="updateDoctor(doctorForm)" mat-dialog-close>Update Doctor</button>
+    </div>
+</form>
+
+<!-- Details -> Readonly -->
+<form #doctorForm="ngForm" *ngIf="!update && !add">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="firstName" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="doctorDetail.firstName"
+                readonly>
+        </div>
+        <div class="col-sm-6">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="doctorDetail.lastName"
+                readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" name="userId" [(ngModel)]="doctorDetail.doctor.userId"
+                readonly>
+        </div>
+        <div class="col-sm-6">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="doctorDetail.email" readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="role" class="col-form-label">Role</label>
+            <input type="text" class="form-control" id="roleName" name="roleName"
+                [(ngModel)]="doctorDetail.doctor.role.roleName" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label for="mobileNo" class="col-form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNo" name="mobileNo" [(ngModel)]="doctorDetail.mobileNo"
+                readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-9">
+            <label for="hospital" class="col-form-label">Hospital</label>
+            <input type="text" class="form-control" id="hospital" name="hospital"
+                [(ngModel)]="doctorDetail.hospital.hospitalName" readonly>
+        </div>
+        <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <input type="text" class="form-control" id="gender" name="gender" [(ngModel)]="doctorDetail.gender"
+                readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-sm-3">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city" [(ngModel)]="doctorDetail.city" readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="district">Distict</label>
+            <input type="text" class="form-control" id="district" name="district" [(ngModel)]="doctorDetail.district"
+                readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" name="state" [(ngModel)]="doctorDetail.state" readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="pincode">Pincode</label>
+            <input type="text" class="form-control" id="pincode" name="pincode" [(ngModel)]="doctorDetail.pincode"
+                readonly>
         </div>
     </div>
 </form>

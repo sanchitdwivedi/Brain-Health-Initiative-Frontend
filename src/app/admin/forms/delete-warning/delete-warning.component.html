@@ -1,0 +1,9 @@
+<button class="close" mat-button mat-dialog-close>X</button>
+<h1 mat-dialog-title>Warning!</h1>
+<div>
+    <p>Are you sure you want to delete '{{name}}'</p>
+    <div class="spacing">
+        <button mat-raised-button mat-dialog-close="false">Back</button>
+        <button mat-raised-button color="warn" mat-dialog-close="true">Delete</button>
+    </div>
+</div>

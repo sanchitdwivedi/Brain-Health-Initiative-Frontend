@@ -1,5 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Doctor } from 'src/app/interfaces/Doctor';
+import { Hospital } from 'src/app/interfaces/Hospital';
+import { Role } from 'src/app/interfaces/Role';
+import { User } from 'src/app/interfaces/User';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
@@ -9,94 +14,43 @@ import { AdminService } from 'src/app/_services/admin.service';
 })
 
 export class DoctorFormComponent implements OnInit {
-  @Input() readonly: any;
-  addDoctorForm: FormGroup;
-  addRoleForm: FormGroup;
-  addLevelForm: FormGroup;
-  addHospitalForm: FormGroup;
+  update: boolean = false;
+  add: boolean = false;
+  firstGender: boolean = true;
+  doctorForm: FormGroup;
   levels: any = [];
   roles: any = [];
   hospitals: any = [];
+  readonly: boolean;
+  role: Role = ({} as any) as Role;
+  user: User = ({} as any) as User;
+  hospital: Hospital = ({} as any) as Hospital;
+  doctor: Doctor = ({} as any) as Doctor;
+  doctorDetail: any
 
   constructor(
-    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private operationAndDate: any,
     private adminService: AdminService
   ) {
-
-    this.addDoctorForm = this.fb.group({
-      doctor: this.fb.group({
-        userId: [''],
-        password: [''],
-        confirmPassword: [''],
-        role: this.fb.group({
-          roleName: ['']
-        })
-      }),
-      firstName: [''],
-      lastName: [''],
-      gender: [''],
-      district: [''],
-      state: [''],
-      city: [''],
-      pincode: [''],
-      mobileNo: [''],
-      email: [''],
-      hospital: this.fb.group({
-        hospitalId: ['']
-      })
-    });
-
-    this.addRoleForm = this.fb.group({
-      roleName: [''],
-      roleDescription: ['']
-    });
-
-    this.addLevelForm = this.fb.group({
-      levelName: [''],
-      levelDescription: ['']
-    });
-
-    this.addHospitalForm = this.fb.group({
-      hospitalName: [''],
-      pincode: [''],
-      city: [''],
-      state: [''],
-      district: [''],
-      level: this.fb.group({
-        levelName: ['']
-      }),
-    });
-
+    console.log("operationAndDate: ", operationAndDate);
+    if (operationAndDate.operation === 'add') {
+      this.add = true;
+    } else if (operationAndDate.operation === 'update') {
+      this.update = true;
+    }
+    this.doctorDetail = operationAndDate.element;
   }
 
   ngOnInit(): void {
     this.getLevels();
     this.getRoles();
     this.getHospitals();
-    console.log(this.levels);
-  }
-
-  public get doctor(): FormGroup {
-    return this.addDoctorForm.get('doctor') as FormGroup;
-  }
-
-  public get role(): FormGroup {
-    return this.doctor.get('role') as FormGroup;
-  }
-
-  public get hospital(): FormGroup {
-    return this.addDoctorForm.get('hospital') as FormGroup;
-  }
-
-  public get levelForm(): FormGroup {
-    return this.addHospitalForm.get('level') as FormGroup;
   }
 
   getLevels() {
     this.levels = this.adminService.getLevels().subscribe({
       next: (response: any) => {
         this.levels = response;
-        console.log("Level: ", response);
       },
       error: (error: any) => {
         console.log(error);
@@ -108,7 +62,6 @@ export class DoctorFormComponent implements OnInit {
     this.roles = this.adminService.getRoles().subscribe({
       next: (response: any) => {
         this.roles = response;
-        console.log("roles", this.roles)
       },
       error: (error: any) => {
         console.log(error);
@@ -120,7 +73,6 @@ export class DoctorFormComponent implements OnInit {
     this.hospitals = this.adminService.getHospitals().subscribe({
       next: (response: any) => {
         this.hospitals = response;
-        console.log(this.hospitals);
       },
       error: (error: any) => {
         console.log(error);
@@ -128,10 +80,32 @@ export class DoctorFormComponent implements OnInit {
     })
   }
 
-  addDoctor() {
-    console.log(this.addDoctorForm.value);
-    if (this.doctor.value.password === this.doctor.value.confirmPassword) {
-      this.adminService.addDoctor(this.addDoctorForm).subscribe({
+  addDoctor(doctorDetails: any) {
+    if (doctorDetails.value.password === doctorDetails.value.confirmPassword) {
+
+      this.role.roleName = doctorDetails.value.roleName;
+
+      this.user.userId = doctorDetails.value.userId;
+      this.user.role = this.role;
+      this.user.password = doctorDetails.value.password;
+
+      this.hospital.hospitalId = doctorDetails.value.hospitalId;
+
+      this.doctor.doctor = this.user;
+      this.doctor.hospital = this.hospital;
+
+      this.doctor.firstName = doctorDetails.value.firstName;
+      this.doctor.lastName = doctorDetails.value.lastName;
+      this.doctor.city = doctorDetails.value.city;
+      this.doctor.district = doctorDetails.value.district;
+      this.doctor.state = doctorDetails.value.state;
+      this.doctor.pincode = doctorDetails.value.pincode;
+      this.doctor.mobileNo = doctorDetails.value.mobileNo;
+      this.doctor.gender = doctorDetails.value.gender;
+      this.doctor.email = doctorDetails.value.email;
+
+      console.log("this.doctor: ", this.doctor);
+      this.adminService.addDoctor(this.doctor).subscribe({
         next: (response: any) => {
           console.log(response);
         },
@@ -144,39 +118,37 @@ export class DoctorFormComponent implements OnInit {
     }
   }
 
-  addRole() {
-    this.adminService.addRole(this.addRoleForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getRoles();
-  }
+  updateDoctor(doctorDetails: any) {
+    console.log(doctorDetails.value);
+      this.role.roleName = doctorDetails.value.roleName;
 
-  addLevel() {
-    this.adminService.addLevel(this.addLevelForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getLevels();
-  }
+      this.user.userId = doctorDetails.value.userId;
+      this.user.role = this.role;
+      this.user.password = doctorDetails.value.password;
 
-  addHospital() {
-    this.adminService.addHospital(this.addHospitalForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getHospitals();
+      this.hospital.hospitalId = doctorDetails.value.hospitalId;
+
+      this.doctor.doctor = this.user;
+      this.doctor.hospital = this.hospital;
+
+      this.doctor.firstName = doctorDetails.value.firstName;
+      this.doctor.lastName = doctorDetails.value.lastName;
+      this.doctor.city = doctorDetails.value.city;
+      this.doctor.district = doctorDetails.value.district;
+      this.doctor.state = doctorDetails.value.state;
+      this.doctor.pincode = doctorDetails.value.pincode;
+      this.doctor.mobileNo = doctorDetails.value.mobileNo;
+      this.doctor.gender = doctorDetails.value.gender;
+      this.doctor.email = doctorDetails.value.email;
+
+      console.log("this.doctor: ", this.doctor);
+      this.adminService.updateDoctor(this.doctor).subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
   }
 }

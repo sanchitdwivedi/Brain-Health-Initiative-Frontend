@@ -18,15 +18,17 @@ export class AdminService {
   }
 
   public addDoctor(doctorDetail: any){
-    return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail.value);
+    console.log("addDoctor: ", doctorDetail);
+    return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail);
   }
 
   public updateDoctor(doctorDetail: any){
     return this.httpClient.put(`${baseUrl}/doctor`, doctorDetail.value);
   }
 
-  public deleteDoctor(doctorDetail: any){
-    return this.httpClient.delete(`${baseUrl}/doctor`, doctorDetail.value);
+  public deleteDoctor(id: any){
+    console.log("doctorLevel: ", id);
+    return this.httpClient.delete(`${baseUrl}/doctor/${id}`);
   }
 
   public getRole(id: any){
@@ -45,8 +47,9 @@ export class AdminService {
     return this.httpClient.put(`${baseUrl}/role`, roleDetail.value);
   }
 
-  public deleteRole(roleDetail: any){
-    return this.httpClient.delete(`${baseUrl}/role`, roleDetail.value);
+  public deleteRole(id: any){
+    console.log("roleLevel: ", id);
+    return this.httpClient.delete(`${baseUrl}/role/${id}`);
   }
 
   public getLevel(id: any){
@@ -65,8 +68,9 @@ export class AdminService {
     return this.httpClient.put(`${baseUrl}/level`, levelDetail.value);
   }
 
-  public deleteLevel(levelDetail: any){
-    return this.httpClient.delete(`${baseUrl}/level`, levelDetail.value);
+  public deleteLevel(id: any){    
+    console.log("deleteLevel: ", id);
+    return this.httpClient.delete(`${baseUrl}/level/${id}`);
   }
 
   public getHospital(id: any){
@@ -78,15 +82,16 @@ export class AdminService {
   }
 
   public addHospital(hospitalDetail: any){
-    return this.httpClient.post(`${baseUrl}/hospital`, hospitalDetail.value);
+    return this.httpClient.post(`${baseUrl}/hospital`, hospitalDetail);
   }
 
   public updateHospital(hospitalDetail: any){
-    return this.httpClient.put(`${baseUrl}/hospital`, hospitalDetail.value);
+    return this.httpClient.put(`${baseUrl}/hospital`, hospitalDetail);
   }
 
-  public deleteHospital(hospitalDetail: any){
-    return this.httpClient.delete(`${baseUrl}/hospital`, hospitalDetail.value);
+  public deleteHospital(id: any){
+    console.log("deleteHospital: ", id);
+    return this.httpClient.delete(`${baseUrl}/hospital/${id}`);
   }
 
   public getAdmin(id: any){
@@ -105,7 +110,8 @@ export class AdminService {
     return this.httpClient.put(`${baseUrl}/admin`, adminDetail.value);
   }
 
-  public deleteAdmin(adminDetail: any){
-    return this.httpClient.delete(`${baseUrl}/admin`, adminDetail.value);
+  public deleteAdmin(id: any){
+    console.log("deleteAdmin: ", id);
+    return this.httpClient.delete(`${baseUrl}/admin/${id}`);
   }
 }

@@ -1,33 +1,111 @@
-<form [formGroup]="addHospitalForm">
+<button class="close" mat-button mat-dialog-close>X</button>
+<h1 mat-dialog-title>Hospital</h1>
+<form *ngIf="add" #hospitalForm="ngForm">
     <div class="row">
-        <div class="form-group col-9">
+        <div class="form-group col-sm-9">
             <label for="hospitalName" class="col-form-label">Hospital Name</label>
-            <input type="text" class="form-control" id="hospitalName" formControlName="hospitalName"
+            <input type="text" class="form-control" id="hospitalName" ngModel name="hospitalName"
                 placeholder="Hospital Name">
         </div>
-        <div class="col-md-3" [formGroup]="levelForm">
-            <label for="level">Select Level:</label>
-            <select class="form-control" id="level" formControlName="levelName">
+        <div class="col-sm-3">
+            <label for="level" class="col-form-label">Select Level:</label>
+            <select class="form-control" id="level" ngModel name="levelName">
                 <option *ngFor="let level of levels" [value]="level.levelName">{{level.levelName}}</option>
             </select>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="city">City</label>
-            <input type="text" class="form-control" id="city" formControlName="city" placeholder="City">
+        <div class="form-group col-sm-3">
+            <label for="city" class="col-form-label">City</label>
+            <input type="text" class="form-control" id="city" ngModel name="city" placeholder="City">
         </div>
-        <div class="form-group col-md-3">
-            <label for="district">Distict</label>
-            <input type="text" class="form-control" id="district" formControlName="district" placeholder="District">
+        <div class="form-group col-sm-3">
+            <label for="district" class="col-form-label">Distict</label>
+            <input type="text" class="form-control" id="district" ngModel name="district" placeholder="District">
         </div>
-        <div class="form-group col-md-3">
-            <label for="state">State</label>
-            <input type="text" class="form-control" id="state" formControlName="state" placeholder="State">
+        <div class="form-group col-sm-3">
+            <label for="state" class="col-form-label">State</label>
+            <input type="text" class="form-control" id="state" ngModel name="state" placeholder="State">
         </div>
-        <div class="form-group col-md-3">
-            <label for="pincode">Pincode</label>
-            <input type="text" class="form-control" id="pincode" formControlName="pincode" placeholder="Pincode">
+        <div class="form-group col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" ngModel name="pincode" placeholder="Pincode">
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button (click)="addHospital(hospitalForm)" mat-dialog-close>Add Hospital</button>
+    </div>
+</form>
+
+<form *ngIf="update" #hospitalForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-sm-9">
+            <label for="hospitalName" class="col-form-label">Hospital Name</label>
+            <input type="text" class="form-control" id="hospitalName" [(ngModel)]="hospitalDetail.hospitalName"
+                name="hospitalName">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="level" class="col-form-label">Level</label>
+            <select class="form-control" id="level" [(ngModel)]="hospitalDetail.level.levelName" name="levelName">
+                <option *ngFor="let level of levels" [value]="level.levelName">{{level.levelName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label for="city" class="col-form-label">City</label>
+            <input type="text" class="form-control" id="city" [(ngModel)]="hospitalDetail.city" name="city">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="district" class="col-form-label">Distict</label>
+            <input type="text" class="form-control" id="district" [(ngModel)]="hospitalDetail.district" name="district"
+            >
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="state" class="col-form-label">State</label>
+            <input type="text" class="form-control" id="state" [(ngModel)]="hospitalDetail.state" name="state">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" [(ngModel)]="hospitalDetail.pincode" name="pincode">
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button (click)="updateHospital(hospitalForm)" mat-dialog-close>Update Hospital</button>
+    </div>
+</form>
+
+<form *ngIf="!add && !update" #hospitalForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-sm-9">
+            <label for="hospitalName" class="col-form-label">Hospital Name</label>
+            <input type="text" class="form-control" id="hospitalName" [(ngModel)]="hospitalDetail.hospitalName"
+                name="hospitalName" readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="level" class="col-form-label">Level</label>
+            <input type="text" class="form-control" id="levelName" [(ngModel)]="hospitalDetail.level.levelName"
+                name="levelName" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label for="city" class="col-form-label">City</label>
+            <input type="text" class="form-control" id="city" [(ngModel)]="hospitalDetail.city" name="city" readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="district" class="col-form-label">Distict</label>
+            <input type="text" class="form-control" id="district" [(ngModel)]="hospitalDetail.district" name="district"
+                readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="state" class="col-form-label">State</label>
+            <input type="text" class="form-control" id="state" [(ngModel)]="hospitalDetail.state" name="state" readonly>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" [(ngModel)]="hospitalDetail.pincode" name="pincode"
+                readonly>
         </div>
     </div>
 </form>

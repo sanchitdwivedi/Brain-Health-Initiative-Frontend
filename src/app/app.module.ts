@@ -32,6 +32,11 @@ import { AdminFormComponent } from './admin/forms/admin-form/admin-form.componen
 import { LevelFormComponent } from './admin/forms/level-form/level-form.component';
 import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
 import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warning.component';
 
 
 @NgModule({
@@ -54,14 +59,16 @@ import {MatSortModule} from '@angular/material/sort';
     HospitalFormComponent,
     AdminFormComponent,
     LevelFormComponent,
-    RoleFormComponent
+    RoleFormComponent,
+    DeleteWarningComponent
   ],
   entryComponents:[
     DoctorFormComponent,
     HospitalFormComponent,
     RoleFormComponent,
     LevelFormComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    DeleteWarningComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,11 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatPaginatorModule 
   ],
   providers: [
     AuthGuard,
