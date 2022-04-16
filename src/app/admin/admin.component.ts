@@ -189,6 +189,7 @@ export class AdminComponent implements OnInit {
   public openUpdateDialog = (element: string, tableName: string) => {
     switch (tableName) {
       case 'LEVEL': {
+        console.log("level Update");
         const dialogRef = this.dialog.open(LevelFormComponent, { data: {element: element, operation: 'update'}});
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);

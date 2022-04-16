@@ -8,33 +8,40 @@ import { AdminService } from 'src/app/_services/admin.service';
   styleUrls: ['./level-form.component.css']
 })
 export class LevelFormComponent implements OnInit {
+  update: boolean = false;
   add: boolean = false;
   @Input() tableName: string;
   levelForm: FormGroup;
-  readonly: boolean;
+  levelDetail: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public levelDetail: any,
+    @Inject(MAT_DIALOG_DATA) public operationAndDate: any,
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
-    if (levelDetail === true) {
+    if (operationAndDate.operation === 'add') {
       this.add = true;
-    } else {
-      this.levelDetail = levelDetail;
+    } else if (operationAndDate.operation === 'update') {
+      this.update = true;
     }
-
-    this.levelForm = this.fb.group({
-      levelName: [''],
-      levelDescription: ['']
-    });
+    this.levelDetail = operationAndDate.element;
+    if(this.levelDetail!=={}){
+      this.levelForm = this.fb.group({
+        levelName: this.levelDetail.levelName,
+        levelDescription: this.levelDetail.levelDescription
+      });
+    }else{
+      this.levelForm = this.fb.group({
+        levelName: [''],
+        levelDescription: ['']
+      });
+    }
   }
 
   ngOnInit(): void {
   }
 
   addLevel(levelDetails: any) {
-    // this.dialogRef.close();
     this.adminService.addLevel(levelDetails).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -44,4 +51,17 @@ export class LevelFormComponent implements OnInit {
       }
     });
   }
+
+  updateLevel(levelDetails: any) {
+    console.log("levelDetails:", levelDetails.value);
+    this.adminService.updateLevel(levelDetails.value).subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
+  
 }
