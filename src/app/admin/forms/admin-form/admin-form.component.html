@@ -1,26 +1,160 @@
-<form [formGroup]="addHospitalForm">
-    <div class="row">
-        <div class="form-group col-sm-9">
-            <label for="name" class="col-form-label">Name</label>
-            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name">
+<button class="close" mat-button mat-dialog-close>X</button>
+<h1 mat-dialog-title>Admin and Program Manager</h1>
+<form #adminForm="ngForm" *ngIf="add">
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" ngModel name="userId" placeholder="User Id">
         </div>
+        <div class="col-sm-4">
+            <label for="password" class="col-form-label">Password</label>
+            <input type="password" class="form-control" id="password" ngModel name="password" placeholder="Password"
+                required>
+        </div>
+        <div class="col-sm-4">
+            <label for="confirmPassword" class="col-form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" ngModel name="confirmPassword"
+                placeholder="Confirm Password" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <label for="firstName" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" ngModel name="firstName" placeholder="First Name"
+                required>
+        </div>
+        <div class="col-sm-4">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" ngModel name="lastName" placeholder="Last Name"
+                required>
+        </div>
+        <div class="col-sm-4">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" ngModel name="email" placeholder="Email">
+        </div>
+    </div>
+    <div class="form-group row">
         <div class="col-sm-3">
             <label for="gender" class="col-form-label">Gender</label>
-            <select type="text" class="form-control" id="gender" formControlName="gender" placeholder="Gender">
+            <select type="text" class="form-control" id="gender" ngModel name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Others">Others</option>
             </select>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
+            <div>
+                <label for="role" class="col-form-label">Role</label>
+                <select type="text" class="form-control" id="roleName" ngModel name="roleName">
+                    <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-3">
             <label for="mobileNo" class="col-form-label">Mobile Number</label>
-            <input type="tel" class="form-control" id="mobileNo" formControlName="mobileNo" placeholder="Mobile Number">
+            <input type="tel" class="form-control" id="mobileNo" ngModel name="mobileNo" placeholder="Mobile Number">
+        </div>
+        <div class="col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" ngModel name="pincode" placeholder="Pincode">
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button (click)="addAdmin(adminForm)" mat-dialog-close>Add Admin/Program Manager</button>
+    </div>
+</form>
+
+<form #adminForm="ngForm" *ngIf="update">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" [(ngModel)]="adminDetail.admin.userId" name="userId" required>
         </div>
         <div class="col-sm-6">
             <label for="email" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            <input type="email" class="form-control" id="email" [(ngModel)]="adminDetail.email" name="email" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="firstName" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="adminDetail.firstName" name="firstName"
+                required>
+        </div>
+        <div class="col-sm-6">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="adminDetail.lastName" name="lastName"
+                required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <input type="text" class="form-control" id="gender" [(ngModel)]="adminDetail.gender" name="gender" required>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                <label for="role" class="col-form-label">Role</label>
+                <input type="text" class="form-control" id="roleName" [(ngModel)]="adminDetail.admin.role.roleName" name="roleName" required>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label for="mobileNo" class="col-form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="adminDetail.mobileNo" name="mobileNo" required>
+        </div>
+        <div class="col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" [(ngModel)]="adminDetail.pincode" name="pincode" required>
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button (click)="updateAdmin(adminForm)" mat-dialog-close>Update Admin/Program Manager</button>
+    </div>
+</form>
+
+<form #adminForm="ngForm" *ngIf="!add && !update">
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="userId" class="col-form-label">User Id</label>
+            <input type="text" class="form-control" id="userId" [(ngModel)]="adminDetail.admin.userId" name="userId" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="adminDetail.email" name="email" readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <label for="firstName" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="adminDetail.firstName" name="firstName" readonly
+                required>
+        </div>
+        <div class="col-sm-6">
+            <label for="lastName" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="adminDetail.lastName" name="lastName" readonly
+                required>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
+            <input type="text" class="form-control" id="gender" [(ngModel)]="adminDetail.gender" name="gender" readonly>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                <label for="role" class="col-form-label">Role</label>
+                <input type="text" class="form-control" id="roleName" [(ngModel)]="adminDetail.admin.role.roleName" name="roleName" readonly>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label for="mobileNo" class="col-form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="adminDetail.mobileNo" name="mobileNo" readonly>
+        </div>
+        <div class="col-sm-3">
+            <label for="pincode" class="col-form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" [(ngModel)]="adminDetail.pincode" name="pincode" readonly>
         </div>
     </div>
 </form>
+

@@ -4,14 +4,14 @@
     <div class="form-group row">
         <div class="col-sm-4">
             <label for="userId" class="col-form-label">User Id</label>
-            <input *ngIf="add" type="text" class="form-control" id="userId" ngModel name="userId" placeholder="User Id">
+            <input type="text" class="form-control" id="userId" ngModel name="userId" placeholder="User Id">
         </div>
-        <div class="col-sm-4" *ngIf="add">
+        <div class="col-sm-4" >
             <label for="password" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="password" [(ngModel)]="doctorDetail.userId" name="password"
+            <input type="password" class="form-control" id="password" ngModel name="password"
                 placeholder="Password" required>
         </div>
-        <div class="col-sm-4" *ngIf="add">
+        <div class="col-sm-4">
             <label for="confirmPassword" class="col-form-label">Confirm Password</label>
             <input type="password" class="form-control" id="confirmPassword" ngModel name="confirmPassword"
                 placeholder="Confirm Password" required>
