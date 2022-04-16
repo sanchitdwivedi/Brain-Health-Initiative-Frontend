@@ -36,6 +36,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warning.component';
 
 
 @NgModule({
@@ -58,14 +59,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HospitalFormComponent,
     AdminFormComponent,
     LevelFormComponent,
-    RoleFormComponent
+    RoleFormComponent,
+    DeleteWarningComponent
   ],
   entryComponents:[
     DoctorFormComponent,
     HospitalFormComponent,
     RoleFormComponent,
     LevelFormComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    DeleteWarningComponent
   ],
   imports: [
     BrowserModule,

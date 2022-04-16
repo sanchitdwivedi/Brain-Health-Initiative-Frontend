@@ -15,6 +15,7 @@ import { Sort } from '@angular/material/sort';
 import { RoleFormComponent } from './forms/role-form/role-form.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { LevelFormComponent } from './forms/level-form/level-form.component';
+import { DeleteWarningComponent } from './forms/delete-warning/delete-warning.component';
 
 
 @Component({
@@ -111,10 +112,10 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  openAddDialog(tableName:string){
+  openAddDialog(tableName: string) {
     switch (tableName) {
       case 'LEVEL': {
-        const dialogRef = this.dialog.open(LevelFormComponent, {data: {element: {}, operation: 'add'}});
+        const dialogRef = this.dialog.open(LevelFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -122,15 +123,15 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'ROLE': {
-        const dialogRef = this.dialog.open(RoleFormComponent, {data: {element: {}, operation: 'add'}});
+        const dialogRef = this.dialog.open(RoleFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
-        this.getTableData(tableName);
+          this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
         });
         break;
       }
       case 'DOCTOR': {
-        const dialogRef = this.dialog.open(DoctorFormComponent, {data: {element: {}, operation: 'add'}});
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -138,7 +139,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'HOSPITAL': {
-        const dialogRef = this.dialog.open(HospitalFormComponent, {data: {element: {}, operation: 'add'}});
+        const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -146,7 +147,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'ADMIN': {
-        const dialogRef = this.dialog.open(AdminFormComponent, {data: {element: {}, operation: 'add'}});
+        const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -160,7 +161,7 @@ export class AdminComponent implements OnInit {
     switch (tableName) {
       case 'DOCTOR': {
         console.log("element", element);
-        const dialogRef = this.dialog.open(DoctorFormComponent, { data: {element: element, operation: ''} });
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe((result: string) => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -168,7 +169,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'HOSPITAL': {
-        const dialogRef = this.dialog.open(HospitalFormComponent, { data: {element: element, operation: ''} });
+        const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -176,7 +177,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'ADMIN': {
-        const dialogRef = this.dialog.open(AdminFormComponent, { data: {element: element, operation: ''} });
+        const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -190,7 +191,7 @@ export class AdminComponent implements OnInit {
     switch (tableName) {
       case 'LEVEL': {
         console.log("level Update");
-        const dialogRef = this.dialog.open(LevelFormComponent, { data: {element: element, operation: 'update'}});
+        const dialogRef = this.dialog.open(LevelFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -198,7 +199,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'ROLE': {
-        const dialogRef = this.dialog.open(RoleFormComponent, {data: {element: element, operation: 'update'} });
+        const dialogRef = this.dialog.open(RoleFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -207,7 +208,7 @@ export class AdminComponent implements OnInit {
       }
       case 'DOCTOR': {
         console.log("element", element);
-        const dialogRef = this.dialog.open(DoctorFormComponent, { data: {element: element, operation: 'update'} });
+        const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe((result: string) => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -215,7 +216,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'HOSPITAL': {
-        const dialogRef = this.dialog.open(HospitalFormComponent, { data: {element: element, operation: 'update'} });
+        const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -223,7 +224,7 @@ export class AdminComponent implements OnInit {
         break;
       }
       case 'ADMIN': {
-        const dialogRef = this.dialog.open(AdminFormComponent, { data: {element: element, operation: 'update'} });
+        const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           console.log(`Dialog result: ${result}`);
@@ -237,37 +238,61 @@ export class AdminComponent implements OnInit {
     console.log(element, tableName);
     switch (tableName) {
       case 'LEVEL': {
-        this.adminService.deleteLevel(element.levelId).subscribe(res => {
-          console.log(res);
-          this.getTableData(tableName);
+        const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.levelName });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === "true") {
+            this.adminService.deleteLevel(element.levelId).subscribe(res => {
+              this.getTableData(tableName);
+            })
+          }
         })
         break;
       }
       case 'ROLE': {
-        this.adminService.deleteRole(element.roleId).subscribe(res => {
-          console.log(res);
-          this.getTableData(tableName);
+        const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.roleName });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === "true") {
+            this.adminService.deleteRole(element.roleId).subscribe(res => {
+              console.log(res);
+              this.getTableData(tableName);
+            })
+          }
         })
         break;
       }
       case 'DOCTOR': {
-        this.adminService.deleteDoctor(element.doctor.uuid).subscribe(res => {
-          console.log(res);
-          this.getTableData(tableName);
+        const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.firstName+" "+element.lastName });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === "true") {
+            this.adminService.deleteDoctor(element.doctor.uuid).subscribe(res => {
+              console.log(res);
+              this.getTableData(tableName);
+            })
+          }
         })
         break;
       }
       case 'HOSPITAL': {
-        this.adminService.deleteHospital(element.hospitalId).subscribe(res => {
-          console.log(res);
-          this.getTableData(tableName);
+        const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.hospitalName });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === "true") {
+            this.adminService.deleteHospital(element.hospitalId).subscribe(res => {
+              console.log(res);
+              this.getTableData(tableName);
+            })
+          }
         })
         break;
       }
       case 'ADMIN': {
-        this.adminService.deleteAdmin(element.uuid).subscribe(res => {
-          console.log(res);
-          this.getTableData(tableName);
+        const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.firstName+" "+element.lastName });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === "true") {
+            this.adminService.deleteAdmin(element.uuid).subscribe(res => {
+              console.log(res);
+              this.getTableData(tableName);
+            })
+          }
         })
         break;
       }
