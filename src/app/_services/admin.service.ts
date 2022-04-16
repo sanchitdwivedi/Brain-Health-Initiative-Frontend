@@ -82,11 +82,11 @@ export class AdminService {
   }
 
   public addHospital(hospitalDetail: any){
-    return this.httpClient.post(`${baseUrl}/hospital`, hospitalDetail.value);
+    return this.httpClient.post(`${baseUrl}/hospital`, hospitalDetail);
   }
 
   public updateHospital(hospitalDetail: any){
-    return this.httpClient.put(`${baseUrl}/hospital`, hospitalDetail.value);
+    return this.httpClient.put(`${baseUrl}/hospital`, hospitalDetail);
   }
 
   public deleteHospital(id: any){

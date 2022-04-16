@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Hospital } from 'src/app/interfaces/Hospital';
+import { Level } from 'src/app/interfaces/Level';
 import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
@@ -9,97 +12,34 @@ import { AdminService } from 'src/app/_services/admin.service';
 })
 export class HospitalFormComponent implements OnInit {
   @Input() tableName: string;
-  addDoctorForm: FormGroup;
-  addRoleForm: FormGroup;
-  addLevelForm: FormGroup;
-  addHospitalForm: FormGroup;
+  update: boolean = false;
+  add: boolean = false;
+  hospitalDetail: any;
   levels: any = [];
-  roles: any = [];
-  hospitals: any = [];
-  readonly: boolean;
-
+  level: Level = ({} as any) as Level;
+  hospital: Hospital = ({} as any) as Hospital;
   constructor(
+    @Inject(MAT_DIALOG_DATA) private operationAndDate: any,
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
-
-    this.addDoctorForm = this.fb.group({
-      doctor: this.fb.group({
-        userId: [''],
-        password: [''],
-        confirmPassword: [''],
-        role: this.fb.group({
-          roleName: ['']
-        })
-      }),
-      firstName: [''],
-      lastName: [''],
-      gender: [''],
-      district: [''],
-      state: [''],
-      city: [''],
-      pincode: [''],
-      mobileNo: [''],
-      email: [''],
-      hospital: this.fb.group({
-        hospitalId: ['']
-      })
-    });
-
-    this.addRoleForm = this.fb.group({
-      roleName: [''],
-      roleDescription: ['']
-    });
-
-    this.addLevelForm = this.fb.group({
-      levelName: [''],
-      levelDescription: ['']
-    });
-
-    this.addHospitalForm = this.fb.group({
-      hospitalName: [''],
-      pincode: [''],
-      city: [''],
-      state: [''],
-      district: [''],
-      level: this.fb.group({
-        levelName: ['']
-      }),
-    });
-
+    console.log("operationAndDate: ", operationAndDate.element);
+    if (operationAndDate.operation === 'add') {
+      this.add = true;
+    } else if (operationAndDate.operation === 'update') {
+      this.update = true;
+    }
+    this.hospitalDetail = operationAndDate.element;
   }
 
   ngOnInit(): void {
     this.getLevels();
-    this.getRoles();
-    this.getHospitals();
-    console.log(this.levels);
   }
 
-  public get doctor(): FormGroup {
-    return this.addDoctorForm.get('doctor') as FormGroup;
-  }
-
-  public get role(): FormGroup {
-    return this.doctor.get('role') as FormGroup;
-  }
-
-  public get hospital(): FormGroup {
-    return this.addDoctorForm.get('hospital') as FormGroup;
-  }
-
-  public get levelForm(): FormGroup {
-    return this.addHospitalForm.get('level') as FormGroup;
-  }
-
-
-
-  //Needed: Error Here
   getLevels() {
     this.levels = this.adminService.getLevels().subscribe({
       next: (response: any) => {
         this.levels = response;
-        console.log("Level: ", response);
       },
       error: (error: any) => {
         console.log(error);
@@ -107,34 +47,19 @@ export class HospitalFormComponent implements OnInit {
     });
   }
 
-  getRoles() {
-    this.roles = this.adminService.getRoles().subscribe({
-      next: (response: any) => {
-        this.roles = response;
-        console.log("roles", this.roles)
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-  }
+  addHospital(hospitalDetails: any) {
+    
+    this.level.levelName = hospitalDetails.value.levelName;
 
-  getHospitals() {
-    this.hospitals = this.adminService.getHospitals().subscribe({
-      next: (response: any) => {
-        this.hospitals = response;
-        console.log(this.hospitals);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    })
-  }
-
-  
-
-  addRole() {
-    this.adminService.addRole(this.addRoleForm).subscribe({
+    this.hospital.level = this.level;
+    this.hospital.hospitalName = hospitalDetails.value.hospitalName;
+    this.hospital.state = hospitalDetails.value.state;
+    this.hospital.city = hospitalDetails.value.city;
+    this.hospital.pincode = hospitalDetails.value.pincode;
+    this.hospital.district = hospitalDetails.value.district;
+    
+    console.log("this.hospital: ", this.hospital);
+    this.adminService.addHospital(this.hospital).subscribe({
       next: (response: any) => {
         console.log(response);
       },
@@ -142,11 +67,21 @@ export class HospitalFormComponent implements OnInit {
         console.log(error);
       }
     });
-    this.getRoles();
   }
 
-  addLevel() {
-    this.adminService.addLevel(this.addLevelForm).subscribe({
+  updateHospital(hospitalDetails: any) {
+    
+    this.level.levelName = hospitalDetails.value.levelName;
+
+    this.hospital.level = this.level;
+    this.hospital.hospitalName = hospitalDetails.value.hospitalName;
+    this.hospital.state = hospitalDetails.value.state;
+    this.hospital.city = hospitalDetails.value.city;
+    this.hospital.pincode = hospitalDetails.value.pincode;
+    this.hospital.district = hospitalDetails.value.district;
+
+    console.log("this.hospital: ", this.hospital);
+    this.adminService.updateHospital(this.hospital).subscribe({
       next: (response: any) => {
         console.log(response);
       },
@@ -154,19 +89,6 @@ export class HospitalFormComponent implements OnInit {
         console.log(error);
       }
     });
-    this.getLevels();
-  }
-
-  addHospital() {
-    this.adminService.addHospital(this.addHospitalForm).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-    this.getHospitals();
   }
 
 }
