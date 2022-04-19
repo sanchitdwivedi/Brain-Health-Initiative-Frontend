@@ -9,10 +9,12 @@ import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { SearchComponent } from './doctor/search/search.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
+import { ProgramManagerComponent } from './program-manager/program-manager.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
+  { path: 'program-manager', component: ProgramManagerComponent, canActivate: [AuthGuard], data: {role: ['program manager']} },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
   { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
@@ -26,7 +28,7 @@ const routes: Routes = [
   { path: 'update-password/:id', component: UpdatePasswordComponent },
   { path: '**', component: LoginComponent }
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

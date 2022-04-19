@@ -1,1 +1,67 @@
-<p>Program Manager</p>
+<!--dash.component.html-->
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile *ngFor="let mc of miniCardData" [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-mini-card [icon]="mc.icon" [title]="mc.title" [value]="mc.value" [color]="mc.color"
+        [percentValue]="mc.percentValue" [isIncrease]="mc.isIncrease"></app-mini-card>
+    </mat-grid-tile>
+    <!--Charts-->
+    <mat-grid-tile colspan="2" rowspan="3">
+      <app-card title="Annual Patients Visit">
+        <app-annual-patients-visits></app-annual-patients-visits>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="3">
+      <app-card title="In-patients vs Out-patients">
+        <app-in-patients-out-patients></app-in-patients-out-patients>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="District level stats">
+        <div class="row">
+          <div class="col-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Select district</mat-label>
+              <mat-select [(value)]="selectedDistrict">
+                <mat-option *ngFor="let district of districts" [value]="district">
+                  {{district}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-10">
+            <app-stats-district [district]="selectedDistrict"></app-stats-district>
+          </div>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="City level stats">
+        <div class="row">
+          <div class="col-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Select city</mat-label>
+              <mat-select [(value)]="selectedCity">
+                <mat-option *ngFor="let city of cities" [value]="city">
+                  {{city}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-10">
+            <app-stats-city [city]="selectedCity"></app-stats-city>
+          </div>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+    <!--Table-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
+      <app-card title="Patients">
+        <app-patients-table></app-patients-table>
+      </app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
