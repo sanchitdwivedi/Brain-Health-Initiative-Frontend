@@ -14,7 +14,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'program-manager', component: ProgramManagerComponent },
+  { path: 'program-manager', component: ProgramManagerComponent, canActivate: [AuthGuard], data: {role: ['program manager']} },
   { path: 'admin', component: AdminComponent },
   { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },

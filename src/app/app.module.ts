@@ -49,6 +49,9 @@ import { InPatientsOutPatientsComponent } from './program-manager/charts/in-pati
 import { PatientsTableComponent } from './program-manager/patients-table/patients-table.component';
 import { MiniCardComponent } from './program-manager/mini-card/mini-card.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { StatsDistrictComponent } from './program-manager/charts/stats-district/stats-district.component';
+import {MatSelectModule} from '@angular/material/select';
+import { StatsCityComponent } from './program-manager/charts/stats-city/stats-city.component';
 
 
 @NgModule({
@@ -78,7 +81,9 @@ import {MatChipsModule} from '@angular/material/chips';
     AnnualPatientsVisitsComponent,
     InPatientsOutPatientsComponent,
     PatientsTableComponent,
-    MiniCardComponent
+    MiniCardComponent,
+    StatsDistrictComponent,
+    StatsCityComponent
   ],
   entryComponents:[
     DoctorFormComponent,
@@ -110,7 +115,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatMenuModule,
     ChartsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [
     AuthGuard,

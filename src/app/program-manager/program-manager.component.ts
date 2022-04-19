@@ -12,6 +12,12 @@ export class ProgramManagerComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  selectedDistrict: string = "";
+  selectedCity: string = "";
+
+  districts = ['Ropar', 'Bangalore'];
+  cities = ['Nangal', 'Chandigarh'];
+
   miniCardData = [
       { title: "Patients visited", value: "9465", isIncrease: true, color: "primary", percentValue: 0.5383, icon: "personal_injury", isCurrency: true },
       { title: "In-patients", value: "465", isIncrease: false, color: "accent", percentValue: 0.2544, icon: "local_hospital", isCurrency: true },

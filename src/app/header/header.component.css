@@ -15,7 +15,6 @@ nav
 }
 nav .heads
 {
-    text-transform: uppercase;
     left: 3%;
     display: inline-block;
     line-height: 80px;
