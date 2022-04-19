@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'update-password/:id', component: UpdatePasswordComponent },
   { path: '**', component: LoginComponent }
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
