@@ -50,15 +50,12 @@ export class HospitalFormComponent implements OnInit {
   addHospital(hospitalDetails: any) {
     
     this.level.levelName = hospitalDetails.value.levelName;
-
     this.hospital.level = this.level;
     this.hospital.hospitalName = hospitalDetails.value.hospitalName;
     this.hospital.state = hospitalDetails.value.state;
     this.hospital.city = hospitalDetails.value.city;
     this.hospital.pincode = hospitalDetails.value.pincode;
     this.hospital.district = hospitalDetails.value.district;
-    
-    console.log("this.hospital: ", this.hospital);
     this.adminService.addHospital(this.hospital).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -70,8 +67,7 @@ export class HospitalFormComponent implements OnInit {
   }
 
   updateHospital(hospitalDetails: any) {
-    
-    this.level.levelName = hospitalDetails.value.levelName;
+    this.level.levelId = this.hospitalDetail.level.levelId;
 
     this.hospital.level = this.level;
     this.hospital.hospitalName = hospitalDetails.value.hospitalName;
@@ -79,9 +75,7 @@ export class HospitalFormComponent implements OnInit {
     this.hospital.city = hospitalDetails.value.city;
     this.hospital.pincode = hospitalDetails.value.pincode;
     this.hospital.district = hospitalDetails.value.district;
-
-    console.log("this.hospital: ", this.hospital);
-    this.adminService.updateHospital(this.hospital).subscribe({
+    this.adminService.updateHospital(this.hospitalDetail.hospitalId, this.hospital).subscribe({
       next: (response: any) => {
         console.log(response);
       },
