@@ -39,6 +39,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warning.component';
 import {MatListModule} from '@angular/material/list';
 import { ProgramManagerComponent } from './program-manager/program-manager.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import { CardComponent } from './program-manager/card/card.component';
+import { AnnualPatientsVisitsComponent } from './program-manager/charts/annual-patients-visits/annual-patients-visits.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -63,7 +69,9 @@ import { ProgramManagerComponent } from './program-manager/program-manager.compo
     LevelFormComponent,
     RoleFormComponent,
     DeleteWarningComponent,
-    ProgramManagerComponent
+    ProgramManagerComponent,
+    CardComponent,
+    AnnualPatientsVisitsComponent
   ],
   entryComponents:[
     DoctorFormComponent,
@@ -90,7 +98,11 @@ import { ProgramManagerComponent } from './program-manager/program-manager.compo
     MatInputModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    ChartsModule
   ],
   providers: [
     AuthGuard,
