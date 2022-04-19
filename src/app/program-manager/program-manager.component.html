@@ -3,11 +3,9 @@
   <h1 class="mat-h1">Statistics</h1>
   <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
     <!--Mini Cards-->
-    <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]" [colspan]="( cardLayout | async )?.miniCard?.cols"
+    <mat-grid-tile *ngFor="let mc of miniCardData" [colspan]="( cardLayout | async )?.miniCard?.cols"
       [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="Card {{i}}">
-        <div>Mini Card Content Here</div>
-      </app-card>
+      <app-mini-card [icon]="mc.icon" [title]="mc.title" [value]="mc.value" [color]="mc.color" [percentValue]="mc.percentValue" [isIncrease]="mc.isIncrease"></app-mini-card>
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
@@ -15,7 +13,12 @@
         <app-annual-patients-visits></app-annual-patients-visits>
       </app-card>
     </mat-grid-tile>
-    <mat-grid-tile *ngFor="let i of [6, 7, 8]" [colspan]="( cardLayout | async )?.chart?.cols"
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="In-patients vs Out-patients">
+        <app-in-patients-out-patients></app-in-patients-out-patients>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let i of [7, 8]" [colspan]="( cardLayout | async )?.chart?.cols"
       [rowspan]="( cardLayout | async )?.chart?.rows">
       <app-card title="Card {{i}}">
         <div>Chart Content Here</div>
@@ -23,8 +26,8 @@
     </mat-grid-tile>
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
-      <app-card title="Card 9">
-        <div>Table Content Here</div>
+      <app-card title="Patients">
+        <app-patients-table></app-patients-table>
       </app-card>
     </mat-grid-tile>
   </mat-grid-list>

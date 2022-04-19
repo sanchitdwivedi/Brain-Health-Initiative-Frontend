@@ -18,7 +18,7 @@ export class AnnualPatientsVisitsComponent {
   public lineChartColors: Color[] = [
     {
       borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
+      backgroundColor: 'rgba(113, 191, 113, 1)',
     },
   ];
   public lineChartLegend = true;

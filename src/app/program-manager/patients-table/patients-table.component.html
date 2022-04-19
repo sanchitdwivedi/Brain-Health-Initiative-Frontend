@@ -1,0 +1,50 @@
+<div class="mat-elevation-z8 small-table">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">{{row.date}}</td>
+    </ng-container>
+
+    <!-- Patient Column -->
+    <ng-container matColumnDef="patient">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient</th>
+      <td mat-cell *matCellDef="let row">{{row.patient}}</td>
+    </ng-container>
+
+    <!-- Condition Column -->
+   <ng-container matColumnDef="condition">
+     <th mat-header-cell *matHeaderCellDef mat-sort-header>Condition</th>
+     <td mat-cell *matCellDef="let row">
+       <mat-chip-list>
+         <mat-chip color="{{ row.condition == 'Improved' ? 'primary' : ( row.condition == 'Worsened' ? 'warn' : 'undefined' ) }}" selected>
+           {{row.condition}}
+         </mat-chip>
+       </mat-chip-list>
+     </td>
+   </ng-container>
+
+    <!-- Hospital Column -->
+    <ng-container matColumnDef="hospital">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hospital</th>
+      <td mat-cell *matCellDef="let row">{{row.hospital}}</td>
+    </ng-container>
+
+    <!-- Doctor Column -->
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Doctor</th>
+      <td mat-cell *matCellDef="let row">{{row.doctor}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data?.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+</div>

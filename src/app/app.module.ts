@@ -45,6 +45,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CardComponent } from './program-manager/card/card.component';
 import { AnnualPatientsVisitsComponent } from './program-manager/charts/annual-patients-visits/annual-patients-visits.component';
 import { ChartsModule } from 'ng2-charts';
+import { InPatientsOutPatientsComponent } from './program-manager/charts/in-patients-out-patients/in-patients-out-patients.component';
+import { PatientsTableComponent } from './program-manager/patients-table/patients-table.component';
+import { MiniCardComponent } from './program-manager/mini-card/mini-card.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -71,7 +75,10 @@ import { ChartsModule } from 'ng2-charts';
     DeleteWarningComponent,
     ProgramManagerComponent,
     CardComponent,
-    AnnualPatientsVisitsComponent
+    AnnualPatientsVisitsComponent,
+    InPatientsOutPatientsComponent,
+    PatientsTableComponent,
+    MiniCardComponent
   ],
   entryComponents:[
     DoctorFormComponent,
@@ -102,7 +109,8 @@ import { ChartsModule } from 'ng2-charts';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    ChartsModule
+    ChartsModule,
+    MatChipsModule
   ],
   providers: [
     AuthGuard,
