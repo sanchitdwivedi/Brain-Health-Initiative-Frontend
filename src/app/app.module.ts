@@ -37,6 +37,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warning.component';
+import {MatListModule} from '@angular/material/list';
+import { ProgramManagerComponent } from './program-manager/program-manager.component';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warn
     AdminFormComponent,
     LevelFormComponent,
     RoleFormComponent,
-    DeleteWarningComponent
+    DeleteWarningComponent,
+    ProgramManagerComponent
   ],
   entryComponents:[
     DoctorFormComponent,
@@ -86,7 +89,8 @@ import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warn
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatPaginatorModule 
+    MatPaginatorModule,
+    MatListModule
   ],
   providers: [
     AuthGuard,
