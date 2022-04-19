@@ -22,8 +22,8 @@ export class AdminService {
     return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail);
   }
 
-  public updateDoctor(doctorDetail: any){
-    return this.httpClient.put(`${baseUrl}/doctor`, doctorDetail.value);
+  public updateDoctor(id: any, doctorDetail: any){
+    return this.httpClient.put(`${baseUrl}/doctor/update/${id}`, doctorDetail);
   }
 
   public deleteDoctor(id: any){
@@ -43,12 +43,11 @@ export class AdminService {
     return this.httpClient.post(`${baseUrl}/role`, roleDetail.value);
   }
 
-  public updateRole(roleDetail: any){
-    return this.httpClient.put(`${baseUrl}/role`, roleDetail.value);
+  public updateRole(id: any, roleDetail: any){
+    return this.httpClient.put(`${baseUrl}/role/${id}`, roleDetail.value);
   }
 
   public deleteRole(id: any){
-    console.log("roleLevel: ", id);
     return this.httpClient.delete(`${baseUrl}/role/${id}`);
   }
 
@@ -64,12 +63,12 @@ export class AdminService {
     return this.httpClient.post(`${baseUrl}/level`, levelDetail.value);
   }
 
-  public updateLevel(levelDetail: any){
-    return this.httpClient.put(`${baseUrl}/level`, levelDetail.value);
+  public updateLevel(id: any, levelDetail: any){
+    console.log("->", id, levelDetail);
+    return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail.value);
   }
 
   public deleteLevel(id: any){    
-    console.log("deleteLevel: ", id);
     return this.httpClient.delete(`${baseUrl}/level/${id}`);
   }
 
@@ -85,8 +84,9 @@ export class AdminService {
     return this.httpClient.post(`${baseUrl}/hospital`, hospitalDetail);
   }
 
-  public updateHospital(hospitalDetail: any){
-    return this.httpClient.put(`${baseUrl}/hospital`, hospitalDetail);
+  public updateHospital(id: any, hospitalDetail: any){
+    console.log(id, hospitalDetail);
+    return this.httpClient.put(`${baseUrl}/hospital/${id}`, hospitalDetail);
   }
 
   public deleteHospital(id: any){
@@ -106,8 +106,8 @@ export class AdminService {
     return this.httpClient.post(`${baseUrl}/admin`, adminDetail.value);
   }
 
-  public updateAdmin(adminDetail: any){
-    return this.httpClient.put(`${baseUrl}/admin`, adminDetail.value);
+  public updateAdmin(id: any, adminDetail: any){
+    return this.httpClient.put(`${baseUrl}/admin/${id}`, adminDetail.value);
   }
 
   public deleteAdmin(id: any){

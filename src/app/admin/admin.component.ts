@@ -118,7 +118,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(LevelFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -126,7 +126,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(RoleFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -134,7 +134,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -142,7 +142,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -150,7 +150,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -160,11 +160,10 @@ export class AdminComponent implements OnInit {
   openDetailDialog(element: Element, tableName: string) {
     switch (tableName) {
       case 'DOCTOR': {
-        console.log("element", element);
         const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe((result: string) => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -172,7 +171,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -180,7 +179,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: element, operation: '' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -190,11 +189,10 @@ export class AdminComponent implements OnInit {
   public openUpdateDialog = (element: string, tableName: string) => {
     switch (tableName) {
       case 'LEVEL': {
-        console.log("level Update");
         const dialogRef = this.dialog.open(LevelFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -202,16 +200,15 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(RoleFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
       case 'DOCTOR': {
-        console.log("element", element);
         const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe((result: string) => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -219,7 +216,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -227,7 +224,7 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          console.log(`Dialog result: ${result}`);
+          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
@@ -235,7 +232,6 @@ export class AdminComponent implements OnInit {
   }
 
   public openDeleteDialog = (element: any, tableName: string) => {
-    console.log(element, tableName);
     switch (tableName) {
       case 'LEVEL': {
         const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.levelName });
@@ -253,7 +249,6 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
           if (result === "true") {
             this.adminService.deleteRole(element.roleId).subscribe(res => {
-              console.log(res);
               this.getTableData(tableName);
             })
           }
@@ -265,7 +260,6 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
           if (result === "true") {
             this.adminService.deleteDoctor(element.doctor.uuid).subscribe(res => {
-              console.log(res);
               this.getTableData(tableName);
             })
           }
@@ -277,7 +271,6 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
           if (result === "true") {
             this.adminService.deleteHospital(element.hospitalId).subscribe(res => {
-              console.log(res);
               this.getTableData(tableName);
             })
           }
@@ -289,7 +282,6 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
           if (result === "true") {
             this.adminService.deleteAdmin(element.uuid).subscribe(res => {
-              console.log(res);
               this.getTableData(tableName);
             })
           }
