@@ -104,7 +104,7 @@ export class DoctorFormComponent implements OnInit {
       this.doctor.gender = doctorDetails.value.gender;
       this.doctor.email = doctorDetails.value.email;
 
-      console.log("this.doctor: ", this.doctor);
+      console.log("this.doctor: ", this.doctorDetail);
       this.adminService.addDoctor(this.doctor).subscribe({
         next: (response: any) => {
           console.log(response);
@@ -119,18 +119,19 @@ export class DoctorFormComponent implements OnInit {
   }
 
   updateDoctor(doctorDetails: any) {
-    console.log(doctorDetails.value);
-      this.role.roleName = doctorDetails.value.roleName;
+    console.log(doctorDetails.value, this.doctorDetail);
+      // this.role.roleName = doctorDetails.value.roleName;
 
-      this.user.userId = doctorDetails.value.userId;
-      this.user.role = this.role;
-      this.user.password = doctorDetails.value.password;
+      this.user.uuid = this.doctorDetail.doctor.uuid;
+      // this.user.role = this.role;
+      // this.user.password = doctorDetails.value.password;
 
       this.hospital.hospitalId = doctorDetails.value.hospitalId;
 
-      this.doctor.doctor = this.user;
+      // this.doctor.doctor.uuid = this.doctorDetail.doctor.uuid;
       this.doctor.hospital = this.hospital;
 
+      this.doctor.doctor = this.user;
       this.doctor.firstName = doctorDetails.value.firstName;
       this.doctor.lastName = doctorDetails.value.lastName;
       this.doctor.city = doctorDetails.value.city;
@@ -142,7 +143,7 @@ export class DoctorFormComponent implements OnInit {
       this.doctor.email = doctorDetails.value.email;
 
       console.log("this.doctor: ", this.doctor);
-      this.adminService.updateDoctor(this.doctor).subscribe({
+      this.adminService.updateDoctor(this.doctor.doctor.uuid, this.doctor).subscribe({
         next: (response: any) => {
           console.log(response);
         },

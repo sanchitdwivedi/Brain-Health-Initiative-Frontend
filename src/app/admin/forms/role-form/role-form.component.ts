@@ -19,7 +19,6 @@ export class RoleFormComponent implements OnInit {
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
-    console.log("operationAndDate: ", operationAndDate);
     if (operationAndDate.operation === 'add') {
       this.add = true;
     } else if (operationAndDate.operation === 'update') {
@@ -44,8 +43,9 @@ export class RoleFormComponent implements OnInit {
   }
 
   updateRole(roleDetails: any) {
-    console.log("roleDetails: ", roleDetails.value);
-    this.adminService.updateRole(roleDetails).subscribe({
+    console.log("roleDetails Called: ", roleDetails);
+    console.log("this.roleDetails: ", this.roleDetail);
+    this.adminService.updateRole(this.roleDetail.roleId, roleDetails).subscribe({
       next: (response: any) => {
         console.log(response);
       },

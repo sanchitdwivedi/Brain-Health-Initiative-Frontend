@@ -15,7 +15,7 @@ import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
   { path: 'program-manager', component: ProgramManagerComponent, canActivate: [AuthGuard], data: {role: ['program manager']} },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
   { path: 'doctor/search-patient', component: SearchComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/create-patient', component: CreateComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
   { path: 'doctor/questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard], data: {role: ['secondary specialist', 'medical officer']} },
@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: 'doctor/patients', component: PatientsComponent, canActivate: [AuthGuard], data: {role: ['tertiary specialist', 'secondary specialist', 'medical officer']} },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
-  // { path: '', component: ConsultationFormComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'update-password/:id', component: UpdatePasswordComponent },
   { path: '**', component: LoginComponent }

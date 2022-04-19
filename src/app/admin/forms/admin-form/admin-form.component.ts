@@ -65,7 +65,7 @@ export class AdminFormComponent implements OnInit {
   }
 
   updateAdmin(adminDetails:any) {
-    this.adminService.updateAdmin(adminDetails.value).subscribe({
+    this.adminService.updateAdmin(this.adminDetail.userId, adminDetails.value).subscribe({
       next: (response: any) => {
         console.log(response);
       },

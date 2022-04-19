@@ -35,6 +35,7 @@ export class LevelFormComponent implements OnInit {
         levelName: [''],
         levelDescription: ['']
       });
+      console.log(this.levelDetail);
     }
   }
 
@@ -53,8 +54,8 @@ export class LevelFormComponent implements OnInit {
   }
 
   updateLevel(levelDetails: any) {
-    console.log("levelDetails:", levelDetails.value);
-    this.adminService.updateLevel(levelDetails.value).subscribe({
+    console.log("levelDetails:+++", this.levelDetail.levelId, levelDetails.value);
+    this.adminService.updateLevel(this.levelDetail.levelId, levelDetails).subscribe({
       next: (response: any) => {
         console.log(response);
       },
