@@ -3,6 +3,7 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { DateShareService } from 'src/app/_services/date-share.service';
 import { QuestionnaireService } from 'src/app/_services/questionnaire.service';
 import { Question } from 'src/app/interfaces/Question';
+import { Patient } from 'src/app/interfaces/Patient';
 
 @Component({
   selector: 'app-consultation-table-row',
@@ -51,7 +52,7 @@ export class ConsultationTableRowComponent implements OnInit {
 
     this.formatedDateAndTime = [year, month, day].join('-');
 
-    if(this.reportDetail.followUp.length>0){
+    if(this.reportDetail.followUp!==null && this.reportDetail.followUp.length>0){
       var da = new Date(this.reportDetail.followUp);
       this.followUp = [da.getFullYear(), '' + (da.getMonth()+1), '' + (da.getDate())].join('-');
     }

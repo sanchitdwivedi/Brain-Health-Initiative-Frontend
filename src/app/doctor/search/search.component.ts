@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DateShareService } from 'src/app/_services/date-share.service';
+import { PatientDetailService } from 'src/app/_services/patient-detail.service';
 import { AbhaDetailService } from './../../_services/abha-detail.service';
 
 @Component({
@@ -17,32 +18,52 @@ export class SearchComponent implements OnInit {
   buttonText: string = 'Register New Patient'
   errorMessage1: string = 'Please enter either ABHA ID or Mobile Number to search patient!!';
   errorMessage2: string = 'Either patient not registered or No consultation form exist corresponding to given ABHA ID!';
+  errorMessage4: string = 'There is no patient with this ABHA ID';
+  errorMessage5: string = 'There is no consultation form of this patient';
   errorMessage3: string = 'Either patient not registered or No consultation form exist corresponding to given Mobile Number!';
 
-  constructor(private abhaDetailService: AbhaDetailService, private dataShareService: DateShareService) { }
+  constructor(private abhaDetailService: AbhaDetailService, private dataShareService: DateShareService,
+              private patientDetailService: PatientDetailService) { }
 
   ngOnInit(): void {
   }
 
   async search() {
     if(this.abhaId !== ''){
-      await this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
+      this.patientDetailService.getPatientByAbhaId(this.abhaId).subscribe({
         next: (response: any) => {
-          this.reports = response;
-          if(this.reports===null || this.reports.length===0){ 
+          if(response===null || response.length===0){
             this.isRegisterButton = false;
-            this.changeButton();  
-            alert(this.errorMessage2);
-          }else{
-            this.isRegisterButton = true;
             this.changeButton();
-            this.dataShareService.sendReports(this.reports);
+            this.reports = [];
+            alert(this.errorMessage4);
+          }
+          else{
+            this.dataShareService.sendPatient(response);
+            this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
+              next: (response: any) => {
+                this.reports = response;
+                this.isRegisterButton = true;
+                if(this.reports===null || this.reports.length===0){ 
+                  this.changeButton();  
+                  this.reports = [];
+                  alert(this.errorMessage5);
+                }else{
+                  this.changeButton();
+                  this.dataShareService.sendReports(this.reports);
+                }
+              },
+              error: (error: any) => {
+                console.log(error);
+              }
+            })
           }
         },
         error: (error: any) => {
           console.log(error);
         }
       })
+      
       
     }else if(this.mobileNumber !== ''){
       await this.abhaDetailService.getPatientConsultationByMobileNo(this.mobileNumber).subscribe({

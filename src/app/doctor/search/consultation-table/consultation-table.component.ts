@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Patient } from 'src/app/interfaces/Patient';
 
 @Component({
   selector: 'app-consultation-table',

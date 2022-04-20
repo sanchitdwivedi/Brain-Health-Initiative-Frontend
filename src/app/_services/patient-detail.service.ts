@@ -13,4 +13,8 @@ export class PatientDetailService {
     // console.log("getDetail Called");
     return this.httpClient.get(`${baseUrl}/NHR/${abhaId}`)
   }
+
+  public getPatientByAbhaId(id: string){
+    return this.httpClient.get(`${baseUrl}/patient/${id}`);
+  }
 }
