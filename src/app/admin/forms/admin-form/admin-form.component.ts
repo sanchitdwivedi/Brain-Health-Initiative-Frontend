@@ -1,3 +1,4 @@
+import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY_PROVIDER_FACTORY } from '@angular/cdk/overlay/overlay-directives';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -54,7 +55,22 @@ export class AdminFormComponent implements OnInit {
   }
 
   addAdmin(adminDetails:any) {
-    this.adminService.addAdmin(adminDetails.value).subscribe({
+    this.role.roleName = adminDetails.value.roleName;
+
+    this.user.userId = adminDetails.value.userId;
+    this.user.password = adminDetails.value.password;
+    this.user.role = this.role;
+
+    this.admin.admin = this.user;
+    this.admin.firstName = adminDetails.value.firstName;
+    this.admin.lastName = adminDetails.value.lastName;
+    this.admin.pincode = adminDetails.value.pincode;
+    this.admin.mobileNo = adminDetails.value.mobileNo;
+    this.admin.email = adminDetails.value.email;
+    this.admin.gender = adminDetails.value.gender;
+    
+    console.log("adminDetails: ",this.admin, adminDetails.value);
+    this.adminService.addAdmin(this.admin).subscribe({
       next: (response: any) => {
         console.log(response);
       },
@@ -65,7 +81,22 @@ export class AdminFormComponent implements OnInit {
   }
 
   updateAdmin(adminDetails:any) {
-    this.adminService.updateAdmin(this.adminDetail.userId, adminDetails.value).subscribe({
+    this.role.roleName = adminDetails.value.roleName;
+
+    this.user.userId = adminDetails.value.userId;
+    this.user.password = adminDetails.value.password;
+    this.user.role = this.role;
+
+    this.admin.admin = this.user;
+    this.admin.firstName = adminDetails.value.firstName;
+    this.admin.lastName = adminDetails.value.lastName;
+    this.admin.pincode = adminDetails.value.pincode;
+    this.admin.mobileNo = adminDetails.value.mobileNo;
+    this.admin.email = adminDetails.value.email;
+    this.admin.gender = adminDetails.value.gender;
+    
+
+    this.adminService.updateAdmin(this.adminDetail.userId, this.admin).subscribe({
       next: (response: any) => {
         console.log(response);
       },

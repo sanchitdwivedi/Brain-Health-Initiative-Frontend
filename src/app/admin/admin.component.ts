@@ -150,7 +150,6 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: {}, operation: 'add' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
-          // console.log(`Dialog result: ${result}`);
         });
         break;
       }
