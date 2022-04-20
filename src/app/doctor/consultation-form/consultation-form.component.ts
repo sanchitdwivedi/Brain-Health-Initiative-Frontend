@@ -6,7 +6,7 @@ import { DateShareService } from 'src/app/_services/date-share.service';
 import { DoctorAuthService } from 'src/app/_services/doctor-auth.service';
 import { formatDate } from '@angular/common';
 import { ConsultationService } from 'src/app/_services/consultation.service';
-import { Doctor } from 'src/app/interfaces/Doctor';
+import { Patient } from 'src/app/interfaces/Patient';
 
 @Component({
   selector: 'app-consultation-form',
@@ -19,6 +19,7 @@ export class ConsultationFormComponent implements OnInit {
   doctors: any = [];
   consultationForm: FormGroup;
   reports: ConsultationCard[] = [];
+  patient: Patient;
   name: string = '';
   consultation: ConsultationCard = {} as ConsultationCard;
 
@@ -30,7 +31,9 @@ export class ConsultationFormComponent implements OnInit {
 
   async ngOnInit() {
     this.reports = this.dataShareService.getReports();
-    this.name = this.reports[0].patient.first_name +" "+ this.reports[0].patient.last_name;
+    this.patient = this.dataShareService.getPatient();
+
+    this.name = this.patient.first_name +" "+ this.patient.last_name;
 
     this.consultationForm = this.fb.group({
         name: this.name,
@@ -62,7 +65,7 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   async create(){
-    this.consultation.patient = this.reports[0].patient;
+    this.consultation.patient = this.patient;
     this.doctorService.getDoctorDetails(this.doctorAuthService.getId()).subscribe({
       next: (response: any) => {
         // this.consultation.hospital = response.hospital;
@@ -154,6 +157,20 @@ export class ConsultationFormComponent implements OnInit {
 
   removeMedicine(i: number){
     this.medicines().removeAt(i);
+  }
+
+  formatDate(date: Date): string {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 
 

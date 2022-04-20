@@ -16,70 +16,70 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="abha_id">Abha ID</label>
-                        <input type="text" class="form-control" id="abha_id" [value]="reports[0].patient.abhaId"
+                        <input type="text" class="form-control" id="abha_id" [value]="patient.abhaId"
                             readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="gender">Gender</label>
-                        <input type="text" class="form-control" id="gender" [value]="reports[0].patient.gender"
+                        <input type="text" class="form-control" id="gender" [value]="patient.gender"
                             readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="mobileNumber">Mobile Number</label>
-                        <input type="text" class="form-control" id="mobileNumber" [value]="reports[0].patient.mobile_no"
+                        <input type="text" class="form-control" id="mobileNumber" [value]="patient.mobile_no"
                             readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="information_caregiver_name">Information Caregiver</label>
                         <input type="text" class="form-control" id="information_caregiver_name"
-                            [value]="reports[0].patient.information_caregiver_name" readonly>
+                            [value]="patient.information_caregiver_name" readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="relationship_with_patient">Relationship With Patient</label>
                         <input type="text" class="form-control" id="relationship_with_patient"
-                            [value]="reports[0].patient.relationship_with_patient" readonly>
+                            [value]="patient.relationship_with_patient" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="dob">Date Of Birth</label>
-                        <input type="text" class="form-control" id="dob" [value]="reports[0].patient.dob" readonly>
+                        <input type="text" class="form-control" id="dob" [value]="formatDate(patient.dob)" readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="socioeconomic_status">Socioeconomic Status</label>
                         <input type="text" class="form-control" id="socioeconomic_status"
-                            [value]="reports[0].patient.socioeconomic_status" readonly>
+                            [value]="patient.socioeconomic_status" readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="education">Education</label>
                         <input type="text" class="form-control" id="education"
-                            [value]="reports[0].patient.education" readonly>
+                            [value]="patient.education" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address_line_1">Address</label>
-                    <input type="text" class="form-control" id="address_line_1" [value]="reports[0].patient.address_line_1" readonly>
+                    <input type="text" class="form-control" id="address_line_1" [value]="patient.address_line_1" readonly>
                   </div>
                   <div class="form-group">
                     <label for="address_line_2">Address 2</label>
-                    <input type="text" class="form-control" id="address_line_2" [value]="reports[0].patient.address_line_2" readonly>
+                    <input type="text" class="form-control" id="address_line_2" [value]="patient.address_line_2" readonly>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="district">Distict</label>
-                        <input type="text" class="form-control" id="district" [value]="reports[0].patient.district" readonly>
+                        <input type="text" class="form-control" id="district" [value]="patient.district" readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="state">State</label>
                         <input type="text" class="form-control" id="state"
-                            [value]="reports[0].patient.state" readonly>
+                            [value]="patient.state" readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pin_code">Pincode</label>
                         <input type="text" class="form-control" id="pin_code"
-                            [value]="reports[0].patient.pin_code" readonly>
+                            [value]="patient.pin_code" readonly>
                     </div>
                 </div>
             </form>

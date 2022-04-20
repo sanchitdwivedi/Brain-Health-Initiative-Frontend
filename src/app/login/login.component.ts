@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit {
           this.doctorAuthService.setToken(response.jwtToken);
           this.router.navigate(['/admin']);
         } else if (role === 'program manager') {
-          this.router.navigate(['/programManager']);
+          this.doctorAuthService.setId(response.user.userId);
+          this.doctorAuthService.setRole(role);
+          this.doctorAuthService.setToken(response.jwtToken);
+          this.router.navigate(['/program-manager']);
         } else {
           this.router.navigate(['/login']);
         }
