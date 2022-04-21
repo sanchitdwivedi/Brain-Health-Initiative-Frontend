@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
     this.getTableData(this.tableName);
   }
 
-  public levelColumns = ['levelName', 'levelDescription', 'update', 'delete'];
+  public levelColumns = ['levelName', 'levelDescription', 'update'];
   public roleColumns = ['roleName', 'roleDescription', 'update'];
   public doctorColumns = ['doctorName', 'hospitalName', 'details', 'update', 'delete'];
   public hospitalColumns = ['hospitalName', 'city', 'details', 'update', 'delete'];

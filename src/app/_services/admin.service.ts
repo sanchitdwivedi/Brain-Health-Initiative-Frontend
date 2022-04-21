@@ -39,9 +39,9 @@ export class AdminService {
     return this.httpClient.get(`${baseUrl}/role`);
   }
 
-  public addRole(roleDetail: any){
-    return this.httpClient.post(`${baseUrl}/role`, roleDetail.value);
-  }
+  // public addRole(roleDetail: any){
+  //   return this.httpClient.post(`${baseUrl}/role`, roleDetail.value);
+  // }
 
   public updateRole(id: any, roleDetail: any){
     return this.httpClient.put(`${baseUrl}/role/${id}`, roleDetail);
@@ -59,13 +59,13 @@ export class AdminService {
     return this.httpClient.get(`${baseUrl}/level`);
   }
 
-  public addLevel(levelDetail: any){
-    return this.httpClient.post(`${baseUrl}/level`, levelDetail.value);
-  }
+  // public addLevel(levelDetail: any){
+  //   return this.httpClient.post(`${baseUrl}/level`, levelDetail.value);
+  // }
 
   public updateLevel(id: any, levelDetail: any){
     console.log("->", id, levelDetail);
-    return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail.value);
+    return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail);
   }
 
   public deleteLevel(id: any){    
