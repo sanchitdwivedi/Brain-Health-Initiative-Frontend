@@ -46,8 +46,8 @@
         </div>
         <div class="form-group col-sm-3">
             <label for="level" class="col-form-label">Level</label>
-            <select class="form-control" id="level" [(ngModel)]="hospitalDetail.level.levelName" name="levelName">
-                <option *ngFor="let level of levels" [value]="level.levelName">{{level.levelName}}</option>
+            <select class="form-control" id="level" [(ngModel)]="hospitalDetail.level.levelName" name="levelId">
+                <option *ngFor="let level of levels" [value]="level.levelId">{{level.levelName}}</option>
             </select>
         </div>
     </div>

@@ -23,7 +23,6 @@ export class HospitalFormComponent implements OnInit {
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
-    console.log("operationAndDate: ", operationAndDate.element);
     if (operationAndDate.operation === 'add') {
       this.add = true;
     } else if (operationAndDate.operation === 'update') {
@@ -48,7 +47,6 @@ export class HospitalFormComponent implements OnInit {
   }
 
   addHospital(hospitalDetails: any) {
-    
     this.level.levelName = hospitalDetails.value.levelName;
     this.hospital.level = this.level;
     this.hospital.hospitalName = hospitalDetails.value.hospitalName;
@@ -67,7 +65,7 @@ export class HospitalFormComponent implements OnInit {
   }
 
   updateHospital(hospitalDetails: any) {
-    this.level.levelId = this.hospitalDetail.level.levelId;
+    this.level.levelId = hospitalDetails.value.levelId;
 
     this.hospital.level = this.level;
     this.hospital.hospitalName = hospitalDetails.value.hospitalName;

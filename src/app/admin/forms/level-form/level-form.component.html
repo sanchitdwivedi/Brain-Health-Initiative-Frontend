@@ -1,6 +1,6 @@
 <button class="close" mat-button mat-dialog-close>X</button>
 <h1 mat-dialog-title>Level</h1>
-<form [formGroup]="levelForm" *ngIf="add">
+<!-- <form [formGroup]="levelForm" *ngIf="add">
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="levelName" class="col-form-label">Level Name</label>
@@ -13,17 +13,17 @@
         </div>
     </div>
     <button mat-raised-button (click)="addLevel(levelForm)" mat-dialog-close>Add Level</button>
-</form>
+</form> -->
 
 <form [formGroup]="levelForm" *ngIf="update">
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="levelName" class="col-form-label">Level Name</label>
-            <input type="text" class="form-control" id="levelName" formControlName="levelName" [value]="levelDetail.levelName" placeholder="Level Name">
+            <input type="text" class="form-control" id="levelName" formControlName="levelName" [value]="levelDetail.levelName" placeholder="Level Name" readonly>
         </div>
         <div class="col-sm-6">
             <label for="levelDescription" class="col-form-label">Level Description</label>
-            <input type="text" class="form-control" id="levelDescription" formControlName="levelDescription" [value]="levelDetail.levelName"
+            <input type="text" class="form-control" id="levelDescription" formControlName="levelDescription" [value]="levelDetail.levelDescription"
                 placeholder="Level Description">
         </div>
     </div>

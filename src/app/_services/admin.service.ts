@@ -18,7 +18,6 @@ export class AdminService {
   }
 
   public addDoctor(doctorDetail: any){
-    console.log("addDoctor: ", doctorDetail);
     return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail);
   }
 
@@ -27,7 +26,6 @@ export class AdminService {
   }
 
   public deleteDoctor(id: any){
-    console.log("doctorLevel: ", id);
     return this.httpClient.delete(`${baseUrl}/doctor/${id}`);
   }
 
@@ -39,9 +37,9 @@ export class AdminService {
     return this.httpClient.get(`${baseUrl}/role`);
   }
 
-  public addRole(roleDetail: any){
-    return this.httpClient.post(`${baseUrl}/role`, roleDetail.value);
-  }
+  // public addRole(roleDetail: any){
+  //   return this.httpClient.post(`${baseUrl}/role`, roleDetail.value);
+  // }
 
   public updateRole(id: any, roleDetail: any){
     return this.httpClient.put(`${baseUrl}/role/${id}`, roleDetail);
@@ -59,13 +57,12 @@ export class AdminService {
     return this.httpClient.get(`${baseUrl}/level`);
   }
 
-  public addLevel(levelDetail: any){
-    return this.httpClient.post(`${baseUrl}/level`, levelDetail.value);
-  }
+  // public addLevel(levelDetail: any){
+  //   return this.httpClient.post(`${baseUrl}/level`, levelDetail.value);
+  // }
 
   public updateLevel(id: any, levelDetail: any){
-    console.log("->", id, levelDetail);
-    return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail.value);
+    return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail);
   }
 
   public deleteLevel(id: any){    
@@ -85,12 +82,10 @@ export class AdminService {
   }
 
   public updateHospital(id: any, hospitalDetail: any){
-    console.log(id, hospitalDetail);
     return this.httpClient.put(`${baseUrl}/hospital/${id}`, hospitalDetail);
   }
 
   public deleteHospital(id: any){
-    console.log("deleteHospital: ", id);
     return this.httpClient.delete(`${baseUrl}/hospital/${id}`);
   }
 
@@ -111,7 +106,6 @@ export class AdminService {
   }
 
   public deleteAdmin(id: any){
-    console.log("deleteAdmin: ", id);
     return this.httpClient.delete(`${baseUrl}/admin/${id}`);
   }
 }

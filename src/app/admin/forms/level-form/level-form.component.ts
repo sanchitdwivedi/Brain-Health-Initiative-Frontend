@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Level } from 'src/app/interfaces/Level';
 import { AdminService } from 'src/app/_services/admin.service';
 @Component({
   selector: 'app-level-form',
@@ -13,6 +14,7 @@ export class LevelFormComponent implements OnInit {
   @Input() tableName: string;
   levelForm: FormGroup;
   levelDetail: any;
+  level: Level = ({} as any) as Level;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public operationAndDate: any,
@@ -42,20 +44,21 @@ export class LevelFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addLevel(levelDetails: any) {
-    this.adminService.addLevel(levelDetails).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
-  }
+  // addLevel(levelDetails: any) {
+  //   this.adminService.addLevel(levelDetails).subscribe({
+  //     next: (response: any) => {
+  //       console.log(response);
+  //     },
+  //     error: (error: any) => {
+  //       console.log(error);
+  //     }
+  //   });
+  // }
 
   updateLevel(levelDetails: any) {
-    console.log("levelDetails:+++", this.levelDetail.levelId, levelDetails.value);
-    this.adminService.updateLevel(this.levelDetail.levelId, levelDetails).subscribe({
+    this.level.levelDescription = levelDetails.value.levelDescription;
+    this.level.levelName = this.levelDetail.levelName;
+    this.adminService.updateLevel(this.levelDetail.levelId, this.level).subscribe({
       next: (response: any) => {
         console.log(response);
       },
