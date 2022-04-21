@@ -1,6 +1,6 @@
 <button class="close" mat-button mat-dialog-close>X</button>
 <h1 mat-dialog-title>Role</h1>
-<form #roleForm="ngForm" *ngIf="add">
+<!-- <form #roleForm="ngForm" *ngIf="add">
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="roleName" class="col-form-label">Role Name</label>
@@ -13,13 +13,13 @@
         </div>
     </div>
     <button mat-raised-button (click)="addRole(roleForm)" mat-dialog-close>Add Role</button>
-</form>
+</form> -->
 <form #roleForm="ngForm" *ngIf="update">
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="roleName" class="col-form-label">Role Name</label>
             <input type="text" class="form-control" id="roleName" [(ngModel)]="roleDetail.roleName" name="roleName"
-                placeholder="Role Name">
+                readonly>
         </div>
         <div class="col-sm-6">
             <label for="roleDescription" class="col-form-label">Role Description</label>

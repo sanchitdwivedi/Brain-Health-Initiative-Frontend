@@ -79,11 +79,11 @@
                         <input matInput (keyup)="applyFilter($event, tableName)" placeholder="Ex. ium" #input>
                     </mat-form-field>
                 </div>
-                <div class="col-1" style="padding: 15px;">
+                <!-- <div class="col-1" style="padding: 15px;">
                     <button mat-mini-fab color="blue" aria-label="Add Role" (click)="openAddDialog(tableName)">
                         <mat-icon>note_add</mat-icon>
                     </button>
-                </div>
+                </div> -->
             </div>
 
             <table mat-table [dataSource]="dataSourceRole" (matSortChange)="sortData($event, tableName)" matSort>

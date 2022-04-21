@@ -44,7 +44,7 @@ export class AdminService {
   }
 
   public updateRole(id: any, roleDetail: any){
-    return this.httpClient.put(`${baseUrl}/role/${id}`, roleDetail.value);
+    return this.httpClient.put(`${baseUrl}/role/${id}`, roleDetail);
   }
 
   public deleteRole(id: any){
