@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit {
   }
 
   public levelColumns = ['levelName', 'levelDescription', 'update', 'delete'];
-  public roleColumns = ['roleName', 'roleDescription', 'update', 'delete'];
+  public roleColumns = ['roleName', 'roleDescription', 'update'];
   public doctorColumns = ['doctorName', 'hospitalName', 'details', 'update', 'delete'];
   public hospitalColumns = ['hospitalName', 'city', 'details', 'update', 'delete'];
   public adminColumns = ['adminName', 'role', 'details', 'update', 'delete'];
