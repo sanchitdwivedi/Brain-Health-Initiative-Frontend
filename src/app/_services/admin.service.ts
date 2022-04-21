@@ -18,7 +18,6 @@ export class AdminService {
   }
 
   public addDoctor(doctorDetail: any){
-    console.log("addDoctor: ", doctorDetail);
     return this.httpClient.post(`${baseUrl}/doctor`, doctorDetail);
   }
 
@@ -27,7 +26,6 @@ export class AdminService {
   }
 
   public deleteDoctor(id: any){
-    console.log("doctorLevel: ", id);
     return this.httpClient.delete(`${baseUrl}/doctor/${id}`);
   }
 
@@ -64,7 +62,6 @@ export class AdminService {
   // }
 
   public updateLevel(id: any, levelDetail: any){
-    console.log("->", id, levelDetail);
     return this.httpClient.put(`${baseUrl}/level/${id}`, levelDetail);
   }
 
@@ -85,12 +82,10 @@ export class AdminService {
   }
 
   public updateHospital(id: any, hospitalDetail: any){
-    console.log(id, hospitalDetail);
     return this.httpClient.put(`${baseUrl}/hospital/${id}`, hospitalDetail);
   }
 
   public deleteHospital(id: any){
-    console.log("deleteHospital: ", id);
     return this.httpClient.delete(`${baseUrl}/hospital/${id}`);
   }
 
@@ -111,7 +106,6 @@ export class AdminService {
   }
 
   public deleteAdmin(id: any){
-    console.log("deleteAdmin: ", id);
     return this.httpClient.delete(`${baseUrl}/admin/${id}`);
   }
 }
