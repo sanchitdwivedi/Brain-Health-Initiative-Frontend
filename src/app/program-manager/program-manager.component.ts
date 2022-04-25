@@ -27,13 +27,15 @@ export class ProgramManagerComponent implements OnInit{
     this.doctors = await this.statsService.getDoctorsData();
     this.hospitals = await this.statsService.getHospitalsData();
     this.fillMiniCardData();
+    this.fillDistricts();
+    this.fillCities();
   }
 
   selectedDistrict: string = "";
   selectedCity: string = "";
 
-  districts = ['Ropar', 'Bangalore'];
-  cities = ['Nangal', 'Chandigarh'];
+  districts: string[] = [];
+  cities: string[] = [];
 
   miniCardData: any = [];
 
@@ -101,5 +103,27 @@ export class ProgramManagerComponent implements OnInit{
       { title: "Patients cured", value: currentYearData.length.toString(), isIncrease: change>=0, color: "primary", percentValue: Math.abs(change), icon: "healing", change: true }
     )
   } 
+
+  fillDistricts(){
+    let set = new Set<string>();
+    this.hospitals.forEach(hospital => {
+      set.add(hospital.district);
+    });
+
+    for(let districts of set){
+      this.districts.push(districts);
+    }
+  }
+
+  fillCities(){
+    let set = new Set<string>();
+    this.hospitals.forEach(hospital => {
+      set.add(hospital.city);
+    });
+
+    for(let city of set){
+      this.cities.push(city);
+    }
+  }
 }
 

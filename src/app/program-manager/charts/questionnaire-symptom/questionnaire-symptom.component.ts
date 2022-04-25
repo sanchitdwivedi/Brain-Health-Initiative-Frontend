@@ -57,7 +57,6 @@ export class QuestionnaireSymptomComponent implements OnInit {
     for(let value of map.values()){
       values.push(value);
     }
-    console.log(values);
     this.pieChartData = values;
     this.questionnaireService.getQuestionsById(questionIds).subscribe({
       next: (response: any) => {
