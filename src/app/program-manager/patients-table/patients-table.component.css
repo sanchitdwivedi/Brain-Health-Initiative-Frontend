@@ -1,8 +1,20 @@
-.full-width-table {
+table {
   width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
 }
 
 .small-table{
   overflow-x: scroll !important;
 }
 
+.full-width-table {
+  width: 100%;
+}

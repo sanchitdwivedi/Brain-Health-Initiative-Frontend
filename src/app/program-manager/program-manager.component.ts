@@ -46,7 +46,7 @@ export class ProgramManagerComponent implements OnInit{
             columns: 1,
             miniCard: { cols: 1, rows: 1 },
             chart: { cols: 1, rows: 2 },
-            table: { cols: 1, rows: 2 },
+            table: { cols: 1, rows: 4 },
           };
         }
 
@@ -54,7 +54,7 @@ export class ProgramManagerComponent implements OnInit{
           columns: 4,
           miniCard: { cols: 1, rows: 1 },
           chart: { cols: 2, rows: 2 },
-          table: { cols: 4, rows: 2 },
+          table: { cols: 4, rows: 4 },
         };
       })
     );
