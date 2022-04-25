@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { ConsultationCard } from 'src/app/interfaces/ConsultationCard';
+import { StatsService } from 'src/app/_services/stats.service';
 
 @Component({
   selector: 'app-annual-patients-visits',
   templateUrl: './annual-patients-visits.component.html',
   styleUrls: ['./annual-patients-visits.component.css']
 })
-export class AnnualPatientsVisitsComponent {
+export class AnnualPatientsVisitsComponent implements OnInit {
+
+  consultationForms: ConsultationCard[];
+
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40, 43, 20, 30, 60, 50], label: 'Total patients' },
+    { data: [], label: 'Total patients' },
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   public lineChartOptions: ChartOptions = {
@@ -25,5 +30,14 @@ export class AnnualPatientsVisitsComponent {
   public lineChartType: ChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor() { }
+  constructor(private statsService: StatsService) { }
+  async ngOnInit() {
+    this.consultationForms = await this.statsService.getConsultationFormData();
+    this.fillChartData();
+  }
+
+  fillChartData(){
+    let data = this.statsService.getPatientsByMonth();
+    this.lineChartData[0].data = data;
+  }
 }

@@ -3,6 +3,9 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { StatsService } from '../_services/stats.service';
 import { DoctorService } from '../_services/doctor.service';
+import { ConsultationCard } from '../interfaces/ConsultationCard';
+import { Doctor } from '../interfaces/Doctor';
+import { Hospital } from '../interfaces/Hospital';
 
 @Component({
   selector: 'app-program-manager',
@@ -15,8 +18,14 @@ export class ProgramManagerComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver,
               private statsService: StatsService) {}
 
+  consultationForms: ConsultationCard[];
+  doctors: Doctor[];
+  hospitals: Hospital[];
+
   async ngOnInit() {
-    await this.statsService.getData();
+    this.consultationForms = await this.statsService.getConsultationFormData();
+    this.doctors = await this.statsService.getDoctorsData();
+    this.hospitals = await this.statsService.getHospitalsData();
     this.fillMiniCardData();
   }
 

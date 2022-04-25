@@ -18,16 +18,25 @@ export class StatsService {
   doctors: Doctor[];
   hospitals: Hospital[];
 
-  async getData(){
+  async getConsultationFormData(){
     let data: any;
     data = await this.consultationService.getAllConsultationForms().toPromise();
     this.consultationForms = data;
+    return this.consultationForms;
+  }
 
+  async getDoctorsData(){
+    let data: any;
     data = await this.adminService.getDoctors().toPromise();
     this.doctors = data;
+    return data;
+  }
 
+  async getHospitalsData(){
+    let data: any;
     data = await this.adminService.getHospitals().toPromise();
     this.hospitals = data;
+    return data;
   }
 
   patientsVisitedInAnYear(date: Date){
@@ -43,7 +52,21 @@ export class StatsService {
   }
 
   patientsCuredInAnYear(date: Date){
-    return this.consultationForms.filter(c=> (new Date(c.dateAndTime).getFullYear() == date.getFullYear() && c.improvementtype==='CONDITION_IMPROVED'));
+    return this.consultationForms.filter(c=> (new Date(c.dateAndTime).getFullYear() == date.getFullYear() && c.diagnosistype==='FINAL'));
+  }
+
+  getPatientsByMonth(){
+    let data = [];
+    for(let i=0; i<12; i++){
+      let curr=0;
+      this.consultationForms.forEach(form => {
+        if(i===(new Date(form.dateAndTime).getMonth())){
+          curr++;
+        }
+      });
+      data.push(curr);
+    }
+    return data;
   }
   
 }
