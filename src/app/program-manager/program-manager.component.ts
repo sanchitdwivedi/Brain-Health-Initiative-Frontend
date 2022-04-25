@@ -1,16 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { StatsService } from '../_services/stats.service';
+import { DoctorService } from '../_services/doctor.service';
 
 @Component({
   selector: 'app-program-manager',
   templateUrl: './program-manager.component.html',
   styleUrls: ['./program-manager.component.css']
 })
-export class ProgramManagerComponent {
+export class ProgramManagerComponent implements OnInit{
   /** Based on the screen size, switch from standard to one column per row */
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+              private statsService: StatsService) {}
+
+  async ngOnInit() {
+    await this.statsService.getData();
+    this.fillMiniCardData();
+  }
 
   selectedDistrict: string = "";
   selectedCity: string = "";
@@ -18,12 +26,7 @@ export class ProgramManagerComponent {
   districts = ['Ropar', 'Bangalore'];
   cities = ['Nangal', 'Chandigarh'];
 
-  miniCardData = [
-      { title: "Patients visited", value: "9465", isIncrease: true, color: "primary", percentValue: 0.5383, icon: "personal_injury", isCurrency: true },
-      { title: "In-patients", value: "465", isIncrease: false, color: "accent", percentValue: 0.2544, icon: "local_hospital", isCurrency: true },
-      { title: "Total Doctors", value: "243", isIncrease: true, color: "warn", percentValue: 0.4565, icon: "people", isCurrency: false },
-      { title: "Patients cured", value: "35", isIncrease: false, color: "primary", percentValue: 0.8361, icon: "healing", isCurrency: false }
-    ];
+  miniCardData: any = [];
 
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
       map(({ matches }) => {
@@ -44,6 +47,50 @@ export class ProgramManagerComponent {
         };
       })
     );
-}
 
+  fillMiniCardData(): void {
+    // Patients visited card
+    let currentYearData = this.statsService.patientsVisitedInAnYear(new Date());
+    let previousYear = new Date();
+    previousYear.setFullYear(previousYear.getFullYear()-1);
+    let lastYearData = this.statsService.patientsVisitedInAnYear(previousYear);
+    
+    let change = 0;
+    if(lastYearData.length===0) change = 1;
+    else{
+      change = (currentYearData.length - lastYearData.length)/lastYearData.length;
+    }
+    this.miniCardData.push(
+      { title: "Patients visited", value: currentYearData.length.toString(), isIncrease: change>=0, color: "primary", percentValue: Math.abs(change), icon: "personal_injury", change: true }
+    )
+
+    // Questionnaires Used
+    currentYearData = this.statsService.questionnairesUsedInAnYear(new Date());
+    lastYearData = this.statsService.questionnairesUsedInAnYear(previousYear);
+    if(lastYearData.length===0) change = 1;
+    else{
+      change = (currentYearData.length - lastYearData.length)/lastYearData.length;
+    }
+    this.miniCardData.push(
+      { title: "Questionnaire used", value: currentYearData.length.toString(), isIncrease: change>=0, color: "accent", percentValue: Math.abs(change), icon: "medical_information", change: true }
+    )
+
+    // Total doctors
+    let data = this.statsService.getAllDoctors();
+    this.miniCardData.push(
+      { title: "Total Doctors", value: DoctorService.length.toString(), isIncrease: false, color: "warn", percentValue: 0, icon: "people", change: false }
+    )
+
+    // Patients cured
+    currentYearData = this.statsService.patientsCuredInAnYear(new Date());
+    lastYearData = this.statsService.patientsCuredInAnYear(previousYear);
+    if(lastYearData.length===0) change = 1;
+    else{
+      change = (currentYearData.length - lastYearData.length)/lastYearData.length;
+    }
+    this.miniCardData.push(
+      { title: "Patients cured", value: currentYearData.length.toString(), isIncrease: change>=0, color: "primary", percentValue: Math.abs(change), icon: "healing", change: true }
+    )
+  } 
+}
 

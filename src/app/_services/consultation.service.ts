@@ -13,4 +13,8 @@ export class ConsultationService {
   public createConsultationForm(form: any){
     return this.httpClient.post(`${baseUrl}/consultation`, form);
   }
+
+  public getAllConsultationForms(){
+    return this.httpClient.get(`${baseUrl}/consultation`);
+  }
 }

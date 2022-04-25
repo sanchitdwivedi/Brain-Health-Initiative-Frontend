@@ -9,7 +9,7 @@
         </div>
     </mat-card-header>
     <h3 class="title-text">{{title}}</h3>
-    <p class="difference-text">
+    <p class="difference-text" *ngIf="change">
         <span
             [ngClass]="{ 'green-text': isIncrease, 'red-text': !isIncrease }">{{ isIncrease ? '+' : '-' }}{{ percentValue | percent:'2.1-2' }}
             <mat-icon *ngIf="isIncrease">arrow_upward</mat-icon>

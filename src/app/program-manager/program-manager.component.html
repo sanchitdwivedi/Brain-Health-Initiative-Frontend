@@ -6,7 +6,7 @@
     <mat-grid-tile *ngFor="let mc of miniCardData" [colspan]="( cardLayout | async )?.miniCard?.cols"
       [rowspan]="( cardLayout | async )?.miniCard?.rows">
       <app-mini-card [icon]="mc.icon" [title]="mc.title" [value]="mc.value" [color]="mc.color"
-        [percentValue]="mc.percentValue" [isIncrease]="mc.isIncrease"></app-mini-card>
+        [percentValue]="mc.percentValue" [isIncrease]="mc.isIncrease" [change]="mc.change"></app-mini-card>
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile colspan="2" rowspan="3">
