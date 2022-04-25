@@ -45,13 +45,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CardComponent } from './program-manager/card/card.component';
 import { AnnualPatientsVisitsComponent } from './program-manager/charts/annual-patients-visits/annual-patients-visits.component';
 import { ChartsModule } from 'ng2-charts';
-import { InPatientsOutPatientsComponent } from './program-manager/charts/in-patients-out-patients/in-patients-out-patients.component';
 import { PatientsTableComponent } from './program-manager/patients-table/patients-table.component';
 import { MiniCardComponent } from './program-manager/mini-card/mini-card.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { StatsDistrictComponent } from './program-manager/charts/stats-district/stats-district.component';
 import {MatSelectModule} from '@angular/material/select';
 import { StatsCityComponent } from './program-manager/charts/stats-city/stats-city.component';
+import { QuestionnaireSymptomComponent } from './program-manager/charts/questionnaire-symptom/questionnaire-symptom.component';
 
 
 @NgModule({
@@ -79,11 +79,11 @@ import { StatsCityComponent } from './program-manager/charts/stats-city/stats-ci
     ProgramManagerComponent,
     CardComponent,
     AnnualPatientsVisitsComponent,
-    InPatientsOutPatientsComponent,
     PatientsTableComponent,
     MiniCardComponent,
     StatsDistrictComponent,
-    StatsCityComponent
+    StatsCityComponent,
+    QuestionnaireSymptomComponent
   ],
   entryComponents:[
     DoctorFormComponent,

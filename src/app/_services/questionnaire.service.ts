@@ -32,4 +32,8 @@ export class QuestionnaireService {
   public getQuestionById(id: number){
     return this.httpClient.get(`${baseUrl}/questionnaire/question/${id}`);
   }
+
+  public getQuestionsById(questionIds: any){
+    return this.httpClient.post(`${baseUrl}/questionnaire/questions`, {"ids": questionIds});
+  }
 }

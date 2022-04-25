@@ -15,8 +15,8 @@
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile colspan="2" rowspan="3">
-      <app-card title="In-patients vs Out-patients">
-        <app-in-patients-out-patients></app-in-patients-out-patients>
+      <app-card title="Conclusions by Questionnaire">
+        <app-questionnaire-symptom></app-questionnaire-symptom>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
