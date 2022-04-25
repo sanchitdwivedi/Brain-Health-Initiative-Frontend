@@ -66,12 +66,11 @@ export class StatsCityComponent implements OnInit {
     });
 
     if(this.city.length>0){
-      this.radarChartData = [{ 
-        data: [Math.round((hospitalData.size/this.hospitals.length + Number.EPSILON) * 100)/100, 
+      this.radarChartData[0].data = [Math.round((hospitalData.size/this.hospitals.length + Number.EPSILON) * 100)/100, 
                 Math.round((doctorData.size/this.doctors.length + Number.EPSILON) * 100)/100, 
-                Math.round((patientData.size/this.consultationForms.length + Number.EPSILON) * 100)/100], 
-        label: `${this.city} stats` 
-      }];
+                Math.round((patientData.size/this.consultationForms.length + Number.EPSILON) * 100)/100];
+
+      this.radarChartData[0].label = `${this.city} stats`;
     }
   }
 }
