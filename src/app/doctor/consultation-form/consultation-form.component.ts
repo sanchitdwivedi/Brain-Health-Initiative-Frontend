@@ -54,14 +54,32 @@ export class ConsultationFormComponent implements OnInit {
         doctorName: [''],
       });
 
-    this.doctorService.getDoctorRoles().subscribe({
-      next: (response: any) => {
-        this.doctorRoles = response;
+    this.doctorService.getDoctorDetails(this.doctorAuthService.getId()).subscribe({
+      next: (doctor: any) => {
+        let currentRole = doctor.doctor.role.roleName;
+        this.doctorService.getDoctorRoles().subscribe({
+          next: (response: any) => {
+            response.forEach((r: any) => {
+              if(r.roleName!=='admin' && r.roleName!=='program manager'){
+                if(currentRole==='secondary specialist'){
+                  if(r.roleName!=='medical officer') this.doctorRoles.push(r);
+                }
+                else if(currentRole==='tertiary specialist'){
+                  if(r.roleName==='tertiary specialist') this.doctorRoles.push(r);
+                }
+                else this.doctorRoles.push(r);
+              }
+            });
+          },
+          error: (error: any) => {
+            console.log(error);
+          }
+        }) 
       },
       error: (error: any) => {
         console.log(error);
       }
-    }) 
+    })
   }
 
   async create(){
@@ -128,9 +146,12 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   onRoleChange(event: any){
+    this.doctors = [];
     this.doctorService.getDoctorByRoleId(event.target.value).subscribe({
       next: (response: any) => {
-        this.doctors = response;
+        response.forEach((r:any) => {
+          if(r.doctor.userId!=this.doctorAuthService.getId()) this.doctors.push(r);
+        });
       },
       error: (error: any) => {
         console.log(error);
