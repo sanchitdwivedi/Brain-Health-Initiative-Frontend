@@ -125,6 +125,7 @@ export class ConsultationFormComponent implements OnInit {
           });
         }
         else{
+          console.log(this.consultation);
           this.consultationService.createConsultationForm(this.consultation).subscribe({
             next: (response: any) => {
               console.log(response);
@@ -167,7 +168,7 @@ export class ConsultationFormComponent implements OnInit {
     return this.fb.group({
       medicineName: [''],
       dosage: [''],
-      dosingTime: [''],
+      remarks: [''],
       duration: ['']
     });
   }
