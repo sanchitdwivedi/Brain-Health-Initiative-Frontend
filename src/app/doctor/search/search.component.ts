@@ -10,17 +10,17 @@ import { AbhaDetailService } from './../../_services/abha-detail.service';
 })
 export class SearchComponent implements OnInit {
   abhaId: string = '';
-  mobileNumber: string = '';
+  mobileNumber: number;
+  name: string = '';
   hasConsent: boolean;
   reports = [];
   isRegisterButton: boolean = true;
   routePath: string = '/doctor/create-patient';
   buttonText: string = 'Register New Patient'
-  errorMessage1: string = 'Please enter either ABHA ID or Mobile Number to search patient!!';
-  errorMessage2: string = 'Either patient not registered or No consultation form exist corresponding to given ABHA ID!';
+  errorMessage1: string = 'Please enter either ABHA ID or Mobile Number and Name to search patient!!';
   errorMessage4: string = 'There is no patient with this ABHA ID';
+  errorMessage6: string = 'There is not patient with this mobile number and name';
   errorMessage5: string = 'There is no consultation form of this patient';
-  errorMessage3: string = 'Either patient not registered or No consultation form exist corresponding to given Mobile Number!';
 
   optionValue: string = 'abha';
   registerDisabled: boolean = true;
@@ -75,21 +75,29 @@ export class SearchComponent implements OnInit {
       })
       
       
-    }else if(this.mobileNumber !== ''){
-      await this.abhaDetailService.getPatientConsultationByMobileNo(this.mobileNumber).subscribe({
-        next: async (response: any) => {
-          this.reports = response;
-          if(response !==null && response.length!==0){
-            await this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
+    }else if(this.name !== '' && this.mobileNumber!==undefined){
+      this.patientDetailService.getPatientByMobileAndName(this.name, this.mobileNumber).subscribe({
+        next: (response: any) => {
+          // this.reports = response;
+          this.dataShareService.sendPatient(response);
+          if(response===null || response.length===0){
+            this.isRegisterButton = false;
+            this.changeButton();  
+            this.reports = [];
+            alert(this.errorMessage6);
+          }
+          else{
+            this.abhaDetailService.getPatientConsultationByAbhaId(response.abhaId).subscribe({
               next: (response: any) => {
                 this.reports = response;
-                if(this.reports===null || this.reports.length===0){ 
-                  this.isRegisterButton = false;
+                this.isRegisterButton = true;
+                if(this.reports===null || this.reports.length===0){
                   this.changeButton();  
-                  alert(this.errorMessage3);
+                  this.reports = [];
+                  alert(this.errorMessage5);
                 }else{
-                  this.isRegisterButton = true;
                   this.changeButton();
+                  this.dataShareService.sendReports(this.reports);
                 }
               },
               error: (error: any) => {

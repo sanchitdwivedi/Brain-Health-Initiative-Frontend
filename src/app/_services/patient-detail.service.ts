@@ -17,4 +17,8 @@ export class PatientDetailService {
   public getPatientByAbhaId(id: string){
     return this.httpClient.get(`${baseUrl}/patient/${id}`);
   }
+
+  public getPatientByMobileAndName(name: string, mobile: number){
+    return this.httpClient.get(`${baseUrl}/patient/name/${name}/mobile/${mobile}`);
+  }
 }

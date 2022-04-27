@@ -18,4 +18,8 @@ export class AbhaDetailService {
   public getPatientConsultationByMobileNo(mobileNumber: string){
     return this.httpClient.get(`${baseUrl}/patient/mobile/${mobileNumber}`);
   }
+
+  public getPatientByMobileAndName(name: string, mobile: number){
+    return this.httpClient.get(`${baseUrl}/patient/name/${name}/mobile/${mobile}`);
+  }
 }
