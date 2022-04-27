@@ -22,6 +22,9 @@ export class SearchComponent implements OnInit {
   errorMessage5: string = 'There is no consultation form of this patient';
   errorMessage3: string = 'Either patient not registered or No consultation form exist corresponding to given Mobile Number!';
 
+  optionValue: string = 'abha';
+  registerDisabled: boolean = true;
+
   constructor(private abhaDetailService: AbhaDetailService, private dataShareService: DateShareService,
               private patientDetailService: PatientDetailService) { }
 
@@ -101,9 +104,15 @@ export class SearchComponent implements OnInit {
     if(this.isRegisterButton){
       this.buttonText = 'Consultation Form'
       this.routePath = '/doctor/consultation-form'
+      this.registerDisabled = false;
     }else{
       this.buttonText = 'Register New Patient'
       this.routePath = '/doctor/create-patient'
+      this.registerDisabled = false;
     }
+  }
+
+  onChange(event: any){
+    this.optionValue = event.target.value;
   }
 }

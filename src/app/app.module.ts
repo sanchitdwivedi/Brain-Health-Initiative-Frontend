@@ -52,6 +52,7 @@ import { StatsDistrictComponent } from './program-manager/charts/stats-district/
 import {MatSelectModule} from '@angular/material/select';
 import { StatsCityComponent } from './program-manager/charts/stats-city/stats-city.component';
 import { QuestionnaireSymptomComponent } from './program-manager/charts/questionnaire-symptom/questionnaire-symptom.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -116,7 +117,8 @@ import { QuestionnaireSymptomComponent } from './program-manager/charts/question
     MatMenuModule,
     ChartsModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthGuard,

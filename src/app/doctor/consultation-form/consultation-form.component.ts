@@ -7,6 +7,8 @@ import { DoctorAuthService } from 'src/app/_services/doctor-auth.service';
 import { formatDate } from '@angular/common';
 import { ConsultationService } from 'src/app/_services/consultation.service';
 import { Patient } from 'src/app/interfaces/Patient';
+import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-consultation-form',
@@ -27,7 +29,9 @@ export class ConsultationFormComponent implements OnInit {
               private fb:FormBuilder,
               private dataShareService: DateShareService,
               private doctorAuthService: DoctorAuthService,
-              private consultationService: ConsultationService) { }
+              private consultationService: ConsultationService,
+              private router: Router,
+              private _snackBar: MatSnackBar) { }
 
   async ngOnInit() {
     this.reports = this.dataShareService.getReports();
@@ -113,9 +117,14 @@ export class ConsultationFormComponent implements OnInit {
               this.consultationService.createConsultationForm(this.consultation).subscribe({
                 next: (response: any) => {
                   console.log(response);
+                  this._snackBar.open("Success! Redirecting to home page in 5 seconds", '', {duration: 5000});
+                  setTimeout(() => {
+                    this.router.navigate(['doctor/search-patient']);
+                  }, 3000);
                 },
                 error: (error: any) => {
                   console.log(error);
+                  this._snackBar.open("Error! Try filling the form again", '', {duration: 3000});
                 }
               })
             },
@@ -129,9 +138,14 @@ export class ConsultationFormComponent implements OnInit {
           this.consultationService.createConsultationForm(this.consultation).subscribe({
             next: (response: any) => {
               console.log(response);
+              this._snackBar.open("Success! Redirecting to home page in 5 seconds", '', {duration: 5000});
+              setTimeout(() => {
+                this.router.navigate(['doctor/search-patient']);
+              }, 3000);
             },
             error: (error: any) => {
               console.log(error);
+              this._snackBar.open("Error! Try filling the form again", '', {duration: 3000});
             }
           })
         }

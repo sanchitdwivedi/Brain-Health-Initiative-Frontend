@@ -2,12 +2,13 @@
   <div class="imgBx">
     <!-- <img src="https://cdn.sanity.io/images/0vv8moc6/nutrioutlook/f7cf24f2cecf873a10733a8ab148ddb2f328ec03-750x585.jpg/brain_9.jpg?w=1500&fit=max&auto=format" alt=""> -->
   </div>
-  <div class="container" style="padding-top: 5px">  
-    <div class="container mt-5  mat-elevation-z8" style="border-radius:3px; background-color: #42A5F5; padding: 20px; margin-top: 35px;">
+  <div class="container" style="padding-top: 5px">
+    <div class="container mt-5  mat-elevation-z8"
+      style="border-radius:3px; background-color: #42A5F5; padding: 20px; margin-top: 35px;">
       <div class="row align-items-center ">
         <form>
-          <div class="form-row" >
-            <div class="col g-2 d-flex justify-content-around user-input-wrp">
+          <div class="row justify-content-around">
+            <!-- <div class="col g-2 d-flex justify-content-around user-input-wrp">
                 <input type="text" class="form-control inputText" id="inputAbhaId" [(ngModel)]="abhaId" name="abhaId" required>
                 <span for="inputAbhaId" class="floating-label inputText">ABHA ID</span>
             </div>
@@ -21,20 +22,62 @@
                 <input type="text" class="form-control inputText" id="inputMobile" [(ngModel)]="mobileNumber" name="mobileNumber" required>
                 <span for="inputMobile" class="floating-label inputText">Mobile No</span>
               </div>
+            </div> -->
+            <div class="row col-md-4">
+              <div class="col-6">
+                <span>
+                  <h3 style="color: white;">Search patient by:</h3>
+                </span>
+              </div>
+              <div class="col-6">
+                <mat-form-field>
+                  <mat-label>Select</mat-label>
+                  <mat-select matNativeControl [(value)]="optionValue" (change)="onChange($event)" required>
+                    <mat-option value="abha">ABHA ID</mat-option>
+                    <mat-option value="name">Name and Mobile No.</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- <div class="col-md-2">
+            </div> -->
+            <div class="row col-md-8 d-flex justify-content-around user-input-wrp" style="height: fit-content;">
+              <div class="col-12 g-2" *ngIf="optionValue=='abha'">
+                <input type="text" class="form-control inputText" id="inputAbhaId" [(ngModel)]="abhaId" name="abhaId"
+                  required>
+                <span for="inputAbhaId" class="floating-label inputText">ABHA ID</span>
+              </div>
+              <div class="row" *ngIf="optionValue=='name'" >
+                <!-- <div class="row g-3 user-input-wrp"> -->
+                  <div class="g-2 col-md-6">
+                    <input type="text" class="form-control inputText" id="inputName" required>
+                    <span for="inputName" class="floating-label inputText">Name</span>
+                  </div>
+                  <div class="g-2 col-md-6">
+                    <input type="text" class="form-control inputText" id="inputMobile" [(ngModel)]="mobileNumber"
+                      name="mobileNumber" required>
+                    <span for="inputMobile" class="floating-label inputText">Mobile No</span>
+                  </div>
+                </div>
             </div>
           </div>
           <div class="form-check float-sm-right" style="margin:5px -5px -15px">
             <input class="form-check-input" type="checkbox" name="checkbox" [(ngModel)]="hasConsent" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1" style="color:darkred; font-size: 15px; font-family: Arial">I hereby declare that I have taken consent from patient to access his/her data.</label>
+            <label class="form-check-label" for="defaultCheck1"
+              style="color:darkred; font-size: 15px; font-family: Arial">I hereby declare that I have taken consent from
+              patient to access his/her data.</label>
           </div>
         </form>
       </div>
     </div>
     <div class="container" style="padding: 10px">
       <div class="g-3 d-flex justify-content-around">
-        <button  type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()" [disabled]="!hasConsent">Search</button>
-        <button  type="button" class="btn btn-primary p-2" style="width:200px" [routerLink]="[routePath]">{{buttonText}}</button>
-        <button *ngIf="buttonText==='Consultation Form'" type="button" class="btn btn-primary p-2" style="width:200px" routerLink="/doctor/questionnaire">Go to Questionnaire</button>
+        <button type="submit" class="btn btn-primary p-2" style="width:200px" (click)="search()"
+          [disabled]="!hasConsent || abhaId.length!==12">Search</button>
+        <button type="button" class="btn btn-primary p-2" style="width:200px" [disabled]="registerDisabled || abhaId.length!==12"
+          [routerLink]="[routePath]">{{buttonText}}</button>
+        <button *ngIf="buttonText==='Consultation Form'" type="button" class="btn btn-primary p-2" style="width:200px"
+          routerLink="/doctor/questionnaire">Go to Questionnaire</button>
       </div>
     </div>
   </div>

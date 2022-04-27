@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DoctorAuthService } from '../_services/doctor-auth.service';
 import { DoctorService } from '../_services/doctor.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private doctorService: DoctorService,
     private doctorAuthService: DoctorAuthService,
-    private router: Router) { }
+    private router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.msg = '';
     this.checkLoggedIn();
   }
 
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
-        this.msg = "Invalid credentials!";
+        this._snackBar.open("Invalid credentials!", "", {duration: 3000});
       }
     });
   }

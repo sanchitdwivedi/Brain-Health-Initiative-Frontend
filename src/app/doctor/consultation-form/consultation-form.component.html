@@ -87,7 +87,7 @@
     </div>
     <div class="container"
         style="border-radius:10px;background-color: #42A5F5; padding: 20px; margin-top: 30px; margin-bottom: 30px;">
-        <form [formGroup]="consultationForm">
+        <form [formGroup]="consultationForm" ngNativeValidate>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Patient Name:</label>
@@ -101,7 +101,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="diagnosisType">Diagnosis Type:</label>
-                    <select class="form-control" id="diagnosisType" formControlName="diagnosisType">
+                    <select class="form-control" id="diagnosisType" formControlName="diagnosisType" required>
                         <option value="DIFFERENTIAL" selected>Differential</option>
                         <option value="PROVISIONAL">Provisional</option>
                         <option value="TENTATIVE">Tentative</option>
@@ -120,7 +120,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="icd10Code">ICD 10 Code: </label>
-                    <select class="form-control" id="icd10Code" formControlName="icd10Code">
+                    <select class="form-control" id="icd10Code" formControlName="icd10Code" required>
                         <option selected>G40</option>
                         <option>I63</option>
                         <option>R51</option>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="icdDescription">ICD Description:</label>
-                    <input type="text" class="form-control" id="icdDescription" name="icdDescription" formControlName="icdDescription" placeholder="Description">
+                    <input type="text" class="form-control" id="icdDescription" name="icdDescription" formControlName="icdDescription" placeholder="Description" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="instructions">Treatment Instructions:</label>
@@ -139,7 +139,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="improvementType">Improvement Type: </label>
-                    <select class="form-control" id="improvementType" formControlName="improvementType">
+                    <select class="form-control" id="improvementType" formControlName="improvementType" required>
                         <option value="CONDITION_IMPROVED" selected>Condition Improved</option>
                         <option value="CONDITION_WORSENED">Condition Worsened</option>
                         <option value="CONDITION_UNCHANGED">Condition Unchanged</option>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="form-group col-md-8">
                     <label for="illnessSummary">Illness Summary: </label>
-                    <input type="text" class="form-control" id="illnessSummary" name="illnessSummary" formControlName="illnessSummary" placeholder="Summary">
+                    <input type="text" class="form-control" id="illnessSummary" name="illnessSummary" formControlName="illnessSummary" placeholder="Summary" required>
                 </div>
             </div>
             <div class="form-row">
