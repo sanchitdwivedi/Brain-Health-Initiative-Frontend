@@ -29,6 +29,7 @@ export class SearchComponent implements OnInit {
               private patientDetailService: PatientDetailService) { }
 
   ngOnInit(): void {
+    this.dataShareService.clearQuestionnaireResponse();
     if(this.dataShareService.getPatient()){
       this.abhaId=this.dataShareService.getPatient().abhaId;
       this.hasConsent = true;

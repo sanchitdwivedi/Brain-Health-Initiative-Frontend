@@ -9,6 +9,7 @@ import { ConsultationService } from 'src/app/_services/consultation.service';
 import { Patient } from 'src/app/interfaces/Patient';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { QuestionnaireService } from 'src/app/_services/questionnaire.service';
 
 @Component({
   selector: 'app-consultation-form',
@@ -24,6 +25,7 @@ export class ConsultationFormComponent implements OnInit {
   patient: Patient;
   name: string = '';
   consultation: ConsultationCard = {} as ConsultationCard;
+  questionnaireConclusion: string = '';
 
   constructor(private doctorService: DoctorService,
               private fb:FormBuilder,
@@ -31,13 +33,26 @@ export class ConsultationFormComponent implements OnInit {
               private doctorAuthService: DoctorAuthService,
               private consultationService: ConsultationService,
               private router: Router,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private questionnaireService: QuestionnaireService) { }
 
   async ngOnInit() {
     this.reports = this.dataShareService.getReports();
     this.patient = this.dataShareService.getPatient();
 
     this.name = this.patient.first_name +" "+ this.patient.last_name;
+    let qr: any = this.dataShareService.getQuestionnaireResponse();
+    if(qr.length>0){
+      // this.questionnaireConclusion = qr[qr.length-1]
+      this.questionnaireService.getQuestionById(qr[qr.length-1].uuid).subscribe({
+        next: (response: any) => {
+          this.questionnaireConclusion = response.question;
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      })
+    }
 
     this.consultationForm = this.fb.group({
         name: this.name,

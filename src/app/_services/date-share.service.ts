@@ -37,4 +37,8 @@ export class DateShareService {
     return this.questionnaireResponse;
   }
 
+  clearQuestionnaireResponse(){
+    this.questionnaireResponse = [];
+  }
+
 }

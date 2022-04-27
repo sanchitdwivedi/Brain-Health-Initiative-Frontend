@@ -198,6 +198,12 @@
                     <textarea type="text" class="form-control" id="remarks" name="remarks" formControlName="remarks" placeholder="Remarks"></textarea>
                 </div>
             </div>
+            <div class="form-row" *ngIf="questionnaireConclusion!==''">
+                <div class="form-group col-md-12">
+                    <label for="remarks">Questionnaire Conclusion:</label>
+                    <textarea type="text" class="form-control" id="conclusion" name="conclusion" formControlName="conclusion" placeholder="Conclusion" readonly>{{questionnaireConclusion}}</textarea>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                 <label for="furtherInstructions">Further Instructions:</label>
