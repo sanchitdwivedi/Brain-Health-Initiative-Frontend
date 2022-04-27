@@ -29,12 +29,18 @@ export class SearchComponent implements OnInit {
               private patientDetailService: PatientDetailService) { }
 
   ngOnInit(): void {
+    if(this.dataShareService.getPatient()){
+      this.abhaId=this.dataShareService.getPatient().abhaId;
+      this.hasConsent = true;
+      this.search();
+    }
   }
 
   async search() {
     if(this.abhaId !== ''){
       this.patientDetailService.getPatientByAbhaId(this.abhaId).subscribe({
         next: (response: any) => {
+          this.dataShareService.sendPatient(response);
           if(response===null || response.length===0){
             this.isRegisterButton = false;
             this.changeButton();
@@ -42,7 +48,7 @@ export class SearchComponent implements OnInit {
             alert(this.errorMessage4);
           }
           else{
-            this.dataShareService.sendPatient(response);
+            // this.dataShareService.sendPatient(response);
             this.abhaDetailService.getPatientConsultationByAbhaId(this.abhaId).subscribe({
               next: (response: any) => {
                 this.reports = response;
