@@ -163,28 +163,29 @@
                 <table class="table table-bordered" formArrayName="medicines">
                     <tr>
                         <th colspan="2">Add Medicines:</th>
-                        <th width="150px"><button type="button" (click)="addMedicine()" class="btn btn-primary">Add
-                                More</button></th>
+                        <th></th>
+                        <th></th>
+                        <th width="150px"><button type="button" [disabled]="medicines().value[medicines().value.length-1]!==undefined && medicines().value[medicines().value.length-1].medicineName===''" (click)="addMedicine()"  class="btn btn-primary" style="background-color: #0d6efd;">Add More</button></th>
                     </tr>
                     <tr *ngFor="let medicine of medicines().controls; let i=index" [formGroupName]="i">
                         <td>
                             Name:
-                            <input type="text" id="medicineName" formControlName="medicineName" class="form-control">
+                            <input type="text" id="medicineName" formControlName="medicineName" class="form-control" style="background-color: white;">
                         </td>
                         <td>
                             Dosage:
-                            <input type="text" id="dosage" formControlName="dosage" class="form-control">
+                            <input type="text" id="dosage" formControlName="dosage" class="form-control" style="background-color: white;">
                         </td>
                         <td>
                             Remarks:
-                            <input type="text" id="remarks" formControlName="remarks" class="form-control">
+                            <input type="text" id="remarks" formControlName="remarks" class="form-control" style="background-color: white;">
                         </td>
                         <td>
                             Duration (days):
-                            <input type="text" id="duration" formControlName="duration" class="form-control">
+                            <input type="text" id="duration" formControlName="duration" class="form-control" style="background-color: white;">
                         </td>
                         <td>
-                            <button (click)="removeMedicine(i)" class="btn btn-danger">Remove</button>
+                            <button (click)="removeMedicine(i)" class="btn btn-danger" style="background-color: rgb(255, 38, 38);">Remove</button>
                         </td>
                     </tr>
                 </table>

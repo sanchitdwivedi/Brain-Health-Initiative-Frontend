@@ -203,6 +203,7 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   addMedicine(){
+    // if(this.medicines().value[this.medicines().value.length-1]!==undefined && this.medicines().value[this.medicines().value.length-1].medicineName==='') return;
     this.medicines().push(this.newMedicine());
   }
 
