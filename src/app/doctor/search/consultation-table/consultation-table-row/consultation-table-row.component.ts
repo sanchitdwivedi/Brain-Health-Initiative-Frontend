@@ -85,7 +85,7 @@ export class ConsultationTableRowComponent implements OnInit {
             }
           })
         } else{
-          this.currentQuestionIndex++;
+          // this.currentQuestionIndex++;
           this.currentOptions = [];
         }
       },
