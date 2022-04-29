@@ -14,5 +14,6 @@ export interface Doctor {
   mobileNo:number;
   pincode:number;
   state:string;
+  name:string;
 }
   

@@ -53,6 +53,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { StatsCityComponent } from './program-manager/charts/stats-city/stats-city.component';
 import { QuestionnaireSymptomComponent } from './program-manager/charts/questionnaire-symptom/questionnaire-symptom.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -118,7 +119,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ChartsModule,
     MatChipsModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [
     AuthGuard,

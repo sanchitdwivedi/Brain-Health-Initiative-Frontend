@@ -16,6 +16,8 @@ import { RoleFormComponent } from './forms/role-form/role-form.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { LevelFormComponent } from './forms/level-form/level-form.component';
 import { DeleteWarningComponent } from './forms/delete-warning/delete-warning.component';
+import { DoctorService } from '../_services/doctor.service';
+import { DoctorAuthService } from '../_services/doctor-auth.service';
 
 
 @Component({
@@ -56,8 +58,12 @@ export class AdminComponent implements OnInit {
   sortedHospitalData: Hospital[];
   sortedAdminData: Admin[];
 
+  currentAdmin: any;
 
-  constructor(private adminService: AdminService, public dialog: MatDialog) { }
+  constructor(private adminService: AdminService, public dialog: MatDialog, public doctorAuthService: DoctorAuthService) { 
+    this.currentAdmin = this.doctorAuthService.getId();
+    console.log(this.currentAdmin);
+  }
 
 
   ngOnInit() {
@@ -89,6 +95,9 @@ export class AdminComponent implements OnInit {
         this.adminService.getDoctors()
           .subscribe(res => {
             this.dataSourceDoctor.data = res as Doctor[];
+            for(var ele of this.dataSourceDoctor.data){
+              ele.name = ele.firstName+" "+ele.lastName;
+            }
             this.dataSourceDoctor.paginator = this.doctorPaginator;
           })
         break;
@@ -104,7 +113,13 @@ export class AdminComponent implements OnInit {
       case 'ADMIN': {
         this.adminService.getAdmins()
           .subscribe(res => {
+            console.log("res: ", res);
             this.dataSourceAdmin.data = res as Admin[];
+            for(var ele of this.dataSourceAdmin.data){
+              ele.name = ele.firstName+" "+ele.lastName;
+              console.log("-->",ele.admin.userId);
+
+            }
             this.dataSourceAdmin.paginator = this.adminPaginator;
           })
         break;
