@@ -16,10 +16,18 @@
                         <option value="ADMIN">Admins & Program Managers</option>
                     </select>
                 </div>
+                <div class="col-1">
+                    <button mat-icon-button (click)="refresh()" matTooltip="Refresh Table">
+                        <mat-icon>refresh</mat-icon>
+                      </button>
+                </div>
             </div>
         </form>
     </div>
-    <div class="container" style="padding: 20px; margin-bottom: 20px;">
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="container" *ngIf="!loading" style="padding: 20px; margin-bottom: 20px;">
         <div *ngIf="tableName=='LEVEL'" class="container mat-elevation-z8">
             <div class="row">
                 <div class="col-11">
@@ -302,7 +310,7 @@
                             (click)="openDeleteDialog(element, tableName)">
                             <mat-icon class="mat-18">delete</mat-icon>
                         </button>
-                        <button *ngIf="element.admin.userId==currentAdmin" mat-icon-button matTooltip="You cannot delete yourself!">
+                        <button *ngIf="element.admin.userId==currentAdmin" mat-icon-button matTooltip="You cannot delete yourself!" (click)="notify()">
                             <mat-icon>perm_device_information</mat-icon>
                         </button>
                     </td>

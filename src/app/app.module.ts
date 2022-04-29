@@ -54,6 +54,7 @@ import { StatsCityComponent } from './program-manager/charts/stats-city/stats-ci
 import { QuestionnaireSymptomComponent } from './program-manager/charts/questionnaire-symptom/questionnaire-symptom.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatChipsModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthGuard,

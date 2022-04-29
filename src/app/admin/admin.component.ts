@@ -18,6 +18,7 @@ import { LevelFormComponent } from './forms/level-form/level-form.component';
 import { DeleteWarningComponent } from './forms/delete-warning/delete-warning.component';
 import { DoctorService } from '../_services/doctor.service';
 import { DoctorAuthService } from '../_services/doctor-auth.service';
+import swal from 'sweetalert2'; 
 
 
 @Component({
@@ -27,6 +28,14 @@ import { DoctorAuthService } from '../_services/doctor-auth.service';
 })
 export class AdminComponent implements OnInit {
   tableName: string;
+  loading:boolean = false;
+
+  refresh(){ 
+    // setTimeout(() => {
+      this.getTableData(this.tableName);
+    //   console.log("CALlED");
+    // }, 1000)
+  }
 
   onTableChange(event: any) {
     this.tableName = event.target.value;
@@ -62,7 +71,6 @@ export class AdminComponent implements OnInit {
 
   constructor(private adminService: AdminService, public dialog: MatDialog, public doctorAuthService: DoctorAuthService) { 
     this.currentAdmin = this.doctorAuthService.getId();
-    console.log(this.currentAdmin);
   }
 
 
@@ -72,8 +80,34 @@ export class AdminComponent implements OnInit {
   ngAfterViewInit(): void {
   }
 
+  notify(){
+    // swal.fire({
+    //   'You cannot delete yourself',
+    //   'info',
+    // });
+  
+    swal.fire({
+      title: 'You cannot delete yourself',
+      icon: 'info',
+      // html:
+      //   'You can use <b>bold text</b>, ' +
+      //   '<a href="//sweetalert2.github.io">links</a> ' +
+      //   'and other HTML tags',
+      // showCloseButton: true,
+      // showCancelButton: true,
+      // focusConfirm: false,
+      // confirmButtonText:
+      //   '<i class="fa fa-thumbs-up"></i> Great!',
+      // confirmButtonAriaLabel: 'Thumbs up, great!',
+      // cancelButtonText:
+      //   '<i class="fa fa-thumbs-down"></i>',
+      // cancelButtonAriaLabel: 'Thumbs down'
+    })
+  }
 
   public getTableData = (tableName: string) => {
+    this.loading = true;
+    this.tableName = tableName;
     switch (tableName) {
       case 'LEVEL': {
         this.adminService.getLevels()
@@ -113,11 +147,11 @@ export class AdminComponent implements OnInit {
       case 'ADMIN': {
         this.adminService.getAdmins()
           .subscribe(res => {
-            console.log("res: ", res);
+            // console.log("res: ", res);
             this.dataSourceAdmin.data = res as Admin[];
             for(var ele of this.dataSourceAdmin.data){
               ele.name = ele.firstName+" "+ele.lastName;
-              console.log("-->",ele.admin.userId);
+              // console.log("-->",ele.admin.userId);
 
             }
             this.dataSourceAdmin.paginator = this.adminPaginator;
@@ -125,6 +159,7 @@ export class AdminComponent implements OnInit {
         break;
       }
     }
+    this.loading = false;
   }
 
   openAddDialog(tableName: string) {
@@ -206,6 +241,10 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(LevelFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
+          swal.fire({
+            text:'Level is being Update!',
+            icon:'success'
+          })
           // console.log(`Dialog result: ${result}`);
         });
         break;
@@ -215,6 +254,10 @@ export class AdminComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
           // console.log(`Dialog result: ${result}`);
+          swal.fire({
+            text:'Role is being Update!',
+            icon:'success'
+          })
         });
         break;
       }
@@ -222,6 +265,10 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(DoctorFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe((result: string) => {
           this.getTableData(tableName);
+          swal.fire({
+            text:'Doctor is being Update!',
+            icon:'success'
+          })
           // console.log(`Dialog result: ${result}`);
         });
         break;
@@ -230,6 +277,10 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(HospitalFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
+          swal.fire({
+            text:'Hospital is being Update!',
+            icon:'success'
+          })
           // console.log(`Dialog result: ${result}`);
         });
         break;
@@ -238,6 +289,10 @@ export class AdminComponent implements OnInit {
         const dialogRef = this.dialog.open(AdminFormComponent, { data: { element: element, operation: 'update' } });
         dialogRef.afterClosed().subscribe(result => {
           this.getTableData(tableName);
+          swal.fire({
+            text:'Admin is being Update!',
+            icon:'success'
+          })
           // console.log(`Dialog result: ${result}`);
         });
         break;
@@ -270,6 +325,23 @@ export class AdminComponent implements OnInit {
       //   break;
       // }
       case 'DOCTOR': {
+        // swal.fire({
+        //   title: 'Are you sure?',
+        //   text: "You won't be able to revert this!",
+        //   icon: 'warning',
+        //   showCancelButton: true,
+        //   confirmButtonColor: '#3085d6',
+        //   cancelButtonColor: '#d33',
+        //   confirmButtonText: 'Yes, delete it!'
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     Swal.fire(
+        //       'Deleted!',
+        //       'Your file has been deleted.',
+        //       'success'
+        //     )
+        //   }
+        // })
         const dialogRef = this.dialog.open(DeleteWarningComponent, { data: element.firstName+" "+element.lastName });
         dialogRef.afterClosed().subscribe((result) => {
           if (result === "true") {

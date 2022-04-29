@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Hospital } from 'src/app/interfaces/Hospital';
 import { Level } from 'src/app/interfaces/Level';
 import { AdminService } from 'src/app/_services/admin.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hospital-form',
@@ -18,17 +19,31 @@ export class HospitalFormComponent implements OnInit {
   levels: any = [];
   level: Level = ({} as any) as Level;
   hospital: Hospital = ({} as any) as Hospital;
+  levelName: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) private operationAndDate: any,
     private fb: FormBuilder,
     private adminService: AdminService
   ) {
+    // this.getLevels();
     if (operationAndDate.operation === 'add') {
       this.add = true;
     } else if (operationAndDate.operation === 'update') {
       this.update = true;
     }
     this.hospitalDetail = operationAndDate.element;
+    if (!this.add) {
+      switch (this.hospitalDetail.level.levelName) {
+        case "phc":
+          this.levelName = "Primary Healthcare Center"
+          break;
+        case "shc":
+          this.levelName = "Secondary Healthcare Center"
+          break;
+        case "thc":
+          this.levelName = "Tertiary Healthcare Center"
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -56,7 +71,11 @@ export class HospitalFormComponent implements OnInit {
     this.hospital.district = hospitalDetails.value.district;
     this.adminService.addHospital(this.hospital).subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
+        swal.fire({
+          text:'Hospital is being Added!',
+          icon:'success'
+        })
       },
       error: (error: any) => {
         console.log(error);
@@ -65,7 +84,13 @@ export class HospitalFormComponent implements OnInit {
   }
 
   updateHospital(hospitalDetails: any) {
-    this.level.levelId = hospitalDetails.value.levelId;
+    for (var level of this.levels) {
+      if (level.levelName == hospitalDetails.value.levelName) {
+        this.level.levelId = level.levelId;
+        break;
+      }
+    }
+    this.level.levelName = hospitalDetails.value.levelName;
 
     this.hospital.level = this.level;
     this.hospital.hospitalName = hospitalDetails.value.hospitalName;
@@ -73,6 +98,7 @@ export class HospitalFormComponent implements OnInit {
     this.hospital.city = hospitalDetails.value.city;
     this.hospital.pincode = hospitalDetails.value.pincode;
     this.hospital.district = hospitalDetails.value.district;
+    console.log(this.hospital);
     this.adminService.updateHospital(this.hospitalDetail.hospitalId, this.hospital).subscribe({
       next: (response: any) => {
         console.log(response);
