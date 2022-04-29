@@ -46,7 +46,8 @@
             <div>
                 <label for="role" class="col-form-label">Role</label>
                 <select type="text" class="form-control" id="roleName" ngModel name="roleName">
-                    <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+                    <option value="admin">Admin</option>
+                    <option value="program manager">Program Manager</option>
                 </select>
             </div>
         </div>
@@ -90,6 +91,23 @@
     <div class="form-group row">
         <div class="col-sm-3">
             <label for="gender" class="col-form-label">Gender</label>
+            <select type="text" class="form-control" id="gender" [(ngModel)]="adminDetail.gender" name="gender">
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+                <option value="OTHERS">Others</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                <label for="role" class="col-form-label">Role</label>
+                <select type="text" class="form-control" id="roleName" [(ngModel)]="adminDetail.admin.role.roleName" name="roleName">
+                    <option value="admin">Admin</option>
+                    <option value="program manager">Program Manager</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="col-sm-3">
+            <label for="gender" class="col-form-label">Gender</label>
             <input type="text" class="form-control" id="gender" [(ngModel)]="adminDetail.gender" name="gender" required>
         </div>
         <div class="col-sm-3">
@@ -97,7 +115,7 @@
                 <label for="role" class="col-form-label">Role</label>
                 <input type="text" class="form-control" id="roleName" [(ngModel)]="adminDetail.admin.role.roleName" name="roleName" required>
             </div>
-        </div>
+        </div> -->
         <div class="col-sm-3">
             <label for="mobileNo" class="col-form-label">Mobile Number</label>
             <input type="tel" class="form-control" id="mobileNo" [(ngModel)]="adminDetail.mobileNo" name="mobileNo" required>

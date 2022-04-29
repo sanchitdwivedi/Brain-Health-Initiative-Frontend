@@ -28,6 +28,7 @@
     "materialize-css": "^1.0.0",
     "ng2-charts": "^2.3.0",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.4.9",
     "tsd": "^0.19.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

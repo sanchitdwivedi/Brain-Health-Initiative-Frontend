@@ -6,6 +6,7 @@ import { Admin } from 'src/app/interfaces/Admin';
 import { Role } from 'src/app/interfaces/Role';
 import { User } from 'src/app/interfaces/User';
 import { AdminService } from 'src/app/_services/admin.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-form',
@@ -42,7 +43,7 @@ export class AdminFormComponent implements OnInit {
     this.getRoles();
   }
 
-  
+
   getRoles() {
     this.roles = this.adminService.getRoles().subscribe({
       next: (response: any) => {
@@ -54,33 +55,45 @@ export class AdminFormComponent implements OnInit {
     });
   }
 
-  addAdmin(adminDetails:any) {
-    this.role.roleName = adminDetails.value.roleName;
+  addAdmin(adminDetails: any) {
+    if (adminDetails.value.password === adminDetails.value.confirmPassword) {
+      this.role.roleName = adminDetails.value.roleName;
 
-    this.user.userId = adminDetails.value.userId;
-    this.user.password = adminDetails.value.password;
-    this.user.role = this.role;
+      this.user.userId = adminDetails.value.userId;
+      this.user.password = adminDetails.value.password;
+      this.user.role = this.role;
 
-    this.admin.admin = this.user;
-    this.admin.firstName = adminDetails.value.firstName;
-    this.admin.lastName = adminDetails.value.lastName;
-    this.admin.pincode = adminDetails.value.pincode;
-    this.admin.mobileNo = adminDetails.value.mobileNo;
-    this.admin.email = adminDetails.value.email;
-    this.admin.gender = adminDetails.value.gender;
-    
-    console.log("adminDetails: ",this.admin, adminDetails.value);
-    this.adminService.addAdmin(this.admin).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-    });
+      this.admin.admin = this.user;
+      this.admin.firstName = adminDetails.value.firstName;
+      this.admin.lastName = adminDetails.value.lastName;
+      this.admin.pincode = adminDetails.value.pincode;
+      this.admin.mobileNo = adminDetails.value.mobileNo;
+      this.admin.email = adminDetails.value.email;
+      this.admin.gender = adminDetails.value.gender;
+
+      console.log("adminDetails: ", this.admin, adminDetails.value);
+      this.adminService.addAdmin(this.admin).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          swal.fire({
+            text: 'Hospital is being Added!',
+            icon: 'success'
+          })
+        },
+        error: (error: any) => {
+          console.log(error);
+        }
+      });
+    } else {
+      swal.fire({
+        text:'Passwords do not match!',
+        title: 'Oops...',
+        icon:'error'
+      })
+    }
   }
 
-  updateAdmin(adminDetails:any) {
+  updateAdmin(adminDetails: any) {
     this.role.roleName = adminDetails.value.roleName;
 
     this.user.userId = adminDetails.value.userId;
@@ -94,7 +107,7 @@ export class AdminFormComponent implements OnInit {
     this.admin.mobileNo = adminDetails.value.mobileNo;
     this.admin.email = adminDetails.value.email;
     this.admin.gender = adminDetails.value.gender;
-    
+
 
     this.adminService.updateAdmin(this.adminDetail.userId, this.admin).subscribe({
       next: (response: any) => {

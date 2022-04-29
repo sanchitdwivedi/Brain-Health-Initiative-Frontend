@@ -9,5 +9,6 @@ export interface Admin {
     email:string;
     gender:string;
     admin: User;
+    name:string;
   }
     

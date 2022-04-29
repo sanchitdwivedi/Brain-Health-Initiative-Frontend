@@ -42,7 +42,9 @@
             <div>
                 <label for="role" class="col-form-label">Role</label>
                 <select type="text" class="form-control" id="roleName" ngModel name="roleName">
-                    <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+                    <option value="primary specialist">Primary Specialist</option>
+                    <option value="secondary specialist">Secondary Specialist</option>
+                    <option value="medical officer">Medical Officer</option>
                 </select>
             </div>
         </div>
@@ -111,8 +113,10 @@
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="role" class="col-form-label">Role</label>
-            <select type="text" class="form-control" id="roleName" ngModel name="roleName">
-                <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+            <select type="text" class="form-control" id="roleName" [(ngModel)]="doctorDetail.doctor.role.roleName" name="roleName">
+                <option value="primary specialist">Primary Specialist</option>
+                <option value="secondary specialist">Secondary Specialist</option>
+                <option value="medical officer">Medical Officer</option>
             </select>
         </div>
         <div class="col-sm-6">
@@ -123,8 +127,8 @@
     <div class="form-group row">
         <div class="col-sm-9">
             <label for="hospital" class="col-form-label">Hospital</label>
-            <select type="text" class="form-control" id="hospital" ngModel name="hospitalId">
-                <option [selected]="true" value="{{doctorDetail.hospital.hospitalId}}">vfdvdf</option>
+            <select type="text" class="form-control" id="hospital" [(ngModel)]="doctorDetail.hospital.hospitalId" name="hospitalId">
+                <option [selected]="true" value="{{doctorDetail.hospital.hospitalId}}">{{doctorDetail.hospital.hospitalName}}</option>
                 <!-- <option *ngFor="let hospital of hospitals" [value]="hospital.hospitalId">{{hospital.hospitalName}}
                 </option> -->
             </select>
@@ -133,10 +137,10 @@
             <label for="gender" class="col-form-label">Gender</label>
             <select type="text" class="form-control" #gender="ngModel" gender="gender" [(ngModel)]="doctorDetail.gender"
                 name="gender">
-                <option [selected]="true" value="{{doctorDetail.gender}}">{{doctorDetail.gender}}</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
+                <!-- <option [selected]="true" value="{{doctorDetail.gender}}">{{doctorDetail.gender}}</option> -->
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+                <option value="OTHERS">Others</option>
             </select>
         </div>
     </div>

@@ -6,6 +6,7 @@ import { Hospital } from 'src/app/interfaces/Hospital';
 import { Role } from 'src/app/interfaces/Role';
 import { User } from 'src/app/interfaces/User';
 import { AdminService } from 'src/app/_services/admin.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctor-form',
@@ -108,13 +109,21 @@ export class DoctorFormComponent implements OnInit {
       this.adminService.addDoctor(this.doctor).subscribe({
         next: (response: any) => {
           console.log(response);
+          swal.fire({
+            text:'Doctor is being Added!',
+            icon:'success'
+          })
         },
         error: (error: any) => {
           console.log(error);
         }
       });
     } else {
-      alert('Passwords do not match!');
+      swal.fire({
+        text:'Passwords do not match!',
+        title: 'Oops...',
+        icon:'error'
+      })
     }
   }
 
