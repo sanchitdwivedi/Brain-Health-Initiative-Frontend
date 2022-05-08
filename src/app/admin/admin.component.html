@@ -297,8 +297,11 @@
                 <ng-container matColumnDef="update">
                     <th mat-header-cell *matHeaderCellDef> Update </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="accent" (click)="openUpdateDialog(element, tableName)">
+                        <button mat-icon-button color="accent"  *ngIf="element.admin.userId!=currentAdmin" (click)="openUpdateDialog(element, tableName)">
                             <mat-icon class="mat-18">system_update</mat-icon>
+                        </button>
+                        <button *ngIf="element.admin.userId==currentAdmin" mat-icon-button matTooltip="You cannot update yourself!" (click)="notifyUpdate()">
+                            <mat-icon>perm_device_information</mat-icon>
                         </button>
                     </td>
                 </ng-container>
@@ -310,7 +313,7 @@
                             (click)="openDeleteDialog(element, tableName)">
                             <mat-icon class="mat-18">delete</mat-icon>
                         </button>
-                        <button *ngIf="element.admin.userId==currentAdmin" mat-icon-button matTooltip="You cannot delete yourself!" (click)="notify()">
+                        <button *ngIf="element.admin.userId==currentAdmin" mat-icon-button matTooltip="You cannot delete yourself!" (click)="notifyDelete()">
                             <mat-icon>perm_device_information</mat-icon>
                         </button>
                     </td>

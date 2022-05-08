@@ -76,7 +76,7 @@ export class AdminFormComponent implements OnInit {
         next: (response: any) => {
           console.log(response);
           swal.fire({
-            text: 'Hospital is being Added!',
+            text: 'Admin is being Added!',
             icon: 'success'
           })
         },
@@ -94,11 +94,19 @@ export class AdminFormComponent implements OnInit {
   }
 
   updateAdmin(adminDetails: any) {
+    console.log("this.adminDetail: ", this.adminDetail);
+    console.log("adminDetails: ", adminDetails.value);
     this.role.roleName = adminDetails.value.roleName;
+    for(var role of this.roles){
+      if(role.roleName===this.role.roleName){
+        this.role.roleId = role.roleId;
+      }
+    }
 
-    this.user.userId = adminDetails.value.userId;
+    this.user.uuid = this.adminDetail.admin.uuid;
     this.user.password = adminDetails.value.password;
     this.user.role = this.role;
+    this.user.userId = this.adminDetail.admin.userId;
 
     this.admin.admin = this.user;
     this.admin.firstName = adminDetails.value.firstName;
@@ -109,7 +117,7 @@ export class AdminFormComponent implements OnInit {
     this.admin.gender = adminDetails.value.gender;
 
 
-    this.adminService.updateAdmin(this.adminDetail.userId, this.admin).subscribe({
+    this.adminService.updateAdmin(this.adminDetail.uuid, this.admin).subscribe({
       next: (response: any) => {
         console.log(response);
       },
