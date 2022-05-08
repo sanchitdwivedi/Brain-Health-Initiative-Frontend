@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit {
   ngAfterViewInit(): void {
   }
 
-  notify(){
+  notifyDelete(){
     // swal.fire({
     //   'You cannot delete yourself',
     //   'info',
@@ -88,6 +88,32 @@ export class AdminComponent implements OnInit {
   
     swal.fire({
       title: 'You cannot delete yourself',
+      icon: 'info',
+      // html:
+      //   'You can use <b>bold text</b>, ' +
+      //   '<a href="//sweetalert2.github.io">links</a> ' +
+      //   'and other HTML tags',
+      // showCloseButton: true,
+      // showCancelButton: true,
+      // focusConfirm: false,
+      // confirmButtonText:
+      //   '<i class="fa fa-thumbs-up"></i> Great!',
+      // confirmButtonAriaLabel: 'Thumbs up, great!',
+      // cancelButtonText:
+      //   '<i class="fa fa-thumbs-down"></i>',
+      // cancelButtonAriaLabel: 'Thumbs down'
+    })
+  }
+
+  
+  notifyUpdate(){
+    // swal.fire({
+    //   'You cannot delete yourself',
+    //   'info',
+    // });
+  
+    swal.fire({
+      title: 'You cannot update yourself',
       icon: 'info',
       // html:
       //   'You can use <b>bold text</b>, ' +

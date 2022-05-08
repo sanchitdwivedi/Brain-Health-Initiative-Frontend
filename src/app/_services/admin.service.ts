@@ -102,7 +102,7 @@ export class AdminService {
   }
 
   public updateAdmin(id: any, adminDetail: any){
-    return this.httpClient.put(`${baseUrl}/admin/${id}`, adminDetail);
+    return this.httpClient.put(`${baseUrl}/admin/update/${id}`, adminDetail);
   }
 
   public deleteAdmin(id: any){

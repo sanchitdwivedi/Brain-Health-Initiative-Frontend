@@ -63,6 +63,7 @@ export class DoctorFormComponent implements OnInit {
     this.roles = this.adminService.getRoles().subscribe({
       next: (response: any) => {
         this.roles = response;
+        console.log('this.roles', this.roles);
       },
       error: (error: any) => {
         console.log(error);
@@ -129,10 +130,16 @@ export class DoctorFormComponent implements OnInit {
 
   updateDoctor(doctorDetails: any) {
     console.log(doctorDetails.value, this.doctorDetail);
-      // this.role.roleName = doctorDetails.value.roleName;
+      this.role.roleName = doctorDetails.value.roleName;
+      for(var role of this.roles){
+        if(role.roleName===this.role.roleName){
+          this.role.roleId = role.roleId;
+        }
+      }
 
       this.user.uuid = this.doctorDetail.doctor.uuid;
-      // this.user.role = this.role;
+      this.user.role = this.role;
+      this.user.userId = this.doctorDetail.doctor.userId;
       // this.user.password = doctorDetails.value.password;
 
       this.hospital.hospitalId = doctorDetails.value.hospitalId;
@@ -152,7 +159,7 @@ export class DoctorFormComponent implements OnInit {
       this.doctor.email = doctorDetails.value.email;
 
       console.log("this.doctor: ", this.doctor);
-      this.adminService.updateDoctor(this.doctor.doctor.uuid, this.doctor).subscribe({
+      this.adminService.updateDoctor(this.doctorDetail.uuid, this.doctor).subscribe({
         next: (response: any) => {
           console.log(response);
         },

@@ -22,39 +22,39 @@ import { ReferralsComponent } from './doctor/referrals/referrals.component';
 import { PatientsComponent } from './doctor/patients/patients.component';
 import { QuestionnaireComponent } from './doctor/questionnaire/questionnaire.component';
 import { AdminComponent } from './admin/admin.component';
-import {MatIconModule} from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table'  
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table'
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorFormComponent } from './admin/forms/doctor-form/doctor-form.component';
 import { HospitalFormComponent } from './admin/forms/hospital-form/hospital-form.component';
 import { AdminFormComponent } from './admin/forms/admin-form/admin-form.component';
 import { LevelFormComponent } from './admin/forms/level-form/level-form.component';
 import { RoleFormComponent } from './admin/forms/role-form/role-form.component';
-import {MatSortModule} from '@angular/material/sort';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteWarningComponent } from './admin/forms/delete-warning/delete-warning.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { ProgramManagerComponent } from './program-manager/program-manager.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 import { CardComponent } from './program-manager/card/card.component';
 import { AnnualPatientsVisitsComponent } from './program-manager/charts/annual-patients-visits/annual-patients-visits.component';
 import { ChartsModule } from 'ng2-charts';
 import { PatientsTableComponent } from './program-manager/patients-table/patients-table.component';
 import { MiniCardComponent } from './program-manager/mini-card/mini-card.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { StatsDistrictComponent } from './program-manager/charts/stats-district/stats-district.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { StatsCityComponent } from './program-manager/charts/stats-city/stats-city.component';
 import { QuestionnaireSymptomComponent } from './program-manager/charts/questionnaire-symptom/questionnaire-symptom.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -88,7 +88,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     StatsCityComponent,
     QuestionnaireSymptomComponent
   ],
-  entryComponents:[
+  entryComponents: [
     DoctorFormComponent,
     HospitalFormComponent,
     RoleFormComponent,
