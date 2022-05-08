@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
   }
 
   async search() {
-    if(this.abhaId !== ''){
+    if(this.optionValue === 'abha'){
       this.patientDetailService.getPatientByAbhaId(this.abhaId).subscribe({
         next: (response: any) => {
           this.dataShareService.sendPatient(response);
@@ -75,7 +75,7 @@ export class SearchComponent implements OnInit {
       })
       
       
-    }else if(this.name !== '' && this.mobileNumber!==undefined){
+    }else if(this.optionValue === 'name'){
       this.patientDetailService.getPatientByMobileAndName(this.name, this.mobileNumber).subscribe({
         next: (response: any) => {
           // this.reports = response;

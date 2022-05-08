@@ -68,8 +68,8 @@ export class ConsultationFormComponent implements OnInit {
         medicines: this.fb.array([]),
         remarks: [''],
         furtherInstructions: [''],
-        followUp: [''],
         doctorRole: [''],
+        followUp: [''],
         doctorName: [''],
       });
 
@@ -106,6 +106,12 @@ export class ConsultationFormComponent implements OnInit {
     this.doctorService.getDoctorDetails(this.doctorAuthService.getId()).subscribe({
       next: (response: any) => {
         // this.consultation.hospital = response.hospital;
+        if(this.optionValue!=='Follow-up'){
+          this.consultationForm.value.followUp = "";
+        }else{
+          this.consultationForm.value.doctorName = "";
+        }
+
         this.consultation.doctor = response;
         this.consultation.hospital = this.consultation.doctor.hospital;
         this.consultation.compliant = this.consultationForm.value.compliant;
@@ -123,7 +129,7 @@ export class ConsultationFormComponent implements OnInit {
         this.consultation.questionnaireResponse = this.dataShareService.getQuestionnaireResponse();
 
         
-        if(this.consultationForm.value.doctorName.length>0){
+        if(this.consultationForm.value.doctorName!==""){
           this.doctorService.getDoctorDetails(this.consultationForm.value.doctorName).subscribe({
             next: (response: any) => {
               this.consultation.refer = response;
@@ -136,6 +142,7 @@ export class ConsultationFormComponent implements OnInit {
                   setTimeout(() => {
                     this.router.navigate(['doctor/search-patient']);
                   }, 3000);
+                  // console.log();
                 },
                 error: (error: any) => {
                   console.log(error);
@@ -172,6 +179,9 @@ export class ConsultationFormComponent implements OnInit {
   }
 
   onChange(event: any){
+    this.consultationForm.value.followUp = [''];
+    this.consultationForm.value.doctorName = [''];
+    console.log("this.consultationForm.value.followUp: ", this.consultationForm.value.followUp);
     this.optionValue = event.target.value;
   }
 
